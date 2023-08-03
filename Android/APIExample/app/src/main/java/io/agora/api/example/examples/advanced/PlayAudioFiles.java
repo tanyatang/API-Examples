@@ -35,7 +35,6 @@ import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
 import io.agora.rtc2.ChannelMediaOptions;
 import io.agora.rtc2.Constants;
-import io.agora.rtc2.IAudioEffectManager;
 import io.agora.rtc2.IRtcEngineEventHandler;
 import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
@@ -60,7 +59,6 @@ public class PlayAudioFiles extends BaseFragment implements View.OnClickListener
     private RtcEngine engine;
     private int myUid;
     private boolean joined = false;
-    private IAudioEffectManager audioEffectManager;
 
     private AudioSeatManager audioSeatManager;
 
@@ -211,12 +209,10 @@ public class PlayAudioFiles extends BaseFragment implements View.OnClickListener
      * We recommend using this method to preload the audio effect before calling the joinChannel method.
      */
     private void preloadAudioEffect(){
-        // Gets the global audio effect manager.
-        audioEffectManager = engine.getAudioEffectManager();
         // Preloads the audio effect (recommended). Note the file size, and preload the file before joining the channel.
         // Only mp3, aac, m4a, 3gp, and wav files are supported.
         // You may need to record the sound IDs and their file paths.
-        audioEffectManager.preloadEffect(EFFECT_SOUND_ID, Constant.EFFECT_FILE_PATH);
+        engine.preloadEffect(EFFECT_SOUND_ID, Constant.EFFECT_FILE_PATH);
     }
 
     @Override
@@ -323,7 +319,7 @@ public class PlayAudioFiles extends BaseFragment implements View.OnClickListener
              * 0: Success.
              * < 0: Failure.
              */
-            int playRet = audioEffectManager.playEffect(
+            int playRet = engine.playEffect(
                     EFFECT_SOUND_ID,  // The sound ID of the audio effect file to be played.
                     Constant.EFFECT_FILE_PATH,  // The file path of the audio effect file.
                     -1,   // The number of playback loops. -1 means an infinite loop.
@@ -340,11 +336,11 @@ public class PlayAudioFiles extends BaseFragment implements View.OnClickListener
         }
         else if(v == effectPause){
             int ret = engine.pauseEffect(EFFECT_SOUND_ID);
-            Log.i(TAG, "resumeEffect >> ret=" + ret);
+            Log.i(TAG, "pauseEffect >> ret=" + ret);
         }
         else if(v == effectStop){
             int ret = engine.stopEffect(EFFECT_SOUND_ID);
-            Log.i(TAG, "resumeEffect >> ret=" + ret);
+            Log.i(TAG, "stopEffect >> ret=" + ret);
         }
     }
 
