@@ -212,7 +212,7 @@ public class PlayAudioFiles extends BaseFragment implements View.OnClickListener
         // Preloads the audio effect (recommended). Note the file size, and preload the file before joining the channel.
         // Only mp3, aac, m4a, 3gp, and wav files are supported.
         // You may need to record the sound IDs and their file paths.
-        engine.preloadEffect(EFFECT_SOUND_ID, Constant.EFFECT_FILE_PATH);
+        engine.preloadEffect(EFFECT_SOUND_ID, Constant.MIX_FILE_PATH);
     }
 
     @Override
@@ -321,8 +321,8 @@ public class PlayAudioFiles extends BaseFragment implements View.OnClickListener
              */
             int playRet = engine.playEffect(
                     EFFECT_SOUND_ID,  // The sound ID of the audio effect file to be played.
-                    Constant.EFFECT_FILE_PATH,  // The file path of the audio effect file.
-                    -1,   // The number of playback loops. -1 means an infinite loop.
+                    Constant.MIX_FILE_PATH,  // The file path of the audio effect file.
+                    1,   // The number of playback loops. -1 means an infinite loop.
                     1,    // pitch	The pitch of the audio effect. The value ranges between 0.5 and 2. The default value is 1 (no change to the pitch). The lower the value, the lower the pitch.
                     0.0,  // Sets the spatial position of the effect. 0 means the effect shows ahead.
                     100,  // Sets the volume. The value ranges between 0 and 100. 100 is the original volume.
