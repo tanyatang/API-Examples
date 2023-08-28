@@ -3,7 +3,7 @@ CURRENT_PATH=$PWD
 # 获取项目目录
 PROJECT_PATH="$( cd "$1" && pwd  )"
 
-cd ${PROJECT_PATH} && pod install
+cd ${PROJECT_PATH} && pod install --repo-update
 
 if [ $? -eq 0 ]; then
     echo "success"
