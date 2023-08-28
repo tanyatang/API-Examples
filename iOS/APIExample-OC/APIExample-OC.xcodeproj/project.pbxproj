@@ -364,6 +364,7 @@
 		E7361FE02A6E7AE200925BD6 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		E7361FE12A6E7AF300925BD6 /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
 		E7361FE22A6E7AFE00925BD6 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		E7BB138E2A9C86C600B772F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EE1DD4153A945ADCE1953823 /* Pods_Agora_ScrrenShare_Extension_OC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agora_ScrrenShare_Extension_OC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1366,6 +1367,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E70ADE692A5FAAEB009947CF /* zh-Hans */,
+				E7BB138E2A9C86C600B772F9 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

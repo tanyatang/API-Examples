@@ -24,21 +24,23 @@ struct MenuItem {
 
 class ViewController: AGViewController {
     var menus:[MenuSection] = [
-        MenuSection(name: "Basic", rows: [
-            MenuItem(name: "Join a channel (Token)".localized, storyboard: "JoinChannelAudioToken", controller: ""),
-            MenuItem(name: "Join a channel (Audio)".localized, storyboard: "JoinChannelAudio", controller: "")
+        MenuSection(name: "Audio", rows: [
+            MenuItem(name: "AudioBasic(Token)".localized, storyboard: "JoinChannelAudioToken", controller: ""),
+            MenuItem(name: "AudioBasic(Audio)".localized, storyboard: "JoinChannelAudio", controller: ""),
+            MenuItem(name: "AudioPrePostProcess".localized, storyboard: "VoiceChanger", controller: ""),
+            MenuItem(name: "CustomAudioCapture".localized, storyboard: "CustomAudioSource", controller: ""),
+            MenuItem(name: "CustomAudioCapture(PCM)".localized, storyboard: "CustomPcmAudioSource", controller: "CustomPcmAudioSource"),
+            MenuItem(name: "CustomAudioRender".localized, storyboard: "CustomAudioRender", controller: "CustomAudioRender"),
+            MenuItem(name: "RawAudioData".localized, storyboard: "RawAudioData", controller: ""),
+            MenuItem(name: "AudioFilePlayback".localized, storyboard: "AudioMixing", controller: ""),
+            MenuItem(name: "SpatialAudio".localized, storyboard: "SpatialAudio", controller: "SpatialAudio"),
         ]),
-        MenuSection(name: "Anvanced", rows: [
-            MenuItem(name: "Voice Changer".localized, storyboard: "VoiceChanger", controller: ""),
-            MenuItem(name: "Custom Audio Source".localized, storyboard: "CustomAudioSource", controller: ""),
-            MenuItem(name: "Custom Audio Source(PCM)".localized, storyboard: "CustomPcmAudioSource", controller: "CustomPcmAudioSource"),
-            MenuItem(name: "Custom Audio Render".localized, storyboard: "CustomAudioRender", controller: "CustomAudioRender"),
-            MenuItem(name: "Raw Audio Data".localized, storyboard: "RawAudioData", controller: ""),
-            MenuItem(name: "Audio Mixing".localized, storyboard: "AudioMixing", controller: ""),
-            MenuItem(name: "Rhythm Player".localized, storyboard: "RhythmPlayer", controller: "RhythmPlayer"),
+        MenuSection(name: "Player", rows: [
+            MenuItem(name: "VirtualMetronome".localized, storyboard: "RhythmPlayer", controller: "RhythmPlayer"),
+        ]),
+        MenuSection(name: "Player", rows: [
             MenuItem(name: "Precall Test".localized, storyboard: "PrecallTest", controller: ""),
-            MenuItem(name: "Spatial Audio".localized, storyboard: "SpatialAudio", controller: "SpatialAudio"),
-        ]),
+        ])
     ]
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -24,48 +24,62 @@ struct MenuItem {
 
 class ViewController: AGViewController {
     var menus:[MenuSection] = [
-        MenuSection(name: "Basic", rows: [
-            MenuItem(name: "Join a channel (Token)".localized, storyboard: "JoinChannelVideoToken", controller: ""),
-            MenuItem(name: "Join a channel (Video)".localized, storyboard: "JoinChannelVideo", controller: ""),
-            MenuItem(name: "Join a channel (Audio)".localized, storyboard: "JoinChannelAudio", controller: ""),
-            MenuItem(name: "Local or remote recording".localized, storyboard: "JoinChannelVideoRecorder", controller: "")
-        ]),
-        MenuSection(name: "Anvanced", rows: [
-//            MenuItem(name: "Group Video Chat".localized, storyboard: "VideoChat", controller: "VideoChat"),
-            MenuItem(name: "Live Streaming".localized, storyboard: "LiveStreaming", controller: "LiveStreaming"),
-            MenuItem(name: "RTMP Streaming".localized, storyboard: "RTMPStreaming", controller: "RTMPStreaming"),
-            MenuItem(name: "Fusion CDN Streaming".localized, storyboard: "FusionCDN", controller: "FusionCDN"),
-            MenuItem(name: "Video Metadata".localized, storyboard: "VideoMetadata", controller: "VideoMetadata".localized),
-            MenuItem(name: "Voice Changer".localized, storyboard: "VoiceChanger", controller: ""),
-            MenuItem(name: "Custom Audio Source".localized, storyboard: "CustomPcmAudioSource", controller: "CustomPcmAudioSource"),
-            MenuItem(name: "Custom Audio Render".localized, storyboard: "CustomAudioRender", controller: "CustomAudioRender"),
-            MenuItem(name: "Custom Video Source(Push)".localized, storyboard: "CustomVideoSourcePush", controller: "CustomVideoSourcePush"),
-            MenuItem(name: "Custom Video Source(Multi)".localized, storyboard: "CustomVideoSourcePushMulti", controller: "CustomVideoSourcePushMulti"),
-            MenuItem(name: "Custom Video Render".localized, storyboard: "CustomVideoRender", controller: "CustomVideoRender"),
-//            MenuItem(name: "Raw Media Data".localized, storyboard: "RawMediaData", controller: "RawMediaData"),
-            MenuItem(name: "Raw Audio Data".localized, storyboard: "RawAudioData", controller: ""),
-            MenuItem(name: "Raw Video Data".localized, storyboard: "RawVideoData", controller: ""),
-            MenuItem(name: "Picture In Picture(require iOS15)".localized, storyboard: "PictureInPicture", controller: "PictureInPicture"),
-            MenuItem(name: "Simple Filter Extension".localized, storyboard: "SimpleFilter", controller: "SimpleFilter"),
+        MenuSection(name: "Channel", rows: [
             MenuItem(name: "Quick Switch Channel".localized, controller: "QuickSwitchChannel"),
-            MenuItem(name: "Join Multiple Channels".localized, storyboard: "JoinMultiChannel", controller: "JoinMultiChannel"),
-            MenuItem(name: "Stream Encryption".localized, storyboard: "StreamEncryption", controller: ""),
-            MenuItem(name: "Audio Mixing".localized, storyboard: "AudioMixing", controller: ""),
-            MenuItem(name: "Precall Test".localized, storyboard: "PrecallTest", controller: ""),
-            MenuItem(name: "Media Player".localized, storyboard: "MediaPlayer", controller: ""),
-            MenuItem(name: "Screen Share".localized, storyboard: "ScreenShare", controller: ""),
-            MenuItem(name: "Video Process".localized, storyboard: "VideoProcess", controller: "VideoProcess"),
-            MenuItem(name: "Rhythm Player".localized, storyboard: "RhythmPlayer", controller: "RhythmPlayer"),
-            MenuItem(name: "Create Data Stream".localized, storyboard: "CreateDataStream", controller: ""),
-            MenuItem(name: "Media Channel Relay".localized, storyboard: "MediaChannelRelay", controller: ""),
-            MenuItem(name: "Spatial Audio".localized, storyboard: "SpatialAudio", controller: "SpatialAudioMain"),
+            MenuItem(name: "MultipleChannels".localized, storyboard: "JoinMultiChannel", controller: "JoinMultiChannel"),
+        ]),
+        MenuSection(name: "Audio", rows: [
+            MenuItem(name: "AudioBasic".localized, storyboard: "JoinChannelAudio", controller: ""),
+            MenuItem(name: "CustomAudioCapture".localized, storyboard: "CustomPcmAudioSource", controller: "CustomPcmAudioSource"),
+            MenuItem(name: "AudioPrePostProcess".localized, storyboard: "VoiceChanger", controller: ""),
+            MenuItem(name: "SpatialAudio".localized, storyboard: "SpatialAudio", controller: "SpatialAudioMain"),
+            MenuItem(name: "RawAudioData".localized, storyboard: "RawAudioData", controller: ""),
+            MenuItem(name: "CustomAudioRender".localized, storyboard: "CustomAudioRender", controller: "CustomAudioRender"),
+            MenuItem(name: "AudioFilePlayback".localized, storyboard: "AudioMixing", controller: ""),
+            MenuItem(name: "AudioSpectrum".localized, storyboard: "AudioWaveform", controller: ""),
+        ]),
+        MenuSection(name: "Video", rows: [
+            MenuItem(name: "VideoBasic(Token)".localized, storyboard: "JoinChannelVideoToken", controller: ""),
+            MenuItem(name: "VideoBasic".localized, storyboard: "JoinChannelVideo", controller: ""),
+            MenuItem(name: "ScreenSharing".localized, storyboard: "ScreenShare", controller: ""),
+            MenuItem(name: "VideoPrePostProcess".localized, storyboard: "VideoProcess", controller: "VideoProcess"),
             MenuItem(name: "Content Inspect".localized, storyboard: "ContentInspect", controller: ""),
-            MenuItem(name: "Mutli Camera(iOS13.0+)".localized, storyboard: "MutliCamera", controller: "MutliCamera"),
+            MenuItem(name: "VideoAdvanced".localized, storyboard: "LiveStreaming", controller: "LiveStreaming"),
+            MenuItem(name: "CustomVideoRenderer".localized, storyboard: "CustomVideoRender", controller: "CustomVideoRender"),
+            MenuItem(name: "RawVideoData".localized, storyboard: "RawVideoData", controller: ""),
+            MenuItem(name: "CustomVideoCapture".localized, storyboard: "CustomVideoSourcePush", controller: "CustomVideoSourcePush"),
+            MenuItem(name: "CustomVideoCapture(Multi-track)".localized, storyboard: "CustomVideoSourcePushMulti", controller: "CustomVideoSourcePushMulti"),
+            MenuItem(name: "PictureInPicture".localized, storyboard: "PictureInPicture", controller: "PictureInPicture"),
+            MenuItem(name: "VideoPreProcess(ImageEnhancement)".localized, storyboard: "ThirdBeautify", controller: ""),
+            MenuItem(name: "CustomVideoRenderer(ARKit)".localized, storyboard: "ARKit", controller: ""),
+        ]),
+        MenuSection(name: "Player", rows: [
+            MenuItem(name: "Media Player".localized, storyboard: "MediaPlayer", controller: ""),
+            MenuItem(name: "VirtualMetronome".localized, storyboard: "RhythmPlayer", controller: "RhythmPlayer"),
             MenuItem(name: "Ktv copyright music".localized, entry: "KtvCopyrightMusic", storyboard: "KtvCopyrightMusic", controller: "KtvCopyrightMusic"),
-            MenuItem(name: "Third Beautify".localized, storyboard: "ThirdBeautify", controller: ""),
-            MenuItem(name: "ARKit".localized, storyboard: "ARKit", controller: ""),
-            MenuItem(name: "Audio Router(Third Party Player)".localized, storyboard: "AuidoRouterPlayer", controller: ""),
-            MenuItem(name: "Audio Waveform".localized, storyboard: "AudioWaveform", controller: "")
+        ]),
+        MenuSection(name: "Media Recording", rows: [
+            MenuItem(name: "Recording".localized, storyboard: "JoinChannelVideoRecorder", controller: ""),
+        ]),
+        MenuSection(name: "Media Streaming", rows: [
+            MenuItem(name: "MediaPush".localized, storyboard: "RTMPStreaming", controller: "RTMPStreaming"),
+            MenuItem(name: "DirectCDNStreaming".localized, storyboard: "FusionCDN", controller: "FusionCDN"),
+            MenuItem(name: "MediaRelay".localized, storyboard: "MediaChannelRelay", controller: "")
+        ]),
+        MenuSection(name: "Media Affiliated Information", rows: [
+            MenuItem(name: "Metadata(SEI)".localized, storyboard: "VideoMetadata", controller: "VideoMetadata".localized),
+            MenuItem(name: "DataStream".localized, storyboard: "CreateDataStream", controller: ""),
+        ]),
+        MenuSection(name: "Device Manager", rows: [
+            MenuItem(name: "AudioRouter".localized, storyboard: "AuidoRouterPlayer", controller: ""),
+            MenuItem(name: "MobileCameraDevice".localized, storyboard: "MutliCamera", controller: "MutliCamera"),
+        ]),
+        MenuSection(name: "Plug-in", rows: [
+            MenuItem(name: "Extension".localized, storyboard: "SimpleFilter", controller: "SimpleFilter"),
+        ]),
+        MenuSection(name: "Network", rows: [
+            MenuItem(name: "Encryption".localized, storyboard: "StreamEncryption", controller: ""),
+            MenuItem(name: "Precall Test".localized, storyboard: "PrecallTest", controller: ""),
         ]),
     ]
     override func viewDidLoad() {
@@ -137,7 +151,7 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return menus[section].name
+        menus[section].name
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -45,42 +45,66 @@
 
 + (NSArray *)menus {
     NSMutableArray *array = [NSMutableArray array];
-    MenuSection *basicSection = [[MenuSection alloc] initWithName:@"Basic" rows:@[
-        [[MenuItem alloc]initWithName:@"Join a channel (Token)".localized storyboard:@"JoinChannelVideoToken" controller:@""],
-        [[MenuItem alloc]initWithName:@"Join a channel (Video)".localized storyboard:@"JoinChannelVideo" controller:@""],
-        [[MenuItem alloc]initWithName:@"Join a channel (Audio)".localized storyboard:@"JoinChannelAudio" controller:@""],
-        [[MenuItem alloc]initWithName:@"Local or remote recording".localized storyboard:@"JoinChannelVideoRecorder" controller:@""]
+    MenuSection *channelSection = [[MenuSection alloc] initWithName:@"Channel" rows:@[
+        [[MenuItem alloc]initWithName:@"MultipleChannels".localized storyboard:@"JoinMultiChannel" controller:@""],
+    ]];
+    [array addObject:channelSection];
+    
+    MenuSection *basicSection = [[MenuSection alloc] initWithName:@"Audio" rows:@[
+        [[MenuItem alloc]initWithName:@"AudioBasic".localized storyboard:@"JoinChannelAudio" controller:@""],
+        [[MenuItem alloc]initWithName:@"CustomAudioCapture".localized storyboard:@"CustomPcmAudioSource" controller:@""],
+        [[MenuItem alloc]initWithName:@"AudioPrePostProcess".localized storyboard:@"VoiceChanger" controller:@""],
+        [[MenuItem alloc]initWithName:@"SpatialAudio".localized storyboard:@"SpatialAudio" controller:@""],
+        [[MenuItem alloc]initWithName:@"RawAudioData".localized storyboard:@"RawAudioData" controller:@""],
+        [[MenuItem alloc]initWithName:@"CustomAudioRender".localized storyboard:@"CustomAudioRender" controller:@""],
+        [[MenuItem alloc]initWithName:@"AudioFilePlayback".localized storyboard:@"AudioMixing" controller:@""],
     ]];
     [array addObject:basicSection];
-    MenuSection *anvancedSection = [[MenuSection alloc] initWithName:@"Anvanced" rows:@[
-        [[MenuItem alloc]initWithName:@"Live Streaming".localized storyboard:@"LiveStreaming" controller:@"LiveStreaming"],
-        [[MenuItem alloc]initWithName:@"RTMP Streaming".localized storyboard:@"RTMPStreaming" controller:@""],
-        [[MenuItem alloc]initWithName:@"Fusion CDN Streaming".localized storyboard:@"FusionCDN" controller:@"FusionCDN"],
-        [[MenuItem alloc]initWithName:@"Video Metadata".localized storyboard:@"VideoMetadata" controller:@""],
-        [[MenuItem alloc]initWithName:@"Voice Changer".localized storyboard:@"VoiceChanger" controller:@""],
-        [[MenuItem alloc]initWithName:@"Custom Audio Source".localized storyboard:@"CustomPcmAudioSource" controller:@""],
-        [[MenuItem alloc]initWithName:@"Custom Audio Render".localized storyboard:@"CustomAudioRender" controller:@""],
-        [[MenuItem alloc]initWithName:@"Custom Video Source(Push)".localized storyboard:@"CustomVideoSourcePush" controller:@""],
-        [[MenuItem alloc]initWithName:@"Custom Video Render".localized storyboard:@"CustomVideoRender" controller:@""],
-        [[MenuItem alloc]initWithName:@"Raw Audio Data".localized storyboard:@"RawAudioData" controller:@""],
-        [[MenuItem alloc]initWithName:@"Raw Video Data".localized storyboard:@"RawVideoData" controller:@""],
-        [[MenuItem alloc]initWithName:@"Picture In Picture(require iOS15)".localized storyboard:@"PictureInPicture" controller:@""],
-        [[MenuItem alloc]initWithName:@"Simple Filter Extension".localized storyboard:@"SimpleFilter" controller:@""],
-        [[MenuItem alloc]initWithName:@"Join Multiple Channels".localized storyboard:@"JoinMultiChannel" controller:@""],
-        [[MenuItem alloc]initWithName:@"Stream Encryption".localized storyboard:@"StreamEncryption" controller:@""],
-        [[MenuItem alloc]initWithName:@"Audio Mixing".localized storyboard:@"AudioMixing" controller:@""],
-        [[MenuItem alloc]initWithName:@"Media Player".localized storyboard:@"MediaPlayer" controller:@""],
-        [[MenuItem alloc]initWithName:@"Screen Share".localized storyboard:@"ScreenShare" controller:@""],
-        [[MenuItem alloc]initWithName:@"Video Process".localized storyboard:@"VideoProcess" controller:@""],
-        [[MenuItem alloc]initWithName:@"Rhythm Player".localized storyboard:@"RhythmPlayer" controller:@""],
-        [[MenuItem alloc]initWithName:@"Create Data Stream".localized storyboard:@"CreateDataStream" controller:@""],
-        [[MenuItem alloc]initWithName:@"Media Channel Relay".localized storyboard:@"MediaChannelRelay" controller:@""],
-        [[MenuItem alloc]initWithName:@"Spatial Audio".localized storyboard:@"SpatialAudio" controller:@""],
+    MenuSection *videoSection = [[MenuSection alloc] initWithName:@"Video" rows:@[
+        [[MenuItem alloc]initWithName:@"VideoBasic(Token)".localized storyboard:@"JoinChannelVideoToken" controller:@""],
+        [[MenuItem alloc]initWithName:@"VideoBasic".localized storyboard:@"JoinChannelVideo" controller:@""],
+        [[MenuItem alloc]initWithName:@"ScreenSharing".localized storyboard:@"ScreenShare" controller:@""],
+        [[MenuItem alloc]initWithName:@"VideoPrePostProcess".localized storyboard:@"VideoProcess" controller:@""],
         [[MenuItem alloc]initWithName:@"Content Inspect".localized storyboard:@"ContentInspect" controller:@""],
-        [[MenuItem alloc]initWithName:@"Mutli Camera(iOS13.0+)".localized storyboard:@"MutliCamera" controller:@""]
+        [[MenuItem alloc]initWithName:@"VideoAdvanced".localized storyboard:@"LiveStreaming" controller:@""],
+        [[MenuItem alloc]initWithName:@"CustomVideoRenderer".localized storyboard:@"CustomVideoRender" controller:@""],
+        [[MenuItem alloc]initWithName:@"RawVideoData".localized storyboard:@"RawVideoData" controller:@""],
+        [[MenuItem alloc]initWithName:@"CustomVideoCapture".localized storyboard:@"CustomVideoSourcePush" controller:@""],
+        [[MenuItem alloc]initWithName:@"PictureInPicture".localized storyboard:@"PictureInPicture" controller:@""],
     ]];
-    [array addObject:anvancedSection];
-    
+    [array addObject:videoSection];
+    MenuSection *playerSection = [[MenuSection alloc] initWithName:@"Player" rows:@[
+        [[MenuItem alloc]initWithName:@"Media Player".localized storyboard:@"MediaPlayer" controller:@""],
+        [[MenuItem alloc]initWithName:@"VirtualMetronome".localized storyboard:@"RhythmPlayer" controller:@""],
+    ]];
+    [array addObject:playerSection];
+    MenuSection *recordingSection = [[MenuSection alloc] initWithName:@"Media Recording" rows:@[
+        [[MenuItem alloc]initWithName:@"Recording".localized storyboard:@"JoinChannelVideoRecorder" controller:@""],
+    ]];
+    [array addObject:recordingSection];
+    MenuSection *streamingSection = [[MenuSection alloc] initWithName:@"Media Streaming" rows:@[
+        [[MenuItem alloc]initWithName:@"MediaPush".localized storyboard:@"RTMPStreaming" controller:@""],
+        [[MenuItem alloc]initWithName:@"DirectCDNStreaming".localized storyboard:@"FusionCDN" controller:@""],
+        [[MenuItem alloc]initWithName:@"MediaRelay".localized storyboard:@"MediaChannelRelay" controller:@""],
+    ]];
+    [array addObject:streamingSection];
+    MenuSection *affiliatedSection = [[MenuSection alloc] initWithName:@"Media Affiliated Information" rows:@[
+        [[MenuItem alloc]initWithName:@"Metadata(SEI)".localized storyboard:@"VideoMetadata" controller:@""],
+        [[MenuItem alloc]initWithName:@"DataStream".localized storyboard:@"CreateDataStream" controller:@""],
+    ]];
+    [array addObject:affiliatedSection];
+    MenuSection *deviceSection = [[MenuSection alloc] initWithName:@"Device Manager" rows:@[
+        [[MenuItem alloc]initWithName:@"MobileCameraDevice".localized storyboard:@"MutliCamera" controller:@""],
+    ]];
+    [array addObject:deviceSection];
+    MenuSection *plugInSection = [[MenuSection alloc] initWithName:@"Plug-in" rows:@[
+        [[MenuItem alloc]initWithName:@"Extension".localized storyboard:@"SimpleFilter" controller:@""],
+    ]];
+    [array addObject:plugInSection];
+    MenuSection *networkSection = [[MenuSection alloc] initWithName:@"Network" rows:@[
+        [[MenuItem alloc]initWithName:@"Encryption".localized storyboard:@"StreamEncryption" controller:@""],
+    ]];
+    [array addObject:networkSection];
     return array.copy;
 }
 
@@ -136,12 +160,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == 0) { return 0;}
-    return 100;
+    if (section == self.datas.count - 1) { return 100;}
+    return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (section == 0) { return nil;}
+    if (section != self.datas.count - 1) { return nil;}
     UILabel *lable = [[UILabel alloc] init];
     lable.font = [UIFont systemFontOfSize:16 weight:1.5];
     lable.text = [NSString stringWithFormat:@"SDK Version: %@",[AgoraRtcEngineKit getSdkVersion]];

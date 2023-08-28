@@ -20,38 +20,61 @@ class MenuController: NSViewController {
     let settings = MenuItem(name: "Global settings".localized, identifier: "menuCell", controller: "Settings", storyboard: "Settings")
     
     var menus:[MenuItem] = [
-        MenuItem(name: "Basic", identifier: "headerCell"),
-        MenuItem(name: "Join a channel (Token)".localized, identifier: "menuCell", controller: "JoinChannelVideoToken", storyboard: "JoinChannelVideoToken"),
-        MenuItem(name: "Join a channel (Video)".localized, identifier: "menuCell", controller: "JoinChannelVideo", storyboard: "JoinChannelVideo"),
-        MenuItem(name: "Join a channel (Audio)".localized, identifier: "menuCell", controller: "JoinChannelAudio", storyboard: "JoinChannelAudio"),
-        MenuItem(name: "Local or remote recording".localized, identifier: "menuCell", controller: "JoinChannelVideoRecorder", storyboard: "JoinChannelVideoRecorder"),
-        MenuItem(name: "Anvanced", identifier: "headerCell"),
-        MenuItem(name: "Live Streaming".localized, identifier: "menuCell", controller: "LiveStreaming", storyboard: "LiveStreaming"),
-        MenuItem(name: "RTMP Streaming".localized, identifier: "menuCell", controller: "RTMPStreaming", storyboard: "RTMPStreaming"),
-        MenuItem(name: "Custom Video Source(Push)".localized, identifier: "menuCell", controller: "CustomVideoSourcePush", storyboard: "CustomVideoSourcePush"),
-        MenuItem(name: "Custom Video Source(Multi)".localized, identifier: "menuCell", controller: "CustomVideoSourcePushMulti", storyboard: "CustomVideoSourcePushMulti"),
-        MenuItem(name: "Custom Video Render".localized, identifier: "menuCell", controller: "CustomVideoRender", storyboard: "CustomVideoRender"),
-        MenuItem(name: "Custom Audio Source".localized, identifier: "menuCell", controller: "CustomAudioSource", storyboard: "CustomAudioSource"),
-        MenuItem(name: "Custom Audio Render".localized, identifier: "menuCell", controller: "CustomAudioRender", storyboard: "CustomAudioRender"),
-//        MenuItem(name: "Raw Media Data".localized, identifier: "menuCell", controller: "RawMediaData", storyboard: "RawMediaData"),
-        MenuItem(name: "Raw Video Data".localized, identifier: "menuCell", controller: "RawVideoData", storyboard: "RawVideoData"),
-        MenuItem(name: "Raw Audio Data".localized, identifier: "menuCell", controller: "RawAudioData", storyboard: "RawAudioData"),
-        MenuItem(name: "Join Multiple Channels".localized, identifier: "menuCell", controller: "JoinMultipleChannel", storyboard: "JoinMultiChannel"),
-        MenuItem(name: "Stream Encryption".localized, identifier: "menuCell", controller: "StreamEncryption", storyboard: "StreamEncryption"),
-        MenuItem(name: "Screen Share".localized, identifier: "menuCell", controller: "ScreenShare", storyboard: "ScreenShare"),
-        MenuItem(name: "Local composite graph".localized, identifier: "menuCell", controller: "LocalCompositeGraph", storyboard: "LocalCompositeGraph"),
-        MenuItem(name: "Media Channel Relay".localized, identifier: "menuCell", controller: "ChannelMediaRelay", storyboard: "ChannelMediaRelay"),
-        MenuItem(name: "Audio Mixing".localized, identifier: "menuCell", controller: "AudioMixing", storyboard: "AudioMixing"),
-        MenuItem(name: "Voice Changer".localized, identifier: "menuCell", controller: "VoiceChanger", storyboard: "VoiceChanger"),
-        MenuItem(name: "Precall Test".localized, identifier: "menuCell", controller: "PrecallTest", storyboard: "PrecallTest"),
-        MenuItem(name: "Create Data Stream".localized, identifier: "menuCell", controller: "CreateDataStream", storyboard: "CreateDataStream"),
-        MenuItem(name: "Simple Filter".localized, identifier: "menuCell", controller: "SimpleFilter", storyboard: "SimpleFilter"),
-        MenuItem(name: "Video Process".localized, identifier: "menuCell", controller: "Video Process", storyboard: "VideoProcess"),
-        MenuItem(name: "Media Player".localized, identifier: "menuCell", controller: "MediaPlayer", storyboard: "MediaPlayer"),
+        // Channel
+        MenuItem(name: "Channel", identifier: "headerCell"),
         MenuItem(name: "Quick Switch Channel".localized, identifier: "menuCell", controller: "QuickSwitchChannel", storyboard: "QuickSwitchChannel"),
-        MenuItem(name: "Spatial Audio".localized, identifier: "menuCell", controller: "SpatialAudio", storyboard: "SpatialAudio"),
+        MenuItem(name: "MultipleChannels".localized, identifier: "menuCell", controller: "JoinMultipleChannel", storyboard: "JoinMultiChannel"),
+        
+        // Audio
+        MenuItem(name: "Audio", identifier: "headerCell"),
+        MenuItem(name: "AudioBasic".localized, identifier: "menuCell", controller: "JoinChannelAudio", storyboard: "JoinChannelAudio"),
+        MenuItem(name: "CustomAudioCapture".localized, identifier: "menuCell", controller: "CustomAudioSource", storyboard: "CustomAudioSource"),
+        MenuItem(name: "CustomAudioRender".localized, identifier: "menuCell", controller: "CustomAudioRender", storyboard: "CustomAudioRender"),
+        MenuItem(name: "RawAudioData".localized, identifier: "menuCell", controller: "RawAudioData", storyboard: "RawAudioData"),
+        MenuItem(name: "SpatialAudio".localized, identifier: "menuCell", controller: "SpatialAudio", storyboard: "SpatialAudio"),
+        MenuItem(name: "AudioFilePlayback".localized, identifier: "menuCell", controller: "AudioMixing", storyboard: "AudioMixing"),
+        MenuItem(name: "AudioPrePostProcess".localized, identifier: "menuCell", controller: "VoiceChanger", storyboard: "VoiceChanger"),
+        
+        // Video
+        MenuItem(name: "Video", identifier: "headerCell"),
+        MenuItem(name: "VideoBasic(Token)".localized, identifier: "menuCell", controller: "JoinChannelVideoToken", storyboard: "JoinChannelVideoToken"),
+        MenuItem(name: "VideoBasic".localized, identifier: "menuCell", controller: "JoinChannelVideo", storyboard: "JoinChannelVideo"),
+        MenuItem(name: "VideoAdvanced".localized, identifier: "menuCell", controller: "LiveStreaming", storyboard: "LiveStreaming"),
+        MenuItem(name: "CustomVideoCapture".localized, identifier: "menuCell", controller: "CustomVideoSourcePush", storyboard: "CustomVideoSourcePush"),
+        MenuItem(name: "CustomVideoCapture(Multi)".localized, identifier: "menuCell", controller: "CustomVideoSourcePushMulti", storyboard: "CustomVideoSourcePushMulti"),
+        MenuItem(name: "CustomVideoRender".localized, identifier: "menuCell", controller: "CustomVideoRender", storyboard: "CustomVideoRender"),
+        MenuItem(name: "RawVideoData".localized, identifier: "menuCell", controller: "RawVideoData", storyboard: "RawVideoData"),
+        MenuItem(name: "ScreenSharing".localized, identifier: "menuCell", controller: "ScreenShare", storyboard: "ScreenShare"),
+        MenuItem(name: "Local composite graph".localized, identifier: "menuCell", controller: "LocalCompositeGraph", storyboard: "LocalCompositeGraph"),
+        MenuItem(name: "VideoPrePostProcess".localized, identifier: "menuCell", controller: "Video Process", storyboard: "VideoProcess"),
         MenuItem(name: "Content Inspect".localized, identifier: "menuCell", controller: "ContentInspect", storyboard: "ContentInspect"),
         MenuItem(name: "Multi Camera Sourece".localized, identifier: "menuCell", controller: "MultiCameraSourece", storyboard: "MultiCameraSourece"),
+        
+        // Player
+        MenuItem(name: "Player", identifier: "headerCell"),
+        MenuItem(name: "Media Player".localized, identifier: "menuCell", controller: "MediaPlayer", storyboard: "MediaPlayer"),
+        
+        // Media Recording
+        MenuItem(name: "Media Recording", identifier: "headerCell"),
+        MenuItem(name: "Recording".localized, identifier: "menuCell", controller: "JoinChannelVideoRecorder", storyboard: "JoinChannelVideoRecorder"),
+        
+        // Media Streaming
+        MenuItem(name: "Media Streaming", identifier: "headerCell"),
+        MenuItem(name: "MediaPush".localized, identifier: "menuCell", controller: "RTMPStreaming", storyboard: "RTMPStreaming"),
+        MenuItem(name: "DirectCDNStreaming".localized, identifier: "menuCell", controller: "ChannelMediaRelay", storyboard: "ChannelMediaRelay"),
+
+        // Media Affiliated Information
+        MenuItem(name: "Media Affiliated Information", identifier: "headerCell"),
+        MenuItem(name: "DataStream".localized, identifier: "menuCell", controller: "CreateDataStream", storyboard: "CreateDataStream"),
+        
+        // Plug-in
+        MenuItem(name: "Plug-in", identifier: "headerCell"),
+        MenuItem(name: "Extension".localized, identifier: "menuCell", controller: "SimpleFilter", storyboard: "SimpleFilter"),
+        
+        // Network
+        MenuItem(name: "Network", identifier: "headerCell"),
+        MenuItem(name: "Encryption".localized, identifier: "menuCell", controller: "StreamEncryption", storyboard: "StreamEncryption"),
+        MenuItem(name: "Precall Test".localized, identifier: "menuCell", controller: "PrecallTest", storyboard: "PrecallTest"),
     ]
     
     @IBOutlet weak var tableView:NSTableView!
