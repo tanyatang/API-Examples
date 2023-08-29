@@ -401,9 +401,10 @@ public class SpatialSound extends BaseFragment {
             }
 
             @Override
-            public void onPositionChanged(long position_ms) {
+            public void onPositionChanged(long positionMs, long timestampMs) {
 
             }
+
 
             @Override
             public void onPlayerEvent(Constants.MediaPlayerEvent eventCode, long elapsedTime, String message) {

@@ -470,6 +470,11 @@ public class AudienceFragment extends BaseFragment implements IMediaPlayerObserv
         });
     }
 
+    @Override
+    public void onPositionChanged(long positionMs, long timestampMs) {
+
+    }
+
     private void loadAgoraChannels() {
         int count = mediaPlayer.getAgoraCDNLineCount();
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, getChannelArray(count));
@@ -482,11 +487,6 @@ public class AudienceFragment extends BaseFragment implements IMediaPlayerObserv
             list.add("Channel" + (i + 1));
         }
         return list;
-    }
-
-    @Override
-    public void onPositionChanged(long l) {
-
     }
 
     @Override

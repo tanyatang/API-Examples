@@ -536,7 +536,7 @@ public class MediaPlayer extends BaseFragment implements View.OnClickListener, I
     }
 
     @Override
-    public void onPositionChanged(long position) {
+    public void onPositionChanged(long position, long timestampMs) {
         Log.e(TAG, "onPositionChanged position " + position);
         if (playerDuration > 0) {
             final int result = (int) ((float) position / (float) playerDuration * 100);

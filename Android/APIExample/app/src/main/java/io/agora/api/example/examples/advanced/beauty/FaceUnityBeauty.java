@@ -209,7 +209,7 @@ public class FaceUnityBeauty extends BaseFragment {
 
             mVideoFrameObserver = new IVideoFrameObserver() {
                 @Override
-                public boolean onCaptureVideoFrame(VideoFrame videoFrame) {
+                public boolean onCaptureVideoFrame(int sourceType, VideoFrame videoFrame) {
                     if (isDestroyed) {
                         return true;
                     }
@@ -249,17 +249,7 @@ public class FaceUnityBeauty extends BaseFragment {
                 }
 
                 @Override
-                public boolean onPreEncodeVideoFrame(VideoFrame videoFrame) {
-                    return false;
-                }
-
-                @Override
-                public boolean onScreenCaptureVideoFrame(VideoFrame videoFrame) {
-                    return false;
-                }
-
-                @Override
-                public boolean onPreEncodeScreenVideoFrame(VideoFrame videoFrame) {
+                public boolean onPreEncodeVideoFrame(int sourceType, VideoFrame videoFrame) {
                     return false;
                 }
 

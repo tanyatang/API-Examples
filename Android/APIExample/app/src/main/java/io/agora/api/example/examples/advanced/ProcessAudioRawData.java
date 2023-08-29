@@ -334,6 +334,11 @@ public class ProcessAudioRawData extends BaseFragment implements View.OnClickLis
         }
 
         @Override
+        public boolean onPublishAudioFrame(String channelId, int type, int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer, long renderTimeMs, int avsync_type) {
+            return false;
+        }
+
+        @Override
         public int getObservedAudioFramePosition() {
             return 0;
         }
@@ -355,6 +360,11 @@ public class ProcessAudioRawData extends BaseFragment implements View.OnClickLis
 
         @Override
         public AudioParams getEarMonitoringAudioParams() {
+            return null;
+        }
+
+        @Override
+        public AudioParams getPublishAudioParams() {
             return null;
         }
 

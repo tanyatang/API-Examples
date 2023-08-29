@@ -6,6 +6,8 @@ import static io.agora.rtc2.video.VideoCanvas.RENDER_MODE_HIDDEN;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +25,9 @@ import androidx.annotation.Nullable;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
@@ -30,6 +35,9 @@ import io.agora.api.example.common.BaseFragment;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
 import io.agora.api.example.utils.VideoFileReader;
+import io.agora.api.example.utils.YUVUtils;
+import io.agora.base.JavaI420Buffer;
+import io.agora.base.VideoFrame;
 import io.agora.rtc2.ChannelMediaOptions;
 import io.agora.rtc2.Constants;
 import io.agora.rtc2.IRtcEngineEventHandler;
@@ -313,10 +321,26 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
                     join.setEnabled(true);
                     join.setText(getString(R.string.leave));
 
+                    JavaI420Buffer i420Buffer = null;
+                    try {
+                        InputStream open = getContext().getAssets().open("agora-logo.png");
+                        Bitmap bitmap = BitmapFactory.decodeStream(open);
+                        int width = bitmap.getWidth();
+                        int height = bitmap.getHeight();
+                        byte[] buffer = YUVUtils.bitmapToI420(width, height, bitmap);
+                        i420Buffer = JavaI420Buffer.allocate(width, height);
+                        i420Buffer.getDataY().put(buffer, 0, i420Buffer.getDataY().limit());
+                        i420Buffer.getDataU().put(buffer, i420Buffer.getDataY().limit(), i420Buffer.getDataU().limit());
+                        i420Buffer.getDataV().put(buffer, i420Buffer.getDataY().limit() + i420Buffer.getDataU().limit(), i420Buffer.getDataV().limit());
+                    } catch (IOException e) {
+                        Log.e(TAG, "", e);
+                    }
+                    final VideoFrame pushVideoFrame = new VideoFrame(i420Buffer, 0, System.nanoTime());
+
                     if (videoFileReader == null) {
                         videoFileReader = new VideoFileReader(requireContext(), videoFrame -> {
                             if(joined && engine != null){
-                                engine.pushExternalVideoFrame(videoFrame);
+                                engine.pushExternalVideoFrame(pushVideoFrame);
                             }
                         });
                     }
