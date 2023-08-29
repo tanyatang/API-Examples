@@ -3,7 +3,8 @@ CURRENT_PATH=$PWD
 # 获取项目目录
 PROJECT_PATH="$( cd "$1" && pwd  )"
 
-cd ${PROJECT_PATH} && pod install #--repo-update
+export http_proxy=http://10.10.114.51:1080;export https_proxy=http://10.10.114.51:1080;cd ${PROJECT_PATH} && pod install #--repo-update
+unset http_proxy;unset https_proxy;
 
 if [ $? -eq 0 ]; then
     echo "success"
