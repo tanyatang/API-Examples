@@ -325,8 +325,8 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
                     try {
                         InputStream open = getContext().getAssets().open("agora-logo.png");
                         Bitmap bitmap = BitmapFactory.decodeStream(open);
-                        int width = bitmap.getWidth();
-                        int height = bitmap.getHeight();
+                        int width = bitmap.getWidth() - bitmap.getWidth() % 2;
+                        int height = bitmap.getHeight() - bitmap.getHeight() % 2;
                         byte[] buffer = YUVUtils.bitmapToI420(width, height, bitmap);
                         i420Buffer = JavaI420Buffer.allocate(width, height);
                         i420Buffer.getDataY().put(buffer, 0, i420Buffer.getDataY().limit());
