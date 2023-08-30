@@ -22,12 +22,16 @@
     <string name="microphone">发布麦克风</string>
     <string name="publish_local_audio">发布本地音频</string>
 
-    <string name="item_joinaudio">音频互动直播</string>
-    <string name="item_joinaudio_by_token">音频互动直播(Token验证)</string>
-    <string name="item_precalltest">通话前质量检测</string>
+    <string name="group_audio">音频相关</string>
+    <string name="group_player">播放相关</string>
+    <string name="group_network">风络及其他</string>
+
+    <string name="item_joinaudio">音频基础功能</string>
+    <string name="item_joinaudio_by_token">音频基础功能(Token)</string>
+    <string name="item_precalltest">通话前网络、设备检测</string>
     <string name="item_quickswitck">快速切换频道</string>
-    <string name="item_playaudiofiles">音频文件混音</string>
-    <string name="item_voiceeffects">美声与音效</string>
+    <string name="item_playaudiofiles">音乐/音效文件播放</string>
+    <string name="item_voiceeffects">音频前处理和后处理</string>
     <string name="item_customaudiosource">自定义音频采集</string>
     <string name="item_customaudiorender">自定义音频渲染</string>
     <string name="item_raw_audio">原始音频数据</string>

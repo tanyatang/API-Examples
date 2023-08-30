@@ -1,7 +1,5 @@
 package io.agora.api.example.examples.advanced.customaudio;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
-
 import android.content.Context;
 import android.media.AudioFormat;
 import android.media.AudioManager;
@@ -27,6 +25,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.common.widget.AudioSeatManager;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
@@ -42,7 +41,7 @@ import io.agora.rtc2.RtcEngineEx;
  */
 @Example(
         index = 6,
-        group = ADVANCED,
+        group = Examples.Audio,
         name = R.string.item_customaudiorender,
         actionId = R.id.action_mainFragment_to_CustomAudioRender,
         tipsId = R.string.customaudiorender

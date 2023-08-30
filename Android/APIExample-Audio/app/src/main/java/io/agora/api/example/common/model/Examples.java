@@ -12,8 +12,12 @@ import java.util.Map;
 import io.agora.api.example.annotation.Example;
 
 public class Examples {
-    public static final String BASIC = "BASIC";
-    public static final String ADVANCED = "ADVANCED";
+
+    public static final String Audio = "Audio";
+
+    public static final String Player = "Player";
+
+    public static final String Network = "Network";
 
     public static final Map<String, List<Example>> ITEM_MAP = new HashMap<>();
 

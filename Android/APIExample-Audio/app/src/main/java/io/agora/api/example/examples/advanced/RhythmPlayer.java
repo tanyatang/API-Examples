@@ -2,7 +2,6 @@ package io.agora.api.example.examples.advanced;
 
 import static io.agora.api.example.common.Constant.URL_DOWNBEAT;
 import static io.agora.api.example.common.Constant.URL_UPBEAT;
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -25,6 +24,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
 import io.agora.rtc2.ChannelMediaOptions;
@@ -38,8 +38,8 @@ import io.agora.rtc2.audio.AgoraRhythmPlayerConfig;
  * This demo demonstrates how to make a VideoProcessExtension
  */
 @Example(
-        index = 19,
-        group = ADVANCED,
+        index = 2,
+        group = Examples.Player,
         name = R.string.item_rhythmplayer,
         actionId = R.id.action_mainFragment_rhythm_player,
         tipsId = R.string.rhythmplayer

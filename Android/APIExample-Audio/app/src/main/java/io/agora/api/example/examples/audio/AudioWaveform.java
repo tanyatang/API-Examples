@@ -27,8 +27,8 @@ import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
 
 @Example(
-        index = 7,
-        group = Examples.ADVANCED,
+        index = 8,
+        group = Examples.Audio,
         name = R.string.item_audiowaveform,
         actionId = R.id.action_mainFragment_to_AudioWaveform,
         tipsId = R.string.audiorouter_palyer
