@@ -1,9 +1,11 @@
-package io.agora.api.example.examples.audio;
+package io.agora.api.example.examples.device;
 
 import static io.agora.rtc2.Constants.RENDER_MODE_HIDDEN;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,14 +36,13 @@ import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
-import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
-public class AudioRouterPlayerIjk extends BaseFragment{
-    private static final String TAG = "AudioRouterPlayerIjk";
+public class AudioRouterPlayerNative extends BaseFragment{
+    private static final String TAG = "AudioRouterPlayerNative";
     private FragmentAudiorouterPlayerDetailBinding mBinding;
     private RtcEngine mRtcEngine;
 
-    private IjkMediaPlayer mIjkPlayer;
+    private MediaPlayer mMediaPlayer;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -141,12 +142,12 @@ public class AudioRouterPlayerIjk extends BaseFragment{
             requireActivity().onBackPressed();
         }
 
-        mIjkPlayer = new IjkMediaPlayer();
+        mMediaPlayer = new MediaPlayer();
+        mMediaPlayer.setOnPreparedListener(MediaPlayer::start);
         try {
-            mIjkPlayer.setDataSource(Constant.URL_VIDEO_SAMPLE);
-            mIjkPlayer.setLooping(true);
-            mIjkPlayer.prepareAsync();
-            mIjkPlayer.start();
+            mMediaPlayer.setDataSource(requireContext(), Uri.parse(Constant.URL_VIDEO_SAMPLE));
+            mMediaPlayer.setLooping(true);
+            mMediaPlayer.prepareAsync();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -161,10 +162,10 @@ public class AudioRouterPlayerIjk extends BaseFragment{
         }
         handler.post(RtcEngine::destroy);
         mRtcEngine = null;
-        if (mIjkPlayer != null) {
-            mIjkPlayer.stop();
-            mIjkPlayer.release();
-            mIjkPlayer = null;
+        if (mMediaPlayer != null) {
+            mMediaPlayer.stop();
+            mMediaPlayer.release();
+            mMediaPlayer = null;
         }
     }
 
@@ -194,7 +195,7 @@ public class AudioRouterPlayerIjk extends BaseFragment{
         playerVideoView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(@NonNull SurfaceHolder holder) {
-                mIjkPlayer.setDisplay(holder);
+                mMediaPlayer.setDisplay(holder);
             }
 
             @Override
@@ -207,7 +208,6 @@ public class AudioRouterPlayerIjk extends BaseFragment{
 
             }
         });
-
     }
 
 

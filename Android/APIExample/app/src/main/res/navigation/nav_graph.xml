@@ -317,7 +317,7 @@
         tools:layout="@layout/fragment_audio_waveform" />
     <fragment
         android:id="@+id/AudioRouterPlayer"
-        android:name="io.agora.api.example.examples.audio.AudioRouterPlayer"
+        android:name="io.agora.api.example.examples.device.AudioRouterPlayer"
         android:label="@string/item_audiorouter_player"
         tools:layout="@layout/fragment_audiorouter_player" >
         <action
@@ -332,17 +332,17 @@
     </fragment>
     <fragment
         android:id="@+id/AudioRouterPlayerIjk"
-        android:name="io.agora.api.example.examples.audio.AudioRouterPlayerIjk"
+        android:name="io.agora.api.example.examples.device.AudioRouterPlayerIjk"
         android:label="@string/third_party_player_ijk"
         tools:layout="@layout/fragment_audiorouter_player_detail" />
     <fragment
         android:id="@+id/AudioRouterPlayerExo"
-        android:name="io.agora.api.example.examples.audio.AudioRouterPlayerIjk"
+        android:name="io.agora.api.example.examples.device.AudioRouterPlayerIjk"
         android:label="@string/third_party_player_exo"
         tools:layout="@layout/fragment_audiorouter_player_detail" />
     <fragment
         android:id="@+id/AudioRouterPlayerNative"
-        android:name="io.agora.api.example.examples.audio.AudioRouterPlayerNative"
+        android:name="io.agora.api.example.examples.device.AudioRouterPlayerNative"
         android:label="@string/third_party_player_native"
         tools:layout="@layout/fragment_audiorouter_player_detail" />
     <fragment

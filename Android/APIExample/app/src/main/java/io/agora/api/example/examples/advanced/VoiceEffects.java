@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 import static io.agora.rtc2.Constants.AUDIO_EFFECT_OFF;
 import static io.agora.rtc2.Constants.CHAT_BEAUTIFIER_FRESH;
 import static io.agora.rtc2.Constants.CHAT_BEAUTIFIER_MAGNETIC;
@@ -79,6 +78,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.common.widget.AudioSeatManager;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
@@ -89,8 +89,8 @@ import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
 
 @Example(
-        index = 4,
-        group = ADVANCED,
+        index = 2,
+        group = Examples.Audio,
         name = R.string.item_voiceeffects,
         actionId = R.id.action_mainFragment_to_VoiceEffects,
         tipsId = R.string.voiceeffects

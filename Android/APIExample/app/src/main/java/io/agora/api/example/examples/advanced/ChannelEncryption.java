@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 import static io.agora.rtc2.video.VideoCanvas.RENDER_MODE_HIDDEN;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
@@ -31,6 +30,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
 import io.agora.rtc2.Constants;
@@ -44,7 +44,7 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
 /**This demo demonstrates how to make a one-to-one video call*/
 @Example(
         index = 14,
-        group = ADVANCED,
+        group = Examples.Network,
         name = R.string.item_channelencryption,
         actionId = R.id.action_mainFragment_to_channel_encryption,
         tipsId = R.string.channelencryption

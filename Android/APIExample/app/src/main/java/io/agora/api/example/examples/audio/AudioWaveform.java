@@ -1,7 +1,5 @@
 package io.agora.api.example.examples.audio;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +16,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.databinding.FragmentAudioWaveformBinding;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
@@ -28,8 +27,8 @@ import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
 
 @Example(
-        index = 17,
-        group = ADVANCED,
+        index = 7,
+        group = Examples.Audio,
         name = R.string.item_audiowaveform,
         actionId = R.id.action_mainFragment_to_AudioWaveform,
         tipsId = R.string.audiorouter_palyer

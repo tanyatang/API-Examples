@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 import static io.agora.rtc2.Constants.RELAY_STATE_CONNECTING;
 import static io.agora.rtc2.Constants.RELAY_STATE_FAILURE;
 import static io.agora.rtc2.video.VideoCanvas.RENDER_MODE_HIDDEN;
@@ -27,6 +26,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
 import io.agora.rtc2.Constants;
@@ -40,8 +40,8 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
 
 /**This demo demonstrates how to make a one-to-one video call*/
 @Example(
-        index = 21,
-        group = ADVANCED,
+        index = 1,
+        group = Examples.Cloud,
         name = R.string.item_hostacrosschannel,
         actionId = R.id.action_mainFragment_to_hostacrosschannel,
         tipsId = R.string.hostacrosschannel

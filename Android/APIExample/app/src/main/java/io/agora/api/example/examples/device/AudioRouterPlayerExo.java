@@ -1,4 +1,4 @@
-package io.agora.api.example.examples.audio;
+package io.agora.api.example.examples.device;
 
 import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
 import static io.agora.rtc2.Constants.RENDER_MODE_HIDDEN;

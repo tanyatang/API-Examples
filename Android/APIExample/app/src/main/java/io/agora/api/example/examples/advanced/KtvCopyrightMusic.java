@@ -1,14 +1,14 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseBrowserFragment;
+import io.agora.api.example.common.model.Examples;
 
 @Example(
-        index = 24,
-        group = ADVANCED,
+        index = 4,
+        group = Examples.Player,
         name = R.string.item_ktv_copyright_music,
         actionId = R.id.action_mainFragment_to_ktv_copyright_music,
         tipsId = R.string.ktv_copyright_music

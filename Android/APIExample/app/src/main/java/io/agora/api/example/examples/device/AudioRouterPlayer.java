@@ -1,6 +1,4 @@
-package io.agora.api.example.examples.audio;
-
-import static io.agora.api.example.common.model.Examples.ADVANCED;
+package io.agora.api.example.examples.device;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,11 +13,12 @@ import androidx.navigation.Navigation;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.databinding.FragmentAudiorouterPlayerBinding;
 
 @Example(
-        index = 17,
-        group = ADVANCED,
+        index = 1,
+        group = Examples.Device,
         name = R.string.item_audiorouter_player,
         actionId = R.id.action_mainFragment_to_AudioRouterPlayer,
         tipsId = R.string.audiorouter_palyer

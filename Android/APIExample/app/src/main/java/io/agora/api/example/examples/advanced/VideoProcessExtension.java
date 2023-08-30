@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 import static io.agora.rtc2.Constants.RENDER_MODE_HIDDEN;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
@@ -30,6 +29,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.FileUtils;
 import io.agora.api.example.utils.TokenUtils;
@@ -51,8 +51,8 @@ import io.agora.rtc2.video.VirtualBackgroundSource;
  * This demo demonstrates how to make a VideoProcessExtension
  */
 @Example(
-        index = 19,
-        group = ADVANCED,
+        index = 5,
+        group = Examples.Video,
         name = R.string.item_videoProcessExtension,
         actionId = R.id.action_mainFragment_video_enhancement,
         tipsId = R.string.videoEnhancement
