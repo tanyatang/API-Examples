@@ -7,8 +7,14 @@ extern wchar_t commonFAQWebsite[INFO_LEN];
 extern wchar_t commonRegisterWebsite[INFO_LEN];
 extern wchar_t commonDemoWebsite[INFO_LEN];
 
-extern wchar_t commonBasicScene[INFO_LEN];
-extern wchar_t commonAdvanceScene[INFO_LEN];
+extern wchar_t commonChannelScene[INFO_LEN];
+extern wchar_t commonAudioScene[INFO_LEN];
+extern wchar_t commonVideoScene[INFO_LEN];
+extern wchar_t commonPlayerScene[INFO_LEN];
+extern wchar_t commonRecorderScene[INFO_LEN];
+extern wchar_t commonCloudScene[INFO_LEN];
+extern wchar_t commonMetaDataScene[INFO_LEN];
+extern wchar_t commonNetworkScene[INFO_LEN];
 //agora enum
 extern wchar_t agoraRoleBroadcaster[INFO_LEN];
 extern wchar_t agoraRoleAudience[INFO_LEN];

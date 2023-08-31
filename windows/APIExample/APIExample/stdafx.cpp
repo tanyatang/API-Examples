@@ -10,8 +10,14 @@ wchar_t commonDocumentWebsite[INFO_LEN] = { 0 };
 wchar_t commonFAQWebsite[INFO_LEN]		= { 0 };
 wchar_t commonRegisterWebsite[INFO_LEN] = { 0 };
 wchar_t commonDemoWebsite[INFO_LEN]		= { 0 };
-wchar_t commonBasicScene[INFO_LEN]		= { 0 };
-wchar_t commonAdvanceScene[INFO_LEN]	= { 0 };
+wchar_t commonChannelScene[INFO_LEN]	= { 0 };
+wchar_t commonVideoScene[INFO_LEN]	= { 0 };
+wchar_t commonAudioScene[INFO_LEN]	= { 0 };
+wchar_t commonPlayerScene[INFO_LEN]	= { 0 };
+wchar_t commonRecorderScene[INFO_LEN]	= { 0 };
+wchar_t commonCloudScene[INFO_LEN]	= { 0 };
+wchar_t commonMetaDataScene[INFO_LEN]	= { 0 };
+wchar_t commonNetworkScene[INFO_LEN]	= { 0 };
 //agora enum
 wchar_t agoraRoleBroadcaster[INFO_LEN] = { 0 };
 wchar_t agoraRoleAudience[INFO_LEN]    = { 0 };
@@ -429,8 +435,14 @@ void InitKeyInfomation()
     _tcscpy_s(commonFAQWebsite, INFO_LEN, Str(_T("Common.FAQ.Website")));
     _tcscpy_s(commonRegisterWebsite, INFO_LEN, Str(_T("Common.Register.Website")));
     _tcscpy_s(commonDemoWebsite, INFO_LEN, Str(_T("Common.Demo.Website")));
-    _tcscpy_s(commonBasicScene, INFO_LEN, Str(_T("Common.Basic.Scene")));
-    _tcscpy_s(commonAdvanceScene, INFO_LEN, Str(_T("Common.Advanced.Scene")));
+    _tcscpy_s(commonChannelScene, INFO_LEN, Str(_T("Common.Channel.Scene")));
+    _tcscpy_s(commonAudioScene, INFO_LEN, Str(_T("Common.Audio.Scene")));
+    _tcscpy_s(commonVideoScene, INFO_LEN, Str(_T("Common.Video.Scene")));
+    _tcscpy_s(commonPlayerScene, INFO_LEN, Str(_T("Common.Player.Scene")));
+    _tcscpy_s(commonRecorderScene, INFO_LEN, Str(_T("Common.Recorder.Scene")));
+    _tcscpy_s(commonCloudScene, INFO_LEN, Str(_T("Common.Cloud.Scene")));
+    _tcscpy_s(commonMetaDataScene, INFO_LEN, Str(_T("Common.MetaData.Scene")));
+    _tcscpy_s(commonNetworkScene, INFO_LEN, Str(_T("Common.Network.Scene")));
 
     _tcscpy_s(commonCtrlChannel, INFO_LEN, Str(_T("Common.Ctrl.ChannelName")));
     _tcscpy_s(commonCtrlJoinChannel, INFO_LEN, Str(_T("Common.Ctrl.JoinChannel")));

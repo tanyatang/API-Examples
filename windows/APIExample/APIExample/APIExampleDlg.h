@@ -75,7 +75,7 @@ private:
     HTREEITEM GetHitItem(NMHDR *pNMHDR);
     
     void ReleaseScene(CTreeCtrl& treeScene, HTREEITEM& hSelectItem);
-    void CreateScene(CTreeCtrl& treeScene, CString selectedText);
+    void CreateScene(CString selectedText);
     CLiveBroadcastingDlg        *m_pLiveBroadcasting = nullptr;
     CAgoraRtmpInjectionDlg      *m_pRtmpInjectDlg    = nullptr;
     CAgoraRtmpStreamingDlg      *m_pRtmpStreamingDlg = nullptr;
@@ -105,27 +105,20 @@ private:
     MultiVideoSourceTracks     *m_pMultiVideoSourceTracks = nullptr;
 	CDlgBeauty * m_pDlgBeauty = nullptr;
     CString m_preSelectedItemText = _T("");
-    std::vector<CString> m_vecBasic, m_vecAdvanced;
+    std::vector<CString> m_vecChannel, m_vecAudio, m_vecVideo, m_vecPlayer, m_vecRecorder, m_vecCloud, m_vecMetaData, m_vecNetwork;
 	std::mutex m_mutex;
 	
     BOOL m_bJoinChannel = FALSE;
 public:
     CStatic m_staMainArea;
-    CTreeCtrl m_lstBasicScene;
     CTreeCtrl m_lstAdvanced;
   
-    afx_msg void OnClickListBasic(NMHDR *pNMHDR, LRESULT *pResult);
+
     afx_msg void OnSelchangedListAdvanced(NMHDR *pNMHDR, LRESULT *pResult);
-    afx_msg void OnClickListAdvanced(NMHDR *pNMHDR, LRESULT *pResult);
-   
-    afx_msg void OnSelchangedListBasic(NMHDR *pNMHDR, LRESULT *pResult);
-    afx_msg void OnSelchangingListBasic(NMHDR *pNMHDR, LRESULT *pResult);
-    
+    afx_msg void OnClickListAdvanced(NMHDR *pNMHDR, LRESULT *pResult);  
     afx_msg void OnSelchangingListAdvanced(NMHDR *pNMHDR, LRESULT *pResult);
     afx_msg void OnBnClickedButtonDocumentWebsite();
 	CStatic m_stalstInfo;
-    CStatic m_staAdvancedScene;
-    CStatic m_grpBasicScene;
     CButton m_btnDemoWebSite;
     CButton m_btnRegister;
     CButton m_btnFAQ;
