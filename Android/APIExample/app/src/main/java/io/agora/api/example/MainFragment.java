@@ -1,7 +1,5 @@
 package io.agora.api.example;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
-import static io.agora.api.example.common.model.Examples.BASIC;
 
 import android.content.Context;
 import android.content.Intent;
@@ -78,11 +76,45 @@ public class MainFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             SectionedRecyclerViewAdapter sectionedAdapter = new SectionedRecyclerViewAdapter();
-            sectionedAdapter.addSection(new ExampleSection(BASIC, Examples.ITEM_MAP.get(BASIC), mListener));
-            sectionedAdapter.addSection(new ExampleSection(ADVANCED, Examples.ITEM_MAP.get(ADVANCED), mListener));
+            sectionedAdapter.addSection(new ExampleSection(getGroupName(Examples.Channel), Examples.ITEM_MAP.get(Examples.Channel), mListener));
+            sectionedAdapter.addSection(new ExampleSection(getGroupName(Examples.Audio), Examples.ITEM_MAP.get(Examples.Audio), mListener));
+            sectionedAdapter.addSection(new ExampleSection(getGroupName(Examples.Video), Examples.ITEM_MAP.get(Examples.Video), mListener));
+            sectionedAdapter.addSection(new ExampleSection(getGroupName(Examples.Player), Examples.ITEM_MAP.get(Examples.Player), mListener));
+            sectionedAdapter.addSection(new ExampleSection(getGroupName(Examples.Recorder), Examples.ITEM_MAP.get(Examples.Recorder), mListener));
+            sectionedAdapter.addSection(new ExampleSection(getGroupName(Examples.Cloud), Examples.ITEM_MAP.get(Examples.Cloud), mListener));
+            sectionedAdapter.addSection(new ExampleSection(getGroupName(Examples.MetaData), Examples.ITEM_MAP.get(Examples.MetaData), mListener));
+            sectionedAdapter.addSection(new ExampleSection(getGroupName(Examples.Device), Examples.ITEM_MAP.get(Examples.Device), mListener));
+            sectionedAdapter.addSection(new ExampleSection(getGroupName(Examples.External), Examples.ITEM_MAP.get(Examples.External), mListener));
+            sectionedAdapter.addSection(new ExampleSection(getGroupName(Examples.Network), Examples.ITEM_MAP.get(Examples.Network), mListener));
             recyclerView.setAdapter(sectionedAdapter);
         }
         return view;
+    }
+
+    private String getGroupName(String group) {
+        switch (group) {
+            case Examples.Channel:
+                return getString(R.string.group_channel);
+            case Examples.Audio:
+                return getString(R.string.group_audio);
+            case Examples.Video:
+                return getString(R.string.group_video);
+            case Examples.Player:
+                return getString(R.string.group_player);
+            case Examples.Recorder:
+                return getString(R.string.group_recorder);
+            case Examples.Cloud:
+                return getString(R.string.group_cloud);
+            case Examples.MetaData:
+                return getString(R.string.group_metadata);
+            case Examples.Device:
+                return getString(R.string.group_device);
+            case Examples.External:
+                return getString(R.string.group_external);
+            case Examples.Network:
+                return getString(R.string.group_network);
+        }
+        return group;
     }
 
 

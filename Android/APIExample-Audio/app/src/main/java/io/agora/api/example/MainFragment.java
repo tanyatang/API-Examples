@@ -1,8 +1,5 @@
 package io.agora.api.example;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
-import static io.agora.api.example.common.model.Examples.BASIC;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -79,11 +76,24 @@ public class MainFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             SectionedRecyclerViewAdapter sectionedAdapter = new SectionedRecyclerViewAdapter();
-            sectionedAdapter.addSection(new ExampleSection(BASIC, Examples.ITEM_MAP.get(BASIC), mListener));
-            sectionedAdapter.addSection(new ExampleSection(ADVANCED, Examples.ITEM_MAP.get(ADVANCED), mListener));
+            sectionedAdapter.addSection(new ExampleSection(getGroupName(Examples.Audio), Examples.ITEM_MAP.get(Examples.Audio), mListener));
+            sectionedAdapter.addSection(new ExampleSection(getGroupName(Examples.Player), Examples.ITEM_MAP.get(Examples.Player), mListener));
+            sectionedAdapter.addSection(new ExampleSection(getGroupName(Examples.Network), Examples.ITEM_MAP.get(Examples.Network), mListener));
             recyclerView.setAdapter(sectionedAdapter);
         }
         return view;
+    }
+
+    private String getGroupName(String group) {
+        switch (group) {
+            case Examples.Audio:
+                return getString(R.string.group_audio);
+            case Examples.Player:
+                return getString(R.string.group_player);
+            case Examples.Network:
+                return getString(R.string.group_network);
+        }
+        return group;
     }
 
 

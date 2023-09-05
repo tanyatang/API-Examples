@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,10 +21,11 @@ import java.util.List;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 
 @Example(
-        index = 24,
-        group = ADVANCED,
+        index = 5,
+        group = Examples.Video,
         name = R.string.item_third_party_beauty,
         actionId = R.id.action_mainFragment_to_third_party_beauty,
         tipsId = R.string.third_party_beauty

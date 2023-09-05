@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 import static io.agora.rtc2.video.VideoCanvas.RENDER_MODE_HIDDEN;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
@@ -33,6 +32,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.examples.advanced.videoRender.GLTextureView;
 import io.agora.api.example.examples.advanced.videoRender.YuvUploader;
 import io.agora.api.example.utils.CommonUtil;
@@ -55,8 +55,8 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
  * This example demonstrates how to customize the renderer to render the local scene of the remote video stream.
  */
 @Example(
-        index = 8,
-        group = ADVANCED,
+        index = 10,
+        group = Examples.Video,
         name = R.string.item_customremoterender,
         actionId = R.id.action_mainFragment_to_CustomRemoteRender,
         tipsId = R.string.customremoterender

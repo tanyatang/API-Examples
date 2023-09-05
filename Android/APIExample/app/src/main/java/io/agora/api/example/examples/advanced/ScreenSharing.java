@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
@@ -44,6 +43,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
 import io.agora.rtc2.ChannelMediaOptions;
@@ -61,8 +61,8 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
  * screen share stream during an audio-video call.
  */
 @Example(
-        index = 18,
-        group = ADVANCED,
+        index = 4,
+        group = Examples.Video,
         name = R.string.item_screensharing,
         actionId = R.id.action_mainFragment_to_ScreenSharing,
         tipsId = R.string.screensharing

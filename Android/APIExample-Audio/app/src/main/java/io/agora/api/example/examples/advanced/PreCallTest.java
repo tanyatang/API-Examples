@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -22,6 +21,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.common.model.StatisticsInfo;
 import io.agora.rtc2.Constants;
 import io.agora.rtc2.IRtcEngineEventHandler;
@@ -30,8 +30,8 @@ import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.internal.LastmileProbeConfig;
 
 @Example(
-        index = 16,
-        group = ADVANCED,
+        index = 1,
+        group = Examples.Network,
         name = R.string.item_precalltest,
         actionId = R.id.action_mainFragment_to_PreCallTest,
         tipsId = R.string.precalltest

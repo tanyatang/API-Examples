@@ -63,11 +63,8 @@ void CAPIExampleDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_STATIC_MAIN, m_staMainArea);
-    DDX_Control(pDX, IDC_LIST_BASIC, m_lstBasicScene);
     DDX_Control(pDX, IDC_LIST_ADVANCED, m_lstAdvanced);
     DDX_Control(pDX, IDC_STATIC_LIST_INFO, m_stalstInfo);
-    DDX_Control(pDX, IDC_STATIC_ADVANCE, m_staAdvancedScene);
-    DDX_Control(pDX, IDC_STATIC_GROUP_LIST, m_grpBasicScene);
     DDX_Control(pDX, IDC_BUTTON_DEMO, m_btnDemoWebSite);
     DDX_Control(pDX, IDC_BUTTON_REGISTER, m_btnRegister);
     DDX_Control(pDX, IDC_BUTTON_FAQ, m_btnFAQ);
@@ -83,11 +80,8 @@ BEGIN_MESSAGE_MAP(CAPIExampleDlg, CDialogEx)
     ON_BN_CLICKED(IDC_BUTTON_REGISTER, &CAPIExampleDlg::OnBnClickedButtonRegister)
     ON_BN_CLICKED(IDC_BUTTON_DEMO, &CAPIExampleDlg::OnBnClickedButtonDemo)
 
-    ON_NOTIFY(NM_CLICK, IDC_LIST_BASIC, &CAPIExampleDlg::OnClickListBasic)
     ON_NOTIFY(NM_CLICK, IDC_LIST_ADVANCED, &CAPIExampleDlg::OnClickListAdvanced)
     ON_NOTIFY(TVN_SELCHANGED, IDC_LIST_ADVANCED, &CAPIExampleDlg::OnSelchangedListAdvanced)
-    ON_NOTIFY(TVN_SELCHANGED, IDC_LIST_BASIC, &CAPIExampleDlg::OnSelchangedListBasic)
-    ON_NOTIFY(TVN_SELCHANGING, IDC_LIST_BASIC, &CAPIExampleDlg::OnSelchangingListBasic)
     //ON_MESSAGE(WM_MSGID(EID_JOINCHANNEL_SUCCESS), &CAPIExampleDlg::OnEIDJoinLeaveChannel)
     ON_NOTIFY(TVN_SELCHANGING, IDC_LIST_ADVANCED, &CAPIExampleDlg::OnSelchangingListAdvanced)
     ON_BN_CLICKED(IDC_BUTTON_DOCUMENT_WEBSITE, &CAPIExampleDlg::OnBnClickedButtonDocumentWebsite)
@@ -191,9 +185,7 @@ HCURSOR CAPIExampleDlg::OnQueryDragIcon()
 
 void CAPIExampleDlg::InitCtrlText()
 {
-    m_staAdvancedScene.SetWindowText(commonAdvanceScene);
     m_grpDoc.SetWindowText(commonGroupDoc);
-    m_grpBasicScene.SetWindowText(commonBasicScene);
     m_btnFAQ.SetWindowText(commonFAQWebsite);
     m_btnRegister.SetWindowText(commonRegisterWebsite);
     m_btnDemoWebSite.SetWindowText(commonDemoWebsite);
@@ -202,9 +194,38 @@ void CAPIExampleDlg::InitCtrlText()
 
 void CAPIExampleDlg::InitSceneDialog()
 {
-    //basic list
-    m_vecBasic.push_back(basicLiveBroadcasting);
+	m_vecChannel.push_back(advancedMultiChannel);
 
+	m_vecAudio.push_back(advancedAudioProfile);
+	m_vecAudio.push_back(advancedAudioVolume);
+	m_vecAudio.push_back(advancedBeautyAudio);
+	m_vecAudio.push_back(advancedOriginalAudio);
+	m_vecAudio.push_back(advancedCustomAudioCapture);
+	m_vecAudio.push_back(SpatialAudio);
+
+	m_vecVideo.push_back(basicLiveBroadcasting);
+	m_vecVideo.push_back(advancedMultiVideoSource);
+	m_vecVideo.push_back(advancedScreenCap);
+	m_vecVideo.push_back(advancedBeauty);
+	m_vecVideo.push_back(advancedOriginalVideo);
+	m_vecVideo.push_back(advancedCustomVideoCapture);
+	m_vecVideo.push_back(advancedMultiVideoSourceTracks);
+	m_vecVideo.push_back(AdvancedLocalVideoTranscoding);
+	
+	m_vecPlayer.push_back(advancedAudioMixing);
+	m_vecPlayer.push_back(advancedMediaPlayer);
+	
+	m_vecRecorder.push_back(advancedMediaRecorder);
+
+	m_vecCloud.push_back(advancedRtmpStreaming);
+
+	m_vecMetaData.push_back(advancedVideoMetadata);
+
+	m_vecNetwork.push_back(advancedMediaEncrypt);
+	m_vecNetwork.push_back(advancedCustomEncrypt);
+	m_vecNetwork.push_back(advancedPerCallTest);
+	m_vecNetwork.push_back(advancedRegionConn);
+	
    m_pLiveBroadcasting = new CLiveBroadcastingDlg(&m_staMainArea);
    RECT rcArea, rcWnd;
    m_staMainArea.GetWindowRect(&rcArea);
@@ -216,33 +237,7 @@ void CAPIExampleDlg::InitSceneDialog()
    rcWnd = { rcArea.left, rcArea.top - MAIN_AREA_TOP, rcArea.left + w, rcArea.top + h};
    m_pLiveBroadcasting->MoveWindow(&rcWnd);
 
-   //advanced list
-   // m_vecAdvanced.push_back(advancedRtmpInject);
-   m_vecAdvanced.push_back(advancedRtmpStreaming);
-   m_vecAdvanced.push_back(advancedVideoMetadata);
-   m_vecAdvanced.push_back(advancedMediaPlayer);
-   m_vecAdvanced.push_back(advancedMediaRecorder);
-   m_vecAdvanced.push_back(advancedScreenCap);
-   m_vecAdvanced.push_back(advancedAudioProfile);
-   m_vecAdvanced.push_back(advancedAudioMixing);
-   // m_vecAdvanced.push_back(advancedAudioEffect);
-   m_vecAdvanced.push_back(advancedCustomVideoCapture);
-   m_vecAdvanced.push_back(advancedOriginalVideo);
-   m_vecAdvanced.push_back(advancedCustomAudioCapture);
-   m_vecAdvanced.push_back(advancedOriginalAudio);
-   m_vecAdvanced.push_back(advancedCustomEncrypt);
-   m_vecAdvanced.push_back(advancedMultiChannel);
-   m_vecAdvanced.push_back(advancedMultiVideoSource);
-   m_vecAdvanced.push_back(advancedMultiVideoSourceTracks);
-   m_vecAdvanced.push_back(advancedPerCallTest);
-   m_vecAdvanced.push_back(advancedAudioVolume);
-   //m_vecAdvanced.push_back(advancedReportInCall);
-   m_vecAdvanced.push_back(advancedRegionConn);
-   m_vecAdvanced.push_back(advancedMediaEncrypt);
-   m_vecAdvanced.push_back(AdvancedLocalVideoTranscoding);
-   m_vecAdvanced.push_back(beautyFace);
-   m_vecAdvanced.push_back(advancedBeautyAudio);
-   m_vecAdvanced.push_back(SpatialAudio);
+
    m_pMultiChannelDlg = new CAgoraMultiChannelDlg(&m_staMainArea);
    m_pMultiChannelDlg->Create(CAgoraMultiChannelDlg::IDD);
    m_pMultiChannelDlg->MoveWindow(&rcWnd);
@@ -374,23 +369,95 @@ void CAPIExampleDlg::InitSceneDialog()
 
 void CAPIExampleDlg::InitSceneList()
 {
-    for (size_t i = 0; i < m_vecBasic.size(); i++){
+	HTREEITEM channelRoot = m_lstAdvanced.InsertItem(commonChannelScene);
+    for (size_t i = 0; i < m_vecChannel.size(); i++){
         TVINSERTSTRUCT tvInsert;
-        tvInsert.hParent = NULL;
+        tvInsert.hParent = channelRoot;
         tvInsert.hInsertAfter = NULL;
         tvInsert.item.mask = TVIF_TEXT;
-        tvInsert.item.pszText = m_vecBasic[i].GetBuffer(0);
-        m_lstBasicScene.InsertItem(&tvInsert);
+        tvInsert.item.pszText = m_vecChannel[i].GetBuffer(0);
+		m_lstAdvanced.InsertItem(&tvInsert);
     }
-  
-    for (size_t i = 0; i < m_vecAdvanced.size(); i++) {
-        TVINSERTSTRUCT tvInsert;
-        tvInsert.hParent = NULL;
-        tvInsert.hInsertAfter = NULL;
-        tvInsert.item.mask = TVIF_TEXT;
-        tvInsert.item.pszText = m_vecAdvanced[i].GetBuffer(0);
-        m_lstAdvanced.InsertItem(&tvInsert);
-    }
+
+	HTREEITEM audioRoot = m_lstAdvanced.InsertItem(commonAudioScene);
+	for (size_t i = 0; i < m_vecAudio.size(); i++) {
+		TVINSERTSTRUCT tvInsert;
+		tvInsert.hParent = audioRoot;
+		tvInsert.hInsertAfter = NULL;
+		tvInsert.item.mask = TVIF_TEXT;
+		tvInsert.item.pszText = m_vecAudio[i].GetBuffer(0);
+		m_lstAdvanced.InsertItem(&tvInsert);
+	}
+
+	HTREEITEM videoRoot = m_lstAdvanced.InsertItem(commonVideoScene);
+	for (size_t i = 0; i < m_vecVideo.size(); i++) {
+		TVINSERTSTRUCT tvInsert;
+		tvInsert.hParent = videoRoot;
+		tvInsert.hInsertAfter = NULL;
+		tvInsert.item.mask = TVIF_TEXT;
+		tvInsert.item.pszText = m_vecVideo[i].GetBuffer(0);
+		m_lstAdvanced.InsertItem(&tvInsert);
+	}
+
+	HTREEITEM playerRoot = m_lstAdvanced.InsertItem(commonPlayerScene);
+	for (size_t i = 0; i < m_vecPlayer.size(); i++) {
+		TVINSERTSTRUCT tvInsert;
+		tvInsert.hParent = playerRoot;
+		tvInsert.hInsertAfter = NULL;
+		tvInsert.item.mask = TVIF_TEXT;
+		tvInsert.item.pszText = m_vecPlayer[i].GetBuffer(0);
+		m_lstAdvanced.InsertItem(&tvInsert);
+	}
+
+	HTREEITEM recorderRoot = m_lstAdvanced.InsertItem(commonRecorderScene);
+	for (size_t i = 0; i < m_vecRecorder.size(); i++) {
+		TVINSERTSTRUCT tvInsert;
+		tvInsert.hParent = recorderRoot;
+		tvInsert.hInsertAfter = NULL;
+		tvInsert.item.mask = TVIF_TEXT;
+		tvInsert.item.pszText = m_vecRecorder[i].GetBuffer(0);
+		m_lstAdvanced.InsertItem(&tvInsert);
+	}
+
+	HTREEITEM cloudRoot = m_lstAdvanced.InsertItem(commonCloudScene);
+	for (size_t i = 0; i < m_vecCloud.size(); i++) {
+		TVINSERTSTRUCT tvInsert;
+		tvInsert.hParent = cloudRoot;
+		tvInsert.hInsertAfter = NULL;
+		tvInsert.item.mask = TVIF_TEXT;
+		tvInsert.item.pszText = m_vecCloud[i].GetBuffer(0);
+		m_lstAdvanced.InsertItem(&tvInsert);
+	}
+
+	HTREEITEM metaDataRoot = m_lstAdvanced.InsertItem(commonMetaDataScene);
+	for (size_t i = 0; i < m_vecMetaData.size(); i++) {
+		TVINSERTSTRUCT tvInsert;
+		tvInsert.hParent = metaDataRoot;
+		tvInsert.hInsertAfter = NULL;
+		tvInsert.item.mask = TVIF_TEXT;
+		tvInsert.item.pszText = m_vecMetaData[i].GetBuffer(0);
+		m_lstAdvanced.InsertItem(&tvInsert);
+	}
+
+	HTREEITEM networkRoot = m_lstAdvanced.InsertItem(commonNetworkScene);
+	for (size_t i = 0; i < m_vecNetwork.size(); i++) {
+		TVINSERTSTRUCT tvInsert;
+		tvInsert.hParent = networkRoot;
+		tvInsert.hInsertAfter = NULL;
+		tvInsert.item.mask = TVIF_TEXT;
+		tvInsert.item.pszText = m_vecNetwork[i].GetBuffer(0);
+		m_lstAdvanced.InsertItem(&tvInsert);
+	}
+ 
+
+	m_lstAdvanced.Expand(channelRoot, TVE_EXPAND);
+	m_lstAdvanced.Expand(audioRoot, TVE_EXPAND);
+	m_lstAdvanced.Expand(videoRoot, TVE_EXPAND);
+	m_lstAdvanced.Expand(playerRoot, TVE_EXPAND);
+	m_lstAdvanced.Expand(recorderRoot, TVE_EXPAND);
+	m_lstAdvanced.Expand(cloudRoot, TVE_EXPAND);
+	m_lstAdvanced.Expand(metaDataRoot, TVE_EXPAND);
+	m_lstAdvanced.Expand(networkRoot, TVE_EXPAND);
 }
 
 
@@ -411,16 +478,6 @@ void CAPIExampleDlg::OnBnClickedButtonDemo()
     ShellExecute(NULL, L"open", L"https://github.com/AgoraIO/API-Examples", NULL, NULL, SW_SHOWNORMAL);
 }
 
-void CAPIExampleDlg::OnSelchangedListBasic(NMHDR *pNMHDR, LRESULT *pResult)
-{
-    LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
-    // TODO: Add your control notification handler code here
-    *pResult = 0;
-
-    HTREEITEM hItem = m_lstBasicScene.GetSelectedItem();
-    m_preSelectedItemText = m_lstBasicScene.GetItemText(hItem);
-    CreateScene(m_lstBasicScene, m_preSelectedItemText);
-}
 
 void CAPIExampleDlg::OnSelchangedListAdvanced(NMHDR *pNMHDR, LRESULT *pResult)
 {
@@ -428,7 +485,10 @@ void CAPIExampleDlg::OnSelchangedListAdvanced(NMHDR *pNMHDR, LRESULT *pResult)
     *pResult = 0;
     HTREEITEM hItem = m_lstAdvanced.GetSelectedItem();
     m_preSelectedItemText = m_lstAdvanced.GetItemText(hItem);
-    CreateScene(m_lstBasicScene, m_preSelectedItemText);
+	if (m_lstAdvanced.ItemHasChildren(hItem)) {
+		return;
+	}
+    CreateScene(m_preSelectedItemText);
 }
 
 HTREEITEM  CAPIExampleDlg::GetHitItem(NMHDR *pNMHDR)
@@ -446,10 +506,6 @@ HTREEITEM  CAPIExampleDlg::GetHitItem(NMHDR *pNMHDR)
     return hitItem ;
 }
 
-void CAPIExampleDlg::OnClickListBasic(NMHDR *pNMHDR, LRESULT *pResult)
-{
-    *pResult = 0;
-}
 
 void CAPIExampleDlg::OnClickListAdvanced(NMHDR *pNMHDR, LRESULT *pResult)
 {   
@@ -457,43 +513,20 @@ void CAPIExampleDlg::OnClickListAdvanced(NMHDR *pNMHDR, LRESULT *pResult)
 
 }
 
-void CAPIExampleDlg::OnSelchangingListBasic(NMHDR *pNMHDR, LRESULT *pResult)
-{
-    LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
-    HTREEITEM hOldItem = pNMTreeView->itemOld.hItem;
-    HTREEITEM hAdvancedItem = m_lstAdvanced.GetSelectedItem();
-	HTREEITEM hNewItem = pNMTreeView->itemNew.hItem;
-
-	if (m_preSelectedItemText.Compare(m_lstBasicScene.GetItemText(hOldItem)) == 0) {
-		ReleaseScene(m_lstBasicScene, hOldItem);
-	}
-	else  if (m_preSelectedItemText.Compare(m_lstAdvanced.GetItemText(hAdvancedItem)) == 0) {
-		// m_lstAdvanced.SetItemState(hAdvancedItem, 0, TVIS_SELECTED);
-		m_lstAdvanced.SelectItem(NULL);
-	}
-
-	*pResult = 0;
-}
-
 void CAPIExampleDlg::OnSelchangingListAdvanced(NMHDR *pNMHDR, LRESULT *pResult)
 {
     LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
-    HTREEITEM hBasicItem = m_lstBasicScene.GetSelectedItem();
     HTREEITEM hOldItem = pNMTreeView->itemOld.hItem;
 	HTREEITEM hNewItem = pNMTreeView->itemNew.hItem;
 
-	if (m_preSelectedItemText.Compare(m_lstBasicScene.GetItemText(hBasicItem)) == 0) {
-		m_lstBasicScene.SelectItem(NULL);
-	}
-	else if (m_preSelectedItemText.Compare(m_lstAdvanced.GetItemText(hOldItem)) == 0) {
+    *pResult = 0;
+	if (m_preSelectedItemText.Compare(m_lstAdvanced.GetItemText(hOldItem)) == 0) {
 		ReleaseScene(m_lstAdvanced, hOldItem);
 	}
-    
-    *pResult = 0;
 }
 
 //
-void CAPIExampleDlg::CreateScene(CTreeCtrl& treeScene, CString selectedText)
+void CAPIExampleDlg::CreateScene(CString selectedText)
 {
 	std::lock_guard<std::mutex>_lock(m_mutex);
     if (selectedText.Compare(basicLiveBroadcasting) == 0) {
@@ -574,7 +607,7 @@ void CAPIExampleDlg::CreateScene(CTreeCtrl& treeScene, CString selectedText)
 		m_pLocalVideoTranscodingDlg->InitAgora();
 		m_pLocalVideoTranscodingDlg->ShowWindow(SW_SHOW);
 	}
-	else if (selectedText.Compare(beautyFace) == 0) {
+	else if (selectedText.Compare(advancedBeauty) == 0) {
 		m_pDlgBeauty->InitAgora();
 		m_pDlgBeauty->ShowWindow(SW_SHOW);
 	}
@@ -673,7 +706,7 @@ void CAPIExampleDlg::ReleaseScene(CTreeCtrl& treeScene, HTREEITEM& hSelectItem)
 		m_pmediaPlayerDlg->UnInitAgora();
 		m_pmediaPlayerDlg->ShowWindow(SW_HIDE);
 	}
-	else if (str.Compare(beautyFace) == 0) {
+	else if (str.Compare(advancedBeauty) == 0) {
 		m_pDlgBeauty->UnInitAgora();
 		m_pDlgBeauty->ShowWindow(SW_HIDE);
 	}
@@ -692,7 +725,6 @@ LRESULT CAPIExampleDlg::OnEIDJoinLeaveChannel(WPARAM wParam, LPARAM lParam)
 {
     m_bJoinChannel = (BOOL)wParam;
     m_lstAdvanced.EnableWindow(!m_bJoinChannel);
-    m_lstBasicScene.EnableWindow(!m_bJoinChannel);
     if (m_bJoinChannel) {
 		m_stalstInfo.SetWindowText(L"you can leave channel first.");
     }
@@ -719,13 +751,9 @@ BOOL CAPIExampleDlg::PreTranslateMessage(MSG* pMsg)
 
 void CAPIExampleDlg::OnClose()
 {
-	HTREEITEM hBasicItem = m_lstBasicScene.GetSelectedItem();
 	HTREEITEM hAdvancedItem = m_lstAdvanced.GetSelectedItem();
 
-	if (hBasicItem) {
-		ReleaseScene(m_lstBasicScene, hBasicItem);
-	}
-	else if (hAdvancedItem) {
+	if (hAdvancedItem) {
 		ReleaseScene(m_lstAdvanced, hAdvancedItem);
 	}
 	CDialogEx::OnClose();

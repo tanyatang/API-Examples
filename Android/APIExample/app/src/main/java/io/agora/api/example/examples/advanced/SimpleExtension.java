@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 import static io.agora.rtc2.Constants.CLIENT_ROLE_BROADCASTER;
 import static io.agora.rtc2.Constants.RENDER_MODE_HIDDEN;
 
@@ -31,6 +30,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
 import io.agora.rtc2.ChannelMediaOptions;
@@ -46,8 +46,8 @@ import io.agora.rtc2.video.VideoCanvas;
  * @author cjw
  */
 @Example(
-        index = 11,
-        group = ADVANCED,
+        index = 1,
+        group = Examples.External,
         name = R.string.item_ext,
         actionId = R.id.action_mainFragment_extension,
         tipsId = R.string.simple_extension

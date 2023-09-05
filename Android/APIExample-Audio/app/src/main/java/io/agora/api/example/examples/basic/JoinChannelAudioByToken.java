@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.basic;
 
-import static io.agora.api.example.common.model.Examples.BASIC;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,12 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SeekBar;
-import android.widget.Spinner;
-import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +21,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.common.widget.AudioSeatManager;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.rtc2.ChannelMediaOptions;
@@ -37,8 +33,8 @@ import io.agora.rtc2.RtcEngineConfig;
 /**This demo demonstrates how to make a one-to-one voice call
  * @author cjw*/
 @Example(
-        index = 0,
-        group = BASIC,
+        index = 2,
+        group = Examples.Audio,
         name = R.string.item_joinaudio_by_token,
         actionId = R.id.action_mainFragment_to_joinChannelAudioByToken,
         tipsId = R.string.joinchannelaudioByToken

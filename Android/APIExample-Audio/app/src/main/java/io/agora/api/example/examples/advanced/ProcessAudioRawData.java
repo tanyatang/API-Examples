@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -28,6 +27,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.common.widget.AudioSeatManager;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
@@ -45,8 +45,8 @@ import io.agora.rtc2.audio.AudioParams;
  * @author cjw
  */
 @Example(
-        index = 9,
-        group = ADVANCED,
+        index = 4,
+        group = Examples.Audio,
         name = R.string.item_raw_audio,
         actionId = R.id.action_mainFragment_raw_audio,
         tipsId = R.string.rawaudio

@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced.customaudio;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -24,6 +23,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.common.widget.AudioSeatManager;
 import io.agora.api.example.utils.AudioFileReader;
 import io.agora.api.example.utils.CommonUtil;
@@ -40,8 +40,8 @@ import io.agora.rtc2.audio.AudioTrackConfig;
  * This demo demonstrates how to make a one-to-one voice call
  */
 @Example(
-        index = 5,
-        group = ADVANCED,
+        index = 4,
+        group = Examples.Audio,
         name = R.string.item_customaudiosource,
         actionId = R.id.action_mainFragment_to_CustomAudioSource,
         tipsId = R.string.customaudio

@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 import static io.agora.rtc2.Constants.RENDER_MODE_HIDDEN;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
@@ -35,6 +34,7 @@ import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
 import io.agora.api.example.common.floatwindow.AVCallFloatView;
 import io.agora.api.example.common.floatwindow.FloatWindowHelper;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.common.widget.VideoReportLayout;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
@@ -51,7 +51,7 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
  */
 @Example(
         index = 11,
-        group = ADVANCED,
+        group = Examples.Video,
         name = R.string.item_picture_in_picture,
         actionId = R.id.action_mainFragment_to_picture_in_picture,
         tipsId = R.string.picture_in_picture

@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 import static io.agora.rtc2.Constants.CLIENT_ROLE_AUDIENCE;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
@@ -35,6 +34,7 @@ import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
 import io.agora.api.example.common.Constant;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.common.widget.VideoReportLayout;
 import io.agora.api.example.databinding.FragmentLiveStreamingBinding;
 import io.agora.api.example.databinding.FragmentLiveStreamingSettingBinding;
@@ -59,8 +59,8 @@ import io.agora.rtc2.video.WatermarkOptions;
  * When turn the Co-host on, others will see you.
  */
 @Example(
-        index = 0,
-        group = ADVANCED,
+        index = 3,
+        group = Examples.Video,
         name = R.string.item_livestreaming,
         actionId = R.id.action_mainFragment_to_live_streaming,
         tipsId = R.string.livestreaming

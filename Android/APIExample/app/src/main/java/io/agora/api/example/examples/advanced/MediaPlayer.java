@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 import static io.agora.mediaplayer.Constants.MediaPlayerState.PLAYER_STATE_IDLE;
 import static io.agora.mediaplayer.Constants.MediaPlayerState.PLAYER_STATE_OPEN_COMPLETED;
 import static io.agora.mediaplayer.Constants.MediaPlayerState.PLAYER_STATE_PLAYBACK_COMPLETED;
@@ -34,6 +33,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
 import io.agora.mediaplayer.IMediaPlayer;
@@ -49,8 +49,8 @@ import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
 
 @Example(
-        index = 17,
-        group = ADVANCED,
+        index = 3,
+        group = Examples.Player,
         name = R.string.item_mediaplayer,
         actionId = R.id.action_mainFragment_to_MediaPlayer,
         tipsId = R.string.mediaplayer

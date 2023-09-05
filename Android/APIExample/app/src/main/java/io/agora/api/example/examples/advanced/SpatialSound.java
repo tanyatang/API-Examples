@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 import static io.agora.mediaplayer.Constants.MediaPlayerState.PLAYER_STATE_OPEN_COMPLETED;
 
 import android.content.Context;
@@ -31,6 +30,7 @@ import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
 import io.agora.api.example.common.Constant;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
 import io.agora.mediaplayer.Constants;
@@ -50,8 +50,8 @@ import io.agora.spatialaudio.RemoteVoicePositionInfo;
 import io.agora.spatialaudio.SpatialAudioZone;
 
 @Example(
-        index = 22,
-        group = ADVANCED,
+        index = 6,
+        group = Examples.Audio,
         name = R.string.item_spatial_sound,
         actionId = R.id.action_mainFragment_to_spatial_sound,
         tipsId = R.string.spatial_sound

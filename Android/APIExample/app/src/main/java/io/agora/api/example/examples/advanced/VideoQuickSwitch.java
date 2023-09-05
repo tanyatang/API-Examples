@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 import static io.agora.rtc2.Constants.REMOTE_VIDEO_STATE_PLAYING;
 import static io.agora.rtc2.video.VideoCanvas.RENDER_MODE_HIDDEN;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15;
@@ -37,6 +36,7 @@ import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 import io.agora.api.example.utils.TokenUtils;
 import io.agora.rtc2.ChannelMediaOptions;
 import io.agora.rtc2.Constants;
@@ -54,8 +54,8 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
  at the same time, the appid you used to set up the live room should be consistent with this example program).
  * @author cjw*/
 @Example(
-        index = 12,
-        group = ADVANCED,
+        index = 2,
+        group = Examples.Channel,
         name = R.string.item_quickswitck,
         actionId = R.id.action_mainFragment_to_QuickSwitch,
         tipsId = R.string.quickswitchchannel

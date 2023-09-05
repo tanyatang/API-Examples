@@ -1,6 +1,5 @@
 package io.agora.api.example.examples.advanced.CDNStreaming;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,10 +19,11 @@ import com.yanzhenjie.permission.runtime.Permission;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
+import io.agora.api.example.common.model.Examples;
 
 @Example(
-        index = 2,
-        group = ADVANCED,
+        index = 3,
+        group = Examples.Cloud,
         name = R.string.item_rtmpstreaming,
         actionId = R.id.action_mainFragment_to_CDNStreaming,
         tipsId = R.string.rtmpstreaming
