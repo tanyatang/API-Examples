@@ -251,5 +251,29 @@ BOOL CGImageRefContainsAlpha(CGImageRef imageRef) {
     }
 }
 
++ (CVPixelBufferRef)convertSampleBufferToPixelBuffer:(CMSampleBufferRef)sampleBuffer {
+    CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+    
+    size_t width = CVPixelBufferGetWidth(pixelBuffer);
+    size_t height = CVPixelBufferGetHeight(pixelBuffer);
+    OSType pixelFormat = CVPixelBufferGetPixelFormatType(pixelBuffer);
+    
+    CVPixelBufferRef outputPixelBuffer = NULL;
+    CVPixelBufferCreate(NULL, width, height, pixelFormat, NULL, &outputPixelBuffer);
+    CVPixelBufferLockBaseAddress(outputPixelBuffer, 0);
+    
+    void *baseAddress = CVPixelBufferGetBaseAddress(pixelBuffer);
+    size_t bufferSize = CVPixelBufferGetDataSize(pixelBuffer);
+    void *outputBaseAddress = CVPixelBufferGetBaseAddress(outputPixelBuffer);
+    
+    memcpy(outputBaseAddress, baseAddress, bufferSize);
+    
+    CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+    CVPixelBufferUnlockBaseAddress(outputPixelBuffer, 0);
+    
+    return outputPixelBuffer;
+}
+
 
 @end

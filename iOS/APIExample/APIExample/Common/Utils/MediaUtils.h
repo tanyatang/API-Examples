@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable UIImage *)pixelBufferToImage:(CVPixelBufferRef)pixelBuffer;
 
 + (CVPixelBufferRef)CVPixelBufferRefFromUiImage:(UIImage *)img;
+
++ (CVPixelBufferRef)convertSampleBufferToPixelBuffer:(CMSampleBufferRef)sampleBuffer;
 
 @end
 

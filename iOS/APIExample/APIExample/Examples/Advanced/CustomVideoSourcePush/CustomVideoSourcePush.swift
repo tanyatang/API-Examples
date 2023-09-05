@@ -52,7 +52,7 @@ class CustomVideoSourcePushEntry : UIViewController
 }
 
 class CustomVideoSourcePushMain: BaseViewController {
-    var localVideo = Bundle.loadView(fromNib: "VideoViewSampleBufferDisplayView", withType: SampleBufferDisplayView.self)
+    var localVideo = Bundle.loadView(fromNib: "VideoView", withType: VideoView.self)
     var remoteVideo = Bundle.loadView(fromNib: "VideoView", withType: VideoView.self)
     var customCamera:AgoraYUVImageSourcePush?
     
@@ -89,8 +89,6 @@ class CustomVideoSourcePushMain: BaseViewController {
         agoraKit.enableAudio()
         
         // setup my own camera as custom video source
-        // note setupLocalVideo is not working when using pushExternalVideoFrame
-        // so you will have to prepare the preview yourself
         customCamera = AgoraYUVImageSourcePush(size: CGSize(width: 320, height: 180),
                                                fileName: "sample" ,
                                                frameRate: 15)
@@ -106,6 +104,14 @@ class CustomVideoSourcePushMain: BaseViewController {
                                                                              bitrate: AgoraVideoBitrateStandard,
                                                                              orientationMode: orientation,
                                                                              mirrorMode: .auto))
+        
+        let canvas = AgoraRtcVideoCanvas()
+        canvas.renderMode = .hidden
+        canvas.uid = 0
+        canvas.view = localVideo.videoView
+        canvas.sourceType = .custom
+        agoraKit.setupLocalVideo(canvas)
+        agoraKit.startPreview()
         
         // Set audio route to speaker
         agoraKit.setDefaultAudioRouteToSpeakerphone(true)
@@ -236,12 +242,5 @@ extension CustomVideoSourcePushMain: AgoraYUVImageSourcePushDelegate {
         videoFrame.rotation = Int32(rotation)
         //once we have the video frame, we can push to agora sdk
         agoraKit?.pushExternalVideoFrame(videoFrame)
-        
-        let outputVideoFrame = AgoraOutputVideoFrame()
-        outputVideoFrame.width = Int32(size.width)
-        outputVideoFrame.height = Int32(size.height)
-        outputVideoFrame.pixelBuffer = buffer
-        outputVideoFrame.rotation = rotation
-        localVideo.videoView.renderVideoPixelBuffer(outputVideoFrame)
     }
 }
