@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.SurfaceView;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -41,6 +41,7 @@ import io.agora.api.example.databinding.FragmentLiveStreamingSettingBinding;
 import io.agora.api.example.databinding.FragmentLiveStreamingVideoTrackingBinding;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
+import io.agora.api.example.utils.TouchScaleHelper;
 import io.agora.rtc2.ChannelMediaOptions;
 import io.agora.rtc2.ClientRoleOptions;
 import io.agora.rtc2.Constants;
@@ -179,13 +180,15 @@ public class LiveStreaming extends BaseFragment implements View.OnClickListener 
         });
         mSettingDialog = new BottomSheetDialog(requireContext());
         mSettingDialog.setContentView(mSettingBinding.getRoot());
+
+
     }
 
     private void updateVideoView() {
 
         if(backGroundVideo.getChildCount() > 0 && backGroundVideo.getReportUid() != -1){
             int reportUid = backGroundVideo.getReportUid();
-            SurfaceView videoView = new SurfaceView(requireContext());
+            View videoView = createRenderView(true);
             backGroundVideo.removeAllViews();
             backGroundVideo.addView(videoView);
             VideoCanvas local = new VideoCanvas(videoView, canvasRenderMode, reportUid);
@@ -198,8 +201,7 @@ public class LiveStreaming extends BaseFragment implements View.OnClickListener 
         }
         if(foreGroundVideo.getChildCount() > 0 && foreGroundVideo.getReportUid() != -1){
             int reportUid = foreGroundVideo.getReportUid();
-            SurfaceView videoView = new SurfaceView(requireContext());
-            videoView.setZOrderMediaOverlay(true);
+            View videoView = createRenderView(false);
             foreGroundVideo.removeAllViews();
             foreGroundVideo.addView(videoView);
             VideoCanvas local = new VideoCanvas(videoView, canvasRenderMode, reportUid);
@@ -210,6 +212,15 @@ public class LiveStreaming extends BaseFragment implements View.OnClickListener 
                 engine.setupRemoteVideo(local);
             }
         }
+    }
+
+    @NonNull
+    private View createRenderView(boolean canScale) {
+        TextureView view = new TextureView(requireContext());
+        if (canScale) {
+            TouchScaleHelper.with(requireContext()).bindView(view);
+        }
+        return view;
     }
 
     @Override
@@ -354,8 +365,8 @@ public class LiveStreaming extends BaseFragment implements View.OnClickListener 
                 backGroundVideo.removeAllViews();
             }
             // Create render view by RtcEngine
-            SurfaceView localView = new SurfaceView(getContext());
-            SurfaceView remoteView = new SurfaceView(getContext());
+            View localView = createRenderView(!isLocalVideoForeground);
+            View remoteView = createRenderView(isLocalVideoForeground);
             if (isLocalVideoForeground) {
                 // Add to the local container
                 foreGroundVideo.addView(localView,0, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -369,7 +380,6 @@ public class LiveStreaming extends BaseFragment implements View.OnClickListener 
                 VideoCanvas local = new VideoCanvas(localView, canvasRenderMode, 0);
                 local.backgroundColor = canvasBgColor;
                 engine.setupLocalVideo(local);
-                localView.setZOrderMediaOverlay(true);
             } else {
                 // Add to the local container
                 foreGroundVideo.addView(remoteView, 0, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -383,7 +393,6 @@ public class LiveStreaming extends BaseFragment implements View.OnClickListener 
                 VideoCanvas remote = new VideoCanvas(remoteView, canvasRenderMode, remoteUid);
                 remote.backgroundColor = canvasBgColor;
                 engine.setupRemoteVideo(remote);
-                remoteView.setZOrderMediaOverlay(true);
             }
         } else if (v.getId() == R.id.btn_setting) {
             mSettingDialog.show();
@@ -419,7 +428,7 @@ public class LiveStreaming extends BaseFragment implements View.OnClickListener 
 
         isLocalVideoForeground = false;
         // Create render view by RtcEngine
-        SurfaceView surfaceView = new SurfaceView(context);
+        View surfaceView = createRenderView(true);
         if (backGroundVideo.getChildCount() > 0) {
             backGroundVideo.removeAllViews();
         }
@@ -669,13 +678,12 @@ public class LiveStreaming extends BaseFragment implements View.OnClickListener 
             {
                 VideoReportLayout videoContainer = isLocalVideoForeground ? backGroundVideo : foreGroundVideo;
                 /**Display remote video stream*/
-                SurfaceView surfaceView = null;
+                View surfaceView = null;
                 if (videoContainer.getChildCount() > 0) {
                     videoContainer.removeAllViews();
                 }
                 // Create render view by RtcEngine
-                surfaceView = new SurfaceView(context);
-                surfaceView.setZOrderMediaOverlay(!isLocalVideoForeground);
+                surfaceView = createRenderView(isLocalVideoForeground);
                 // Add to the remote container
                 videoContainer.addView(surfaceView, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
