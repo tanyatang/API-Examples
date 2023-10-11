@@ -50,13 +50,13 @@ import io.agora.rtc2.video.VirtualBackgroundSource;
 /**
  * This demo demonstrates how to make a VideoProcessExtension
  */
-@Example(
-        index = 19,
-        group = ADVANCED,
-        name = R.string.item_videoProcessExtension,
-        actionId = R.id.action_mainFragment_video_enhancement,
-        tipsId = R.string.videoEnhancement
-)
+//@Example(
+//        index = 19,
+//        group = ADVANCED,
+//        name = R.string.item_videoProcessExtension,
+//        actionId = R.id.action_mainFragment_video_enhancement,
+//        tipsId = R.string.videoEnhancement
+//)
 public class VideoProcessExtension extends BaseFragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
     private static final String TAG = VideoProcessExtension.class.getSimpleName();
 

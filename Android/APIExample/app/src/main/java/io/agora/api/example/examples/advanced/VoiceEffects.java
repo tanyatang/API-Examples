@@ -88,13 +88,13 @@ import io.agora.rtc2.IRtcEngineEventHandler;
 import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
 
-@Example(
-        index = 4,
-        group = ADVANCED,
-        name = R.string.item_voiceeffects,
-        actionId = R.id.action_mainFragment_to_VoiceEffects,
-        tipsId = R.string.voiceeffects
-)
+//@Example(
+//        index = 4,
+//        group = ADVANCED,
+//        name = R.string.item_voiceeffects,
+//        actionId = R.id.action_mainFragment_to_VoiceEffects,
+//        tipsId = R.string.voiceeffects
+//)
 public class VoiceEffects extends BaseFragment implements View.OnClickListener, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
     private static final String TAG = VoiceEffects.class.getSimpleName();
 

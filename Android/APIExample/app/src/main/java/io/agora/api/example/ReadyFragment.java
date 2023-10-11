@@ -94,6 +94,7 @@ public class ReadyFragment extends BaseFragment {
         permissionList.add(Permission.CAMERA);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             permissionList.add(Manifest.permission.BLUETOOTH_CONNECT);
+            permissionList.add(Manifest.permission.READ_PHONE_STATE);
         }
 
         String[] permissionArray = new String[permissionList.size()];

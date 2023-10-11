@@ -100,18 +100,6 @@
         android:text="@string/b_frame" />
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="8dp"
-        android:background="#eeeeee"/>
-
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch_first_frame"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:paddingHorizontal="16dp"
-        android:text="@string/first_frame_optimization" />
 
     <View
         android:layout_width="match_parent"

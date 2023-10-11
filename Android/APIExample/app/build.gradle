@@ -12,12 +12,12 @@ android {
         minSdkVersion 21
         targetSdkVersion 32
         versionCode 1
-        versionName "1.0"
+        versionName "1.0-cmviot-v2v"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [
                AppId: "${applicationId}"
         ]
-        ndk.abiFilters 'armeabi-v7a'// 'arm64-v8a', 'x86', 'x86-64'
+        ndk.abiFilters 'armeabi-v7a', 'arm64-v8a'//, 'x86', 'x86-64'
     }
 
     buildTypes {
@@ -53,6 +53,14 @@ android {
         viewBinding true
     }
 
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all { output ->
+                outputFileName = new File(rootProject.name + "_" +
+                        "v" + defaultConfig.versionName + "_" +
+                        new Date().format("yyyyMMddHHmm") + ".apk")
+            }
+    }
 }
 
 dependencies {

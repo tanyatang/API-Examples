@@ -110,24 +110,6 @@ public class LiveStreaming extends BaseFragment implements View.OnClickListener 
         mSettingBinding.switchBFrame.setOnCheckedChangeListener((buttonView, isChecked) -> enableBFrame(isChecked));
         mSettingBinding.switchLowLatency.setOnCheckedChangeListener((buttonView, isChecked) -> enableLowLegacy(isChecked));
         mSettingBinding.switchLowStream.setOnCheckedChangeListener((buttonView, isChecked) -> enableLowStream(isChecked));
-        mSettingBinding.switchFirstFrame.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                new AlertDialog.Builder(requireContext())
-                        .setTitle(R.string.tip)
-                        .setMessage(R.string.first_frame_optimization_tip)
-                        .setNegativeButton(R.string.cancel, (dialog, which) -> {
-                            buttonView.setChecked(false);
-                            dialog.dismiss();
-                        })
-                        .setPositiveButton(R.string.confirm, (dialog, which) -> {
-                            // Enable FirstFrame Optimization
-                            engine.enableInstantMediaRendering();
-                            buttonView.setEnabled(false);
-                            dialog.dismiss();
-                        })
-                        .show();
-            }
-        });
         mSettingBinding.spEncoderType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -441,10 +423,6 @@ public class LiveStreaming extends BaseFragment implements View.OnClickListener 
                 STANDARD_BITRATE,
                 VideoEncoderConfiguration.ORIENTATION_MODE.valueOf(((MainApplication) getActivity().getApplication()).getGlobalSettings().getVideoEncodingOrientation())
         ));
-
-        engine.startMediaRenderingTracing();
-
-
 
         /*
          * Please configure accessToken in the string_config file.

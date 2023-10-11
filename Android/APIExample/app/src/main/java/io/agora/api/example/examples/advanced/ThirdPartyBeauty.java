@@ -23,13 +23,13 @@ import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
 
-@Example(
-        index = 24,
-        group = ADVANCED,
-        name = R.string.item_third_party_beauty,
-        actionId = R.id.action_mainFragment_to_third_party_beauty,
-        tipsId = R.string.third_party_beauty
-)
+//@Example(
+//        index = 24,
+//        group = ADVANCED,
+//        name = R.string.item_third_party_beauty,
+//        actionId = R.id.action_mainFragment_to_third_party_beauty,
+//        tipsId = R.string.third_party_beauty
+//)
 public class ThirdPartyBeauty extends BaseFragment {
 
     private EditText etChannel;
