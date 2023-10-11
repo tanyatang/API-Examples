@@ -21,13 +21,13 @@ import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
 
-@Example(
-        index = 2,
-        group = ADVANCED,
-        name = R.string.item_rtmpstreaming,
-        actionId = R.id.action_mainFragment_to_CDNStreaming,
-        tipsId = R.string.rtmpstreaming
-)
+//@Example(
+//        index = 2,
+//        group = ADVANCED,
+//        name = R.string.item_rtmpstreaming,
+//        actionId = R.id.action_mainFragment_to_CDNStreaming,
+//        tipsId = R.string.rtmpstreaming
+//)
 public class EntryFragment extends BaseFragment implements View.OnClickListener
 {
     private static final String TAG = EntryFragment.class.getSimpleName();

@@ -49,13 +49,13 @@ import io.agora.spatialaudio.LocalSpatialAudioConfig;
 import io.agora.spatialaudio.RemoteVoicePositionInfo;
 import io.agora.spatialaudio.SpatialAudioZone;
 
-@Example(
-        index = 22,
-        group = ADVANCED,
-        name = R.string.item_spatial_sound,
-        actionId = R.id.action_mainFragment_to_spatial_sound,
-        tipsId = R.string.spatial_sound
-)
+//@Example(
+//        index = 22,
+//        group = ADVANCED,
+//        name = R.string.item_spatial_sound,
+//        actionId = R.id.action_mainFragment_to_spatial_sound,
+//        tipsId = R.string.spatial_sound
+//)
 public class SpatialSound extends BaseFragment {
     private static final String TAG = SpatialSound.class.getSimpleName();
 

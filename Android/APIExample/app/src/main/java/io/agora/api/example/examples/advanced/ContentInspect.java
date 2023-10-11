@@ -40,13 +40,13 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
 /**
  * This demo demonstrates how to make a one-to-one video call
  */
-@Example(
-        index = 23,
-        group = ADVANCED,
-        name = R.string.item_content_inspect,
-        actionId = R.id.action_mainFragment_to_content_inspect,
-        tipsId = R.string.content_inspect
-)
+//@Example(
+//        index = 23,
+//        group = ADVANCED,
+//        name = R.string.item_content_inspect,
+//        actionId = R.id.action_mainFragment_to_content_inspect,
+//        tipsId = R.string.content_inspect
+//)
 public class ContentInspect extends BaseFragment implements View.OnClickListener {
     private static final String TAG = ContentInspect.class.getSimpleName();
 
