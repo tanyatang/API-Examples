@@ -8,16 +8,16 @@ cmake_minimum_required(VERSION 3.4.1)
 project(agora-simple-filter)
 
 #link agora so
-set(agora-lib-so ${PROJECT_SOURCE_DIR}/../agoraLibs/${CMAKE_ANDROID_ARCH_ABI}/libagora-rtc-sdk.so)
+set(agora-lib-so ${PROJECT_SOURCE_DIR}/../agoraLibs/${CMAKE_ANDROID_ARCH_ABI}/libcmviot_v2v-rtc-rtc-sdk-android.so)
 link_libraries(${agora-lib-so})
 
-set(agora-ffmpeg-so ${PROJECT_SOURCE_DIR}/../agoraLibs/${CMAKE_ANDROID_ARCH_ABI}/libagora-ffmpeg.so)
+set(agora-ffmpeg-so ${PROJECT_SOURCE_DIR}/../agoraLibs/${CMAKE_ANDROID_ARCH_ABI}/libcmviot_v2v-rtc-ffmpeg-android.so)
 link_libraries(${agora-ffmpeg-so})
 
-set(agora-soundtouch-so ${PROJECT_SOURCE_DIR}/../agoraLibs/${CMAKE_ANDROID_ARCH_ABI}/libagora-soundtouch.so)
+set(agora-soundtouch-so ${PROJECT_SOURCE_DIR}/../agoraLibs/${CMAKE_ANDROID_ARCH_ABI}/libcmviot_v2v-rtc-soundtouch-android.so)
 link_libraries(${agora-soundtouch-so})
 
-set(agora-fdkaac-so ${PROJECT_SOURCE_DIR}/../agoraLibs/${CMAKE_ANDROID_ARCH_ABI}/libagora-fdkaac.so)
+set(agora-fdkaac-so ${PROJECT_SOURCE_DIR}/../agoraLibs/${CMAKE_ANDROID_ARCH_ABI}/libcmviot_v2v-rtc-fdkaac-android.so)
 link_libraries(${agora-fdkaac-so})
 
 #link opencv so

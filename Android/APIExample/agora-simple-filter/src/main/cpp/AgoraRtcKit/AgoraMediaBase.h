@@ -496,6 +496,10 @@ enum VIDEO_PIXEL_FORMAT {
    * 16: I422.
    */
   VIDEO_PIXEL_I422 = 16,
+  /**
+   * 17: ID3D11Texture2D, only support DXGI_FORMAT_B8G8R8A8_UNORM, DXGI_FORMAT_B8G8R8A8_TYPELESS, DXGI_FORMAT_NV12 texture format
+   */
+  VIDEO_TEXTURE_ID3D11TEXTURE2D = 17,
 };
 
 /**
@@ -559,7 +563,9 @@ struct ExternalVideoFrame {
         textureId(0),
         metadata_buffer(NULL),
         metadata_size(0),
-        alphaBuffer(NULL){}
+        alphaBuffer(NULL),
+        d3d11_texture_2d(NULL),
+        texture_slice_index(0){}
 
    /**
    * The EGL context type.
@@ -681,6 +687,16 @@ struct ExternalVideoFrame {
    *  The default value is NULL
    */
   uint8_t* alphaBuffer;
+
+  /**
+   * [Windows Texture related parameter] The pointer of ID3D11Texture2D used by the video frame.
+   */
+  void *d3d11_texture_2d;
+
+  /**
+   * [Windows Texture related parameter] The index of ID3D11Texture2D array used by the video frame.
+   */
+  int texture_slice_index;
 };
 
 /**
@@ -704,6 +720,7 @@ struct VideoFrame {
   metadata_size(0),
   sharedContext(0),
   textureId(0),
+  d3d11Texture2d(NULL),
   alphaBuffer(NULL),
   pixelBuffer(NULL){
     memset(matrix, 0, sizeof(matrix));
@@ -777,6 +794,10 @@ struct VideoFrame {
    * [Texture related parameter], Texture ID used by the video frame.
    */
   int textureId;
+  /**
+   * [Texture related parameter] The pointer of ID3D11Texture2D used by the video frame,for Windows only.
+   */
+  void* d3d11Texture2d;
   /**
    * [Texture related parameter], Incoming 4 &times; 4 transformational matrix.
    */
@@ -894,14 +915,14 @@ class IAudioFrameObserverBase {
      */
     int channels;
     /**
-     *The number of samples per channel in the audio frame.
+     * The sample rate
      */
     int samplesPerSec;
     /**
      * The data buffer of the audio frame. When the audio frame uses a stereo channel, the data 
      * buffer is interleaved.
      *
-     * Buffer data size: buffer = samples × channels × bytesPerSample.
+     * Buffer data size: buffer = samplesPerChannel × channels × bytesPerSample.
      */
     void* buffer;
     /**
