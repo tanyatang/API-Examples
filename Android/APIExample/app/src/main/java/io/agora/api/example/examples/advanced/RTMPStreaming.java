@@ -47,13 +47,13 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
  * Users who push and pull streams cannot be in one channel,
  * otherwise unexpected errors will occur.
  */
-@Example(
-        index = 1,
-        group = ADVANCED,
-        name = R.string.item_rtctortmp,
-        actionId = R.id.action_mainFragment_to_RTCToRTMP,
-        tipsId = R.string.rtmpstreaming
-)
+//@Example(
+//        index = 1,
+//        group = ADVANCED,
+//        name = R.string.item_rtctortmp,
+//        actionId = R.id.action_mainFragment_to_RTCToRTMP,
+//        tipsId = R.string.rtmpstreaming
+//)
 public class RTMPStreaming extends BaseFragment implements View.OnClickListener
 {
     private static final String TAG = RTMPStreaming.class.getSimpleName();
