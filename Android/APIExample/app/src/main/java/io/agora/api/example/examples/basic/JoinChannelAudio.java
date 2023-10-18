@@ -43,13 +43,13 @@ import io.agora.rtc2.RtcEngineConfig;
  *
  * @author cjw
  */
-@Example(
-        index = 2,
-        group = BASIC,
-        name = R.string.item_joinaudio,
-        actionId = R.id.action_mainFragment_to_joinChannelAudio,
-        tipsId = R.string.joinchannelaudio
-)
+//@Example(
+//        index = 2,
+//        group = BASIC,
+//        name = R.string.item_joinaudio,
+//        actionId = R.id.action_mainFragment_to_joinChannelAudio,
+//        tipsId = R.string.joinchannelaudio
+//)
 public class JoinChannelAudio extends BaseFragment implements View.OnClickListener {
     private static final String TAG = JoinChannelAudio.class.getSimpleName();
     private Spinner channelProfileInput;

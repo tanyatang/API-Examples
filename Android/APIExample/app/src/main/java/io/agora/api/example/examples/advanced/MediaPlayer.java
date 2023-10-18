@@ -48,13 +48,13 @@ import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
 
-@Example(
-        index = 17,
-        group = ADVANCED,
-        name = R.string.item_mediaplayer,
-        actionId = R.id.action_mainFragment_to_MediaPlayer,
-        tipsId = R.string.mediaplayer
-)
+//@Example(
+//        index = 17,
+//        group = ADVANCED,
+//        name = R.string.item_mediaplayer,
+//        actionId = R.id.action_mainFragment_to_MediaPlayer,
+//        tipsId = R.string.mediaplayer
+//)
 public class MediaPlayer extends BaseFragment implements View.OnClickListener, IMediaPlayerObserver {
 
     private static final String TAG = MediaPlayer.class.getSimpleName();

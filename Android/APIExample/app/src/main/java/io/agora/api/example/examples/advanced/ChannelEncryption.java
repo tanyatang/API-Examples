@@ -42,13 +42,13 @@ import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
 
 /**This demo demonstrates how to make a one-to-one video call*/
-@Example(
-        index = 14,
-        group = ADVANCED,
-        name = R.string.item_channelencryption,
-        actionId = R.id.action_mainFragment_to_channel_encryption,
-        tipsId = R.string.channelencryption
-)
+//@Example(
+//        index = 14,
+//        group = ADVANCED,
+//        name = R.string.item_channelencryption,
+//        actionId = R.id.action_mainFragment_to_channel_encryption,
+//        tipsId = R.string.channelencryption
+//)
 public class ChannelEncryption extends BaseFragment implements View.OnClickListener
 {
     private static final String TAG = ChannelEncryption.class.getSimpleName();

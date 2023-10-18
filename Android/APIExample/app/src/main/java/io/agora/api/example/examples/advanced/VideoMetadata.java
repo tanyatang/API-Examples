@@ -41,13 +41,13 @@ import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
 
-@Example(
-        index = 3,
-        group = ADVANCED,
-        name = R.string.item_videometadata,
-        actionId = R.id.action_mainFragment_to_VideoMetadata,
-        tipsId = R.string.videometadata
-)
+//@Example(
+//        index = 3,
+//        group = ADVANCED,
+//        name = R.string.item_videometadata,
+//        actionId = R.id.action_mainFragment_to_VideoMetadata,
+//        tipsId = R.string.videometadata
+//)
 public class VideoMetadata extends BaseFragment implements View.OnClickListener
 {
     public static final String TAG = VideoMetadata.class.getSimpleName();

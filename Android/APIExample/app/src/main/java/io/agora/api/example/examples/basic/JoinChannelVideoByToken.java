@@ -40,13 +40,13 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
 /**
  * This demo demonstrates how to make a one-to-one video call
  */
-@Example(
-        index = 0,
-        group = BASIC,
-        name = R.string.item_joinvideo_by_token,
-        actionId = R.id.action_mainFragment_to_joinChannelVideoByToken,
-        tipsId = R.string.joinchannelvideoByToken
-)
+//@Example(
+//        index = 0,
+//        group = BASIC,
+//        name = R.string.item_joinvideo_by_token,
+//        actionId = R.id.action_mainFragment_to_joinChannelVideoByToken,
+//        tipsId = R.string.joinchannelvideoByToken
+//)
 public class JoinChannelVideoByToken extends BaseFragment implements View.OnClickListener {
     private static final String TAG = JoinChannelVideoByToken.class.getSimpleName();
 

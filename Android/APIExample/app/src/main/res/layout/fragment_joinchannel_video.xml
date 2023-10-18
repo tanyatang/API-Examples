@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,10 +11,11 @@
     <LinearLayout
         android:id="@+id/video_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="50dp"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/ll_join"
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:id="@+id/video_container_row1"
             android:layout_width="match_parent"
@@ -24,16 +26,17 @@
             <io.agora.api.example.common.widget.VideoReportLayout
                 android:id="@+id/fl_local"
                 android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_weight="0.5" />
 
             <io.agora.api.example.common.widget.VideoReportLayout
                 android:id="@+id/fl_remote"
                 android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_weight="0.5" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/video_container_row2"
             android:layout_width="match_parent"
@@ -44,34 +47,26 @@
             <io.agora.api.example.common.widget.VideoReportLayout
                 android:id="@+id/fl_remote2"
                 android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_weight="0.5" />
 
             <io.agora.api.example.common.widget.VideoReportLayout
                 android:id="@+id/fl_remote3"
                 android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_weight="0.5" />
 
         </LinearLayout>
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/btn_switch_camera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/switch_camera"
-        android:layout_above="@+id/ll_join"
-        android:layout_alignParentEnd="true"/>
-
     <LinearLayout
         android:id="@+id/ll_join"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_channel"
@@ -89,4 +84,52 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/ll_join"
+        android:orientation="vertical"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_h265"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:paddingHorizontal="12dp"
+            android:text="H265"/>
+
+        <Button
+            android:id="@+id/btn_switch_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:text="@string/switch_camera" />
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fullLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@android:color/black">
+
+        <io.agora.api.example.common.widget.VideoReportLayout
+            android:id="@+id/fullVideo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:padding="10dp"
+            android:src="@drawable/ic_close" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,13 +40,13 @@ import io.agora.rtc2.RtcEngineEx;
 /**
  * This demo demonstrates how to make a one-to-one voice call
  */
-@Example(
-        index = 6,
-        group = ADVANCED,
-        name = R.string.item_customaudiorender,
-        actionId = R.id.action_mainFragment_to_CustomAudioRender,
-        tipsId = R.string.customaudiorender
-)
+//@Example(
+//        index = 6,
+//        group = ADVANCED,
+//        name = R.string.item_customaudiorender,
+//        actionId = R.id.action_mainFragment_to_CustomAudioRender,
+//        tipsId = R.string.customaudiorender
+//)
 public class CustomAudioRender extends BaseFragment implements View.OnClickListener {
     private static final String TAG = CustomAudioRender.class.getSimpleName();
     private EditText et_channel;

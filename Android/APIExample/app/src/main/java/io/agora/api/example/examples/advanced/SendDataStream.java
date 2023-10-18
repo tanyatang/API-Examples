@@ -39,13 +39,13 @@ import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
 
-@Example(
-        index = 20,
-        group = ADVANCED,
-        name = R.string.item_senddatastream,
-        actionId = R.id.action_mainFragment_senddatastream,
-        tipsId = R.string.senddatastream
-)
+//@Example(
+//        index = 20,
+//        group = ADVANCED,
+//        name = R.string.item_senddatastream,
+//        actionId = R.id.action_mainFragment_senddatastream,
+//        tipsId = R.string.senddatastream
+//)
 public class SendDataStream extends BaseFragment implements View.OnClickListener
 {
     public static final String TAG = SendDataStream.class.getSimpleName();

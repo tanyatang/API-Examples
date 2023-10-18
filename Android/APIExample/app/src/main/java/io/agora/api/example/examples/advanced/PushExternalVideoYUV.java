@@ -52,13 +52,13 @@ import io.agora.rtc2.gl.EglBaseProvider;
 import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
 
-@Example(
-        index = 7,
-        group = ADVANCED,
-        name = R.string.item_pushexternal,
-        actionId = R.id.action_mainFragment_to_PushExternalVideo,
-        tipsId = R.string.pushexternalvideo
-)
+//@Example(
+//        index = 7,
+//        group = ADVANCED,
+//        name = R.string.item_pushexternal,
+//        actionId = R.id.action_mainFragment_to_PushExternalVideo,
+//        tipsId = R.string.pushexternalvideo
+//)
 public class PushExternalVideoYUV extends BaseFragment implements View.OnClickListener {
     private static final String TAG = PushExternalVideoYUV.class.getSimpleName();
 

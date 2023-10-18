@@ -45,13 +45,13 @@ import io.agora.rtc2.video.VideoCanvas;
  *
  * @author cjw
  */
-@Example(
-        index = 11,
-        group = ADVANCED,
-        name = R.string.item_ext,
-        actionId = R.id.action_mainFragment_extension,
-        tipsId = R.string.simple_extension
-)
+//@Example(
+//        index = 11,
+//        group = ADVANCED,
+//        name = R.string.item_ext,
+//        actionId = R.id.action_mainFragment_extension,
+//        tipsId = R.string.simple_extension
+//)
 public class SimpleExtension extends BaseFragment implements View.OnClickListener, io.agora.rtc2.IMediaExtensionObserver {
     private static final String TAG = SimpleExtension.class.getSimpleName();
     public static final String EXTENSION_NAME = "agora-simple-filter"; // Name of target link library used in CMakeLists.txt

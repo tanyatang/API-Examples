@@ -40,13 +40,13 @@ import io.agora.rtc2.IRtcEngineEventHandler;
 import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
 
-@Example(
-        index = 15,
-        group = ADVANCED,
-        name = R.string.item_playaudiofiles,
-        actionId = R.id.action_mainFragment_to_PlayAudioFiles,
-        tipsId = R.string.playaudiofiles
-)
+//@Example(
+//        index = 15,
+//        group = ADVANCED,
+//        name = R.string.item_playaudiofiles,
+//        actionId = R.id.action_mainFragment_to_PlayAudioFiles,
+//        tipsId = R.string.playaudiofiles
+//)
 public class PlayAudioFiles extends BaseFragment implements View.OnClickListener,
         SeekBar.OnSeekBarChangeListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = PlayAudioFiles.class.getSimpleName();

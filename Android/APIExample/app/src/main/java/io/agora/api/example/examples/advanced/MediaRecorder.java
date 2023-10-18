@@ -54,13 +54,13 @@ import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
 
-@Example(
-        index = 17,
-        group = ADVANCED,
-        name = R.string.item_media_recorder,
-        actionId = R.id.action_mainFragment_to_MediaRecorder,
-        tipsId = R.string.media_recorder
-)
+//@Example(
+//        index = 17,
+//        group = ADVANCED,
+//        name = R.string.item_media_recorder,
+//        actionId = R.id.action_mainFragment_to_MediaRecorder,
+//        tipsId = R.string.media_recorder
+//)
 public class MediaRecorder extends BaseFragment implements View.OnClickListener {
     private static final String TAG = JoinChannelVideo.class.getSimpleName();
 

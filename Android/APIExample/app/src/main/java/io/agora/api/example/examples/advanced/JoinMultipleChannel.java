@@ -45,13 +45,13 @@ import io.agora.rtc2.RtcEngineEx;
 import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
 
-@Example(
-        index = 13,
-        group = ADVANCED,
-        name = R.string.item_joinmultichannel,
-        actionId = R.id.action_mainFragment_to_MultiChannel,
-        tipsId = R.string.joinmultichannel
-)
+//@Example(
+//        index = 13,
+//        group = ADVANCED,
+//        name = R.string.item_joinmultichannel,
+//        actionId = R.id.action_mainFragment_to_MultiChannel,
+//        tipsId = R.string.joinmultichannel
+//)
 public class JoinMultipleChannel extends BaseFragment implements View.OnClickListener {
     private static final String TAG = JoinMultipleChannel.class.getSimpleName();
 

@@ -53,13 +53,13 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
  push the stream as a live one (the name of the live room is in the channels instance{"channel0", "channel1", "channel2"};
  at the same time, the appid you used to set up the live room should be consistent with this example program).
  * @author cjw*/
-@Example(
-        index = 12,
-        group = ADVANCED,
-        name = R.string.item_quickswitck,
-        actionId = R.id.action_mainFragment_to_QuickSwitch,
-        tipsId = R.string.quickswitchchannel
-)
+//@Example(
+//        index = 12,
+//        group = ADVANCED,
+//        name = R.string.item_quickswitck,
+//        actionId = R.id.action_mainFragment_to_QuickSwitch,
+//        tipsId = R.string.quickswitchchannel
+//)
 public class VideoQuickSwitch extends BaseFragment implements CompoundButton.OnCheckedChangeListener
 {
     private static final String TAG = VideoQuickSwitch.class.getSimpleName();

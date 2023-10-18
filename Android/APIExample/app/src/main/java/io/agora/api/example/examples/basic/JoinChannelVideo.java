@@ -15,11 +15,14 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
@@ -30,6 +33,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
+import io.agora.api.example.MainActivity;
 import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
@@ -57,8 +61,11 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
 {
     private static final String TAG = JoinChannelVideo.class.getSimpleName();
 
-    private VideoReportLayout fl_local, fl_remote, fl_remote_2, fl_remote_3;
+    private VideoReportLayout fl_local, fl_remote, fl_remote_2, fl_remote_3, fullVideo;
+    private FrameLayout fullLayout;
+    private ImageView fullClose;
     private Button join, switch_camera;
+    private SwitchCompat switch_h265;
     private EditText et_channel;
     private RtcEngine engine;
     private int myUid;
@@ -80,6 +87,7 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
         super.onViewCreated(view, savedInstanceState);
         join = view.findViewById(R.id.btn_join);
         switch_camera = view.findViewById(R.id.btn_switch_camera);
+        switch_h265 = view.findViewById(R.id.switch_h265);
         et_channel = view.findViewById(R.id.et_channel);
         view.findViewById(R.id.btn_join).setOnClickListener(this);
         switch_camera.setOnClickListener(this);
@@ -87,6 +95,24 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
         fl_remote = view.findViewById(R.id.fl_remote);
         fl_remote_2 = view.findViewById(R.id.fl_remote2);
         fl_remote_3 = view.findViewById(R.id.fl_remote3);
+        fullVideo = view.findViewById(R.id.fullVideo);
+        fullLayout = view.findViewById(R.id.fullLayout);
+        fullClose = view.findViewById(R.id.ivClose);
+
+        ((MainActivity)requireActivity()).getSupportActionBar().hide();
+        switch_h265.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                engine.setParameters("{\"engine.video.codec_type\":\"3\"}");
+            } else {
+                engine.setParameters("{\"engine.video.codec_type\":\"2\"}");
+            }
+        });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ((MainActivity)requireActivity()).getSupportActionBar().show();
     }
 
     @Override
@@ -224,6 +250,7 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
                     value.removeAllViews();
                 }
                 remoteViews.clear();
+                switch_h265.setEnabled(true);
             }
         }else if(v.getId() == switch_camera.getId()){
             if(engine != null && joined){
@@ -250,6 +277,7 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
         // Add to the local container
         fl_local.addView(surfaceView, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         // Setup local video to render your local camera preview
+        setViewLargeClickListener(surfaceView);
         engine.setupLocalVideo(new VideoCanvas(surfaceView, RENDER_MODE_HIDDEN, 0));
         // Set audio route to microPhone
         engine.setDefaultAudioRoutetoSpeakerphone(true);
@@ -262,7 +290,7 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
         engine.setVideoEncoderConfiguration(new VideoEncoderConfiguration(
                 ((MainApplication)getActivity().getApplication()).getGlobalSettings().getVideoEncodingDimensionObject(),
                 VideoEncoderConfiguration.FRAME_RATE.valueOf(((MainApplication)getActivity().getApplication()).getGlobalSettings().getVideoEncodingFrameRate()),
-                STANDARD_BITRATE,
+                ((MainApplication)getActivity().getApplication()).getGlobalSettings().getEncodeBitrate(),
                 VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE
         ));
 
@@ -294,6 +322,7 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
             }
             // Prevent repeated entry
             join.setEnabled(false);
+            switch_h265.setEnabled(false);
         });
 
     }
@@ -474,6 +503,7 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
                     remoteViews.put(uid, view);
                     // Add to the remote container
                     view.addView(surfaceView, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                    setViewLargeClickListener(surfaceView);
                     // Setup remote video to render
                     engine.setupRemoteVideo(new VideoCanvas(surfaceView, RENDER_MODE_HIDDEN, uid));
                 });
@@ -550,5 +580,27 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
         else{
             return fl_remote;
         }
+    }
+
+    private void setViewLargeClickListener(View videoView){
+        videoView.setOnClickListener(v -> {
+            fullLayout.setVisibility(View.VISIBLE);
+            ViewGroup parent = (ViewGroup) videoView.getParent();
+            if(parent != null){
+                parent.removeView(videoView);
+            }
+            fullVideo.removeAllViews();
+            fullVideo.addView(videoView);
+            if(videoView instanceof SurfaceView){
+                ((SurfaceView) videoView).setZOrderMediaOverlay(true);
+            }
+            fullClose.setOnClickListener(v1 -> {
+                fullLayout.setVisibility(View.GONE);
+                fullVideo.removeAllViews();
+                if(parent != null){
+                    parent.addView(videoView);
+                }
+            });
+        });
     }
 }

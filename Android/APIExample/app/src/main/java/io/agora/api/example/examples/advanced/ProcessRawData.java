@@ -52,13 +52,13 @@ import io.agora.rtc2.video.IVideoFrameObserver;
 import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
 
-@Example(
-        index = 11,
-        group = ADVANCED,
-        name = R.string.item_processraw,
-        actionId = R.id.action_mainFragment_to_ProcessRawData,
-        tipsId = R.string.processrawdata
-)
+//@Example(
+//        index = 11,
+//        group = ADVANCED,
+//        name = R.string.item_processraw,
+//        actionId = R.id.action_mainFragment_to_ProcessRawData,
+//        tipsId = R.string.processrawdata
+//)
 public class ProcessRawData extends BaseFragment implements View.OnClickListener {
     private static final String TAG = ProcessRawData.class.getSimpleName();
 

@@ -5,10 +5,13 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Locale;
 
 import io.agora.api.example.common.model.GlobalSettings;
 import io.agora.api.example.databinding.ActivitySettingLayoutBinding;
@@ -99,6 +102,25 @@ public class SettingActivity extends AppCompatActivity{
         mBinding.privateCloudLayout.etLogServerPort.setText(globalSettings.privateCloudLogServerPort + "");
         mBinding.privateCloudLayout.etLogServerPath.setText(globalSettings.privateCloudLogServerPath);
         mBinding.privateCloudLayout.swUseHttps.setChecked(globalSettings.privateCloudUseHttps);
+
+        mBinding.bitrateSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                mBinding.bitrateValue.setText(String.format(Locale.US, "%dKBps", progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        mBinding.bitrateSlider.setProgress(globalSettings.getEncodeBitrate());
+
     }
 
     @Override
@@ -124,6 +146,7 @@ public class SettingActivity extends AppCompatActivity{
             globalSettings.setVideoEncodingDimension(getResources().getStringArray(R.array.dimensions)[mBinding.dimensionSpinner.getSelectedItemPosition()]);
             globalSettings.setAreaCodeStr(getResources().getStringArray(R.array.areaCode)[mBinding.areaSpinner.getSelectedItemPosition()]);
 
+            globalSettings.setEncodeBitrate(mBinding.bitrateSlider.getProgress());
             onBackPressed();
             return true;
         }

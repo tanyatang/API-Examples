@@ -58,13 +58,13 @@ import io.agora.rtc2.video.WatermarkOptions;
  * click the frame will switch the position.
  * When turn the Co-host on, others will see you.
  */
-@Example(
-        index = 0,
-        group = ADVANCED,
-        name = R.string.item_livestreaming,
-        actionId = R.id.action_mainFragment_to_live_streaming,
-        tipsId = R.string.livestreaming
-)
+//@Example(
+//        index = 0,
+//        group = ADVANCED,
+//        name = R.string.item_livestreaming,
+//        actionId = R.id.action_mainFragment_to_live_streaming,
+//        tipsId = R.string.livestreaming
+//)
 public class LiveStreaming extends BaseFragment implements View.OnClickListener {
     private static final String TAG = LiveStreaming.class.getSimpleName();
 

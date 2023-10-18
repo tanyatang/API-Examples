@@ -2,6 +2,7 @@ package io.agora.api.example.common.model;
 
 import static io.agora.rtc2.video.VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
+import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.VD_960x540;
 
 import android.text.TextUtils;
@@ -35,11 +36,17 @@ public class GlobalSettings {
     // public String privateCloudLogServerPath = "/kafka/log/upload/v1";
     // public boolean privateCloudUseHttps = true;
 
+    private int encodeBitrate = STANDARD_BITRATE;
+
     public String getVideoEncodingDimension() {
         if (videoEncodingDimension == null)
             return "VD_960x540";
         else
             return videoEncodingDimension;
+    }
+
+    public int getEncodeBitrate() {
+        return encodeBitrate;
     }
 
     public LocalAccessPointConfiguration getPrivateCloudConfig() {
@@ -81,6 +88,10 @@ public class GlobalSettings {
 
     public void setVideoEncodingDimension(String videoEncodingDimension) {
         this.videoEncodingDimension = videoEncodingDimension;
+    }
+
+    public void setEncodeBitrate(int encodeBitrate) {
+        this.encodeBitrate = encodeBitrate;
     }
 
     public String getVideoEncodingFrameRate() {

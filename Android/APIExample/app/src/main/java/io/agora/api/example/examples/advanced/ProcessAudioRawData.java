@@ -44,13 +44,13 @@ import io.agora.rtc2.audio.AudioParams;
  *
  * @author cjw
  */
-@Example(
-        index = 9,
-        group = ADVANCED,
-        name = R.string.item_raw_audio,
-        actionId = R.id.action_mainFragment_raw_audio,
-        tipsId = R.string.rawaudio
-)
+//@Example(
+//        index = 9,
+//        group = ADVANCED,
+//        name = R.string.item_raw_audio,
+//        actionId = R.id.action_mainFragment_raw_audio,
+//        tipsId = R.string.rawaudio
+//)
 public class ProcessAudioRawData extends BaseFragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     private static final String TAG = ProcessAudioRawData.class.getSimpleName();
     private EditText et_channel;

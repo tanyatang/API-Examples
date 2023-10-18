@@ -54,13 +54,13 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
 /**
  * This example demonstrates how to customize the renderer to render the local scene of the remote video stream.
  */
-@Example(
-        index = 8,
-        group = ADVANCED,
-        name = R.string.item_customremoterender,
-        actionId = R.id.action_mainFragment_to_CustomRemoteRender,
-        tipsId = R.string.customremoterender
-)
+//@Example(
+//        index = 8,
+//        group = ADVANCED,
+//        name = R.string.item_customremoterender,
+//        actionId = R.id.action_mainFragment_to_CustomRemoteRender,
+//        tipsId = R.string.customremoterender
+//)
 public class CustomRemoteVideoRender extends BaseFragment implements View.OnClickListener {
     private static final String TAG = CustomRemoteVideoRender.class.getSimpleName();
 

@@ -29,13 +29,13 @@ import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.internal.LastmileProbeConfig;
 
-@Example(
-        index = 16,
-        group = ADVANCED,
-        name = R.string.item_precalltest,
-        actionId = R.id.action_mainFragment_to_PreCallTest,
-        tipsId = R.string.precalltest
-)
+//@Example(
+//        index = 16,
+//        group = ADVANCED,
+//        name = R.string.item_precalltest,
+//        actionId = R.id.action_mainFragment_to_PreCallTest,
+//        tipsId = R.string.precalltest
+//)
 public class PreCallTest extends BaseFragment implements View.OnClickListener {
     private static final String TAG = PreCallTest.class.getSimpleName();
 

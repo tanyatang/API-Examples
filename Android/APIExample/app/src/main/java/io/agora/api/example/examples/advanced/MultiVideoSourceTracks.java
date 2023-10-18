@@ -61,13 +61,13 @@ import io.agora.rtc2.video.EncodedVideoFrameInfo;
 import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
 
-@Example(
-        index = 10,
-        group = ADVANCED,
-        name = R.string.item_multiVideoSourceTracks,
-        actionId = R.id.action_mainFragment_to_MultiVideoSourceTracks,
-        tipsId = R.string.multivideosourcetracks
-)
+//@Example(
+//        index = 10,
+//        group = ADVANCED,
+//        name = R.string.item_multiVideoSourceTracks,
+//        actionId = R.id.action_mainFragment_to_MultiVideoSourceTracks,
+//        tipsId = R.string.multivideosourcetracks
+//)
 public class MultiVideoSourceTracks extends BaseFragment implements View.OnClickListener {
     private static final String TAG = MultiVideoSourceTracks.class.getSimpleName();
     private static final String ENCODED_VIDEO_PATH = "https://agora-adc-artifacts.s3.cn-north-1.amazonaws.com.cn/resources/sample.mp4";

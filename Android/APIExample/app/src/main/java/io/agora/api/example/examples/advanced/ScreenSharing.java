@@ -60,13 +60,13 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
  * This example demonstrates how video can be flexibly switched between the camera stream and the
  * screen share stream during an audio-video call.
  */
-@Example(
-        index = 18,
-        group = ADVANCED,
-        name = R.string.item_screensharing,
-        actionId = R.id.action_mainFragment_to_ScreenSharing,
-        tipsId = R.string.screensharing
-)
+//@Example(
+//        index = 18,
+//        group = ADVANCED,
+//        name = R.string.item_screensharing,
+//        actionId = R.id.action_mainFragment_to_ScreenSharing,
+//        tipsId = R.string.screensharing
+//)
 public class ScreenSharing extends BaseFragment implements View.OnClickListener,
         CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = ScreenSharing.class.getSimpleName();

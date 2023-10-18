@@ -37,13 +37,13 @@ import io.agora.rtc2.audio.AgoraRhythmPlayerConfig;
 /**
  * This demo demonstrates how to make a VideoProcessExtension
  */
-@Example(
-        index = 19,
-        group = ADVANCED,
-        name = R.string.item_rhythmplayer,
-        actionId = R.id.action_mainFragment_rhythm_player,
-        tipsId = R.string.rhythmplayer
-)
+//@Example(
+//        index = 19,
+//        group = ADVANCED,
+//        name = R.string.item_rhythmplayer,
+//        actionId = R.id.action_mainFragment_rhythm_player,
+//        tipsId = R.string.rhythmplayer
+//)
 public class RhythmPlayer extends BaseFragment implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
 
     private static final String TAG = RhythmPlayer.class.getSimpleName();

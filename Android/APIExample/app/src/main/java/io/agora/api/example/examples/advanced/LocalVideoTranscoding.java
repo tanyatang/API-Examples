@@ -46,13 +46,13 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
 import io.agora.rtc2.video.VirtualBackgroundSource;
 
 /**This demo demonstrates how to make a one-to-one video call*/
-@Example(
-        index = 19,
-        group = ADVANCED,
-        name = R.string.item_localvideotranscoding,
-        actionId = R.id.action_mainFragment_to_LocalVideoTranscoding,
-        tipsId = R.string.localvideotranscoding
-)
+//@Example(
+//        index = 19,
+//        group = ADVANCED,
+//        name = R.string.item_localvideotranscoding,
+//        actionId = R.id.action_mainFragment_to_LocalVideoTranscoding,
+//        tipsId = R.string.localvideotranscoding
+//)
 public class LocalVideoTranscoding extends BaseFragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener
 {
     private static final String TAG = LocalVideoTranscoding.class.getSimpleName();
