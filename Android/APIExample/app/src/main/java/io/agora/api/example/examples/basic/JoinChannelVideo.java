@@ -2,7 +2,6 @@ package io.agora.api.example.examples.basic;
 
 import static io.agora.api.example.common.model.Examples.BASIC;
 import static io.agora.rtc2.Constants.RENDER_MODE_HIDDEN;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -15,7 +14,6 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -155,16 +153,16 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
              * This parameter is for reporting the usages of APIExample to agora background.
              * Generally, it is not necessary for you to set this parameter.
              */
-            engine.setParameters("{"
-                    + "\"rtc.report_app_scenario\":"
-                    + "{"
-                    + "\"appScenario\":" + 100 + ","
-                    + "\"serviceType\":" + 11 + ","
-                    + "\"appVersion\":\"" + RtcEngine.getSdkVersion() + "\""
-                    + "}"
-                    + "}");
+            // engine.setParameters("{"
+            //         + "\"rtc.report_app_scenario\":"
+            //         + "{"
+            //         + "\"appScenario\":" + 100 + ","
+            //         + "\"serviceType\":" + 11 + ","
+            //         + "\"appVersion\":\"" + RtcEngine.getSdkVersion() + "\""
+            //         + "}"
+            //         + "}");
             /* setting the local access point if the private cloud ip was set, otherwise the config will be invalid.*/
-            engine.setLocalAccessPoint(((MainApplication) getActivity().getApplication()).getGlobalSettings().getPrivateCloudConfig());
+            // engine.setLocalAccessPoint(((MainApplication) getActivity().getApplication()).getGlobalSettings().getPrivateCloudConfig());
         }
         catch (Exception e)
         {
