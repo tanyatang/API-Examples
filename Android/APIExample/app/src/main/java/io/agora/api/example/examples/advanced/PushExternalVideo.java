@@ -1,7 +1,7 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.rtc2.video.VideoCanvas.RENDER_MODE_HIDDEN;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
+import static io.cmviot.rtc2.video.VideoCanvas.RENDER_MODE_HIDDEN;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
@@ -40,19 +40,19 @@ import io.agora.api.example.common.gles.core.EglCore;
 import io.agora.api.example.common.gles.core.GlUtil;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
-import io.agora.base.TextureBufferHelper;
-import io.agora.base.VideoFrame;
-import io.agora.base.internal.video.EglBase;
-import io.agora.base.internal.video.EglBase14;
-import io.agora.base.internal.video.RendererCommon;
-import io.agora.base.internal.video.YuvConverter;
-import io.agora.rtc2.ChannelMediaOptions;
-import io.agora.rtc2.Constants;
-import io.agora.rtc2.IRtcEngineEventHandler;
-import io.agora.rtc2.RtcEngine;
-import io.agora.rtc2.RtcEngineConfig;
-import io.agora.rtc2.video.VideoCanvas;
-import io.agora.rtc2.video.VideoEncoderConfiguration;
+import io.cmviot.base.TextureBufferHelper;
+import io.cmviot.base.VideoFrame;
+import io.cmviot.base.internal.video.EglBase;
+import io.cmviot.base.internal.video.EglBase14;
+import io.cmviot.base.internal.video.RendererCommon;
+import io.cmviot.base.internal.video.YuvConverter;
+import io.cmviot.rtc2.ChannelMediaOptions;
+import io.cmviot.rtc2.Constants;
+import io.cmviot.rtc2.IRtcEngineEventHandler;
+import io.cmviot.rtc2.RtcEngine;
+import io.cmviot.rtc2.RtcEngineConfig;
+import io.cmviot.rtc2.video.VideoCanvas;
+import io.cmviot.rtc2.video.VideoEncoderConfiguration;
 
 //@Example(
 //        index = 7,

@@ -1,8 +1,8 @@
 package io.agora.api.example.examples.advanced;
 
 import static io.agora.api.example.common.model.Examples.ADVANCED;
-import static io.agora.rtc2.video.VideoCanvas.RENDER_MODE_HIDDEN;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
+import static io.cmviot.rtc2.video.VideoCanvas.RENDER_MODE_HIDDEN;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
 import android.content.Context;
 import android.graphics.Matrix;
@@ -37,19 +37,19 @@ import io.agora.api.example.examples.advanced.videoRender.GLTextureView;
 import io.agora.api.example.examples.advanced.videoRender.YuvUploader;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
-import io.agora.base.TextureBufferHelper;
-import io.agora.base.VideoFrame;
-import io.agora.base.internal.video.EglBase10;
-import io.agora.base.internal.video.GlRectDrawer;
-import io.agora.base.internal.video.RendererCommon;
-import io.agora.rtc2.ChannelMediaOptions;
-import io.agora.rtc2.Constants;
-import io.agora.rtc2.IRtcEngineEventHandler;
-import io.agora.rtc2.RtcEngine;
-import io.agora.rtc2.RtcEngineConfig;
-import io.agora.rtc2.video.IVideoFrameObserver;
-import io.agora.rtc2.video.VideoCanvas;
-import io.agora.rtc2.video.VideoEncoderConfiguration;
+import io.cmviot.base.TextureBufferHelper;
+import io.cmviot.base.VideoFrame;
+import io.cmviot.base.internal.video.EglBase10;
+import io.cmviot.base.internal.video.GlRectDrawer;
+import io.cmviot.base.internal.video.RendererCommon;
+import io.cmviot.rtc2.ChannelMediaOptions;
+import io.cmviot.rtc2.Constants;
+import io.cmviot.rtc2.IRtcEngineEventHandler;
+import io.cmviot.rtc2.RtcEngine;
+import io.cmviot.rtc2.RtcEngineConfig;
+import io.cmviot.rtc2.video.IVideoFrameObserver;
+import io.cmviot.rtc2.video.VideoCanvas;
+import io.cmviot.rtc2.video.VideoEncoderConfiguration;
 
 /**
  * This example demonstrates how to customize the renderer to render the local scene of the remote video stream.

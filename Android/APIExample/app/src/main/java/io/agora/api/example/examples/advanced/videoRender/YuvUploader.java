@@ -6,9 +6,9 @@ import androidx.annotation.Nullable;
 
 import java.nio.ByteBuffer;
 
-import io.agora.base.VideoFrame;
-import io.agora.base.internal.video.GlUtil;
-import io.agora.base.internal.video.YuvHelper;
+import io.cmviot.base.VideoFrame;
+import io.cmviot.base.internal.video.GlUtil;
+import io.cmviot.base.internal.video.YuvHelper;
 
 public class YuvUploader {
     // Intermediate copy buffer for uploading yuv frames that are not packed, i.e. stride > width.

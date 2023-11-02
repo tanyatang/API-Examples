@@ -1,8 +1,8 @@
 package io.agora.api.example.examples.advanced.CDNStreaming;
 
-import static io.agora.rtc2.Constants.CLIENT_ROLE_BROADCASTER;
-import static io.agora.rtc2.Constants.RENDER_MODE_HIDDEN;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
+import static io.cmviot.rtc2.Constants.CLIENT_ROLE_BROADCASTER;
+import static io.cmviot.rtc2.Constants.RENDER_MODE_HIDDEN;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -28,21 +28,21 @@ import java.util.concurrent.ConcurrentHashMap;
 import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.common.BaseFragment;
-import io.agora.rtc2.ChannelMediaOptions;
-import io.agora.rtc2.Constants;
-import io.agora.rtc2.DirectCdnStreamingError;
-import io.agora.rtc2.DirectCdnStreamingMediaOptions;
-import io.agora.rtc2.DirectCdnStreamingState;
-import io.agora.rtc2.DirectCdnStreamingStats;
-import io.agora.rtc2.IDirectCdnStreamingEventHandler;
-import io.agora.rtc2.IRtcEngineEventHandler;
-import io.agora.rtc2.LeaveChannelOptions;
-import io.agora.rtc2.RtcEngine;
-import io.agora.rtc2.RtcEngineConfig;
-import io.agora.rtc2.live.LiveTranscoding;
-import io.agora.rtc2.video.CameraCapturerConfiguration;
-import io.agora.rtc2.video.VideoCanvas;
-import io.agora.rtc2.video.VideoEncoderConfiguration;
+import io.cmviot.rtc2.ChannelMediaOptions;
+import io.cmviot.rtc2.Constants;
+import io.cmviot.rtc2.DirectCdnStreamingError;
+import io.cmviot.rtc2.DirectCdnStreamingMediaOptions;
+import io.cmviot.rtc2.DirectCdnStreamingState;
+import io.cmviot.rtc2.DirectCdnStreamingStats;
+import io.cmviot.rtc2.IDirectCdnStreamingEventHandler;
+import io.cmviot.rtc2.IRtcEngineEventHandler;
+import io.cmviot.rtc2.LeaveChannelOptions;
+import io.cmviot.rtc2.RtcEngine;
+import io.cmviot.rtc2.RtcEngineConfig;
+import io.cmviot.rtc2.live.LiveTranscoding;
+import io.cmviot.rtc2.video.CameraCapturerConfiguration;
+import io.cmviot.rtc2.video.VideoCanvas;
+import io.cmviot.rtc2.video.VideoEncoderConfiguration;
 
 public class HostFragment extends BaseFragment {
     private static final String TAG = HostFragment.class.getSimpleName();

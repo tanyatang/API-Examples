@@ -1,8 +1,8 @@
 package io.agora.api.example.examples.advanced.CDNStreaming;
 
-import static io.agora.rtc2.Constants.CLIENT_ROLE_BROADCASTER;
-import static io.agora.rtc2.Constants.RENDER_MODE_HIDDEN;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
+import static io.cmviot.rtc2.Constants.CLIENT_ROLE_BROADCASTER;
+import static io.cmviot.rtc2.Constants.RENDER_MODE_HIDDEN;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -32,17 +32,17 @@ import java.util.concurrent.ConcurrentHashMap;
 import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.common.BaseFragment;
-import io.agora.mediaplayer.IMediaPlayer;
-import io.agora.mediaplayer.IMediaPlayerObserver;
-import io.agora.mediaplayer.data.PlayerUpdatedInfo;
-import io.agora.mediaplayer.data.SrcInfo;
-import io.agora.rtc2.ChannelMediaOptions;
-import io.agora.rtc2.Constants;
-import io.agora.rtc2.IRtcEngineEventHandler;
-import io.agora.rtc2.RtcEngine;
-import io.agora.rtc2.RtcEngineConfig;
-import io.agora.rtc2.video.VideoCanvas;
-import io.agora.rtc2.video.VideoEncoderConfiguration;
+import io.cmviot.mediaplayer.IMediaPlayer;
+import io.cmviot.mediaplayer.IMediaPlayerObserver;
+import io.cmviot.mediaplayer.data.PlayerUpdatedInfo;
+import io.cmviot.mediaplayer.data.SrcInfo;
+import io.cmviot.rtc2.ChannelMediaOptions;
+import io.cmviot.rtc2.Constants;
+import io.cmviot.rtc2.IRtcEngineEventHandler;
+import io.cmviot.rtc2.RtcEngine;
+import io.cmviot.rtc2.RtcEngineConfig;
+import io.cmviot.rtc2.video.VideoCanvas;
+import io.cmviot.rtc2.video.VideoEncoderConfiguration;
 
 public class AudienceFragment extends BaseFragment implements IMediaPlayerObserver {
     private static final String TAG = AudienceFragment.class.getSimpleName();
@@ -174,7 +174,7 @@ public class AudienceFragment extends BaseFragment implements IMediaPlayerObserv
 
     private void openPlayerWithUrl() {
         if (isAgoraChannel) {
-            mediaPlayer.openWithAgoraCDNSrc(getUrl(), 0);
+            mediaPlayer.openWithCmviotCDNSrc(getUrl(), 0);
         } else {
             mediaPlayer.open(getUrl(), 0);
         }
@@ -414,7 +414,7 @@ public class AudienceFragment extends BaseFragment implements IMediaPlayerObserv
     }
 
     @Override
-    public void onPlayerStateChanged(io.agora.mediaplayer.Constants.MediaPlayerState mediaPlayerState, io.agora.mediaplayer.Constants.MediaPlayerError mediaPlayerError) {
+    public void onPlayerStateChanged(io.cmviot.mediaplayer.Constants.MediaPlayerState mediaPlayerState, io.cmviot.mediaplayer.Constants.MediaPlayerError mediaPlayerError) {
         showShortToast("player state change to " + mediaPlayerState.name());
         handler.post(new Runnable() {
             @Override
@@ -473,7 +473,7 @@ public class AudienceFragment extends BaseFragment implements IMediaPlayerObserv
     }
 
     private void loadAgoraChannels() {
-        int count = mediaPlayer.getAgoraCDNLineCount();
+        int count = mediaPlayer.getCurrentCmviotCDNIndex();
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, getChannelArray(count));
         channelSpinner.setAdapter(arrayAdapter);
     }
@@ -492,7 +492,7 @@ public class AudienceFragment extends BaseFragment implements IMediaPlayerObserv
     }
 
     @Override
-    public void onPlayerEvent(io.agora.mediaplayer.Constants.MediaPlayerEvent mediaPlayerEvent, long l, String s) {
+    public void onPlayerEvent(io.cmviot.mediaplayer.Constants.MediaPlayerEvent mediaPlayerEvent, long l, String s) {
         Log.i(TAG, "onPlayerEvent " + mediaPlayerEvent.name());
         handler.post(new Runnable() {
             @Override
@@ -512,7 +512,7 @@ public class AudienceFragment extends BaseFragment implements IMediaPlayerObserv
     }
 
     @Override
-    public void onMetaData(io.agora.mediaplayer.Constants.MediaPlayerMetadataType mediaPlayerMetadataType, byte[] bytes) {
+    public void onMetaData(io.cmviot.mediaplayer.Constants.MediaPlayerMetadataType mediaPlayerMetadataType, byte[] bytes) {
 
     }
 
@@ -522,13 +522,13 @@ public class AudienceFragment extends BaseFragment implements IMediaPlayerObserv
     }
 
     @Override
-    public void onPreloadEvent(String s, io.agora.mediaplayer.Constants.MediaPlayerPreloadEvent mediaPlayerPreloadEvent) {
+    public void onPreloadEvent(String s, io.cmviot.mediaplayer.Constants.MediaPlayerPreloadEvent mediaPlayerPreloadEvent) {
 
     }
 
 
     @Override
-    public void onAgoraCDNTokenWillExpire() {
+    public void onCmviotCDNTokenWillExpire() {
 
     }
 
@@ -550,8 +550,8 @@ public class AudienceFragment extends BaseFragment implements IMediaPlayerObserv
     private final AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            Log.i(TAG, "Start to switch cdn, current index is " + mediaPlayer.getAgoraCDNLineCount() + ". target index is " + i);
-            mediaPlayer.switchAgoraCDNLineByIndex(i);
+            Log.i(TAG, "Start to switch cdn, current index is " + mediaPlayer.getCurrentCmviotCDNIndex() + ". target index is " + i);
+            mediaPlayer.switchCmviotCDNLineByIndex(i);
         }
 
         @Override

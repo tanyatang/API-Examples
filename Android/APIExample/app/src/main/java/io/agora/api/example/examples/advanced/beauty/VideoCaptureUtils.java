@@ -3,8 +3,8 @@ package io.agora.api.example.examples.advanced.beauty;
 import android.graphics.Matrix;
 import android.util.Size;
 
-import io.agora.base.VideoFrame;
-import io.agora.base.internal.video.RendererCommon;
+import io.cmviot.base.VideoFrame;
+import io.cmviot.base.internal.video.RendererCommon;
 
 public class VideoCaptureUtils {
 

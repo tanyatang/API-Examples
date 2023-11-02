@@ -1,6 +1,6 @@
 package io.agora.api.example.examples.advanced.beauty;
 
-import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,13 +32,13 @@ import io.agora.beautyapi.sensetime.SenseTimeBeautyAPI;
 import io.agora.beautyapi.sensetime.SenseTimeBeautyAPIKt;
 import io.agora.beautyapi.sensetime.utils.STRenderKit;
 import io.agora.beautyapi.sensetime.utils.utils.FileUtils;
-import io.agora.rtc2.ChannelMediaOptions;
-import io.agora.rtc2.Constants;
-import io.agora.rtc2.IRtcEngineEventHandler;
-import io.agora.rtc2.RtcEngine;
-import io.agora.rtc2.video.ColorEnhanceOptions;
-import io.agora.rtc2.video.VideoCanvas;
-import io.agora.rtc2.video.VideoEncoderConfiguration;
+import io.cmviot.rtc2.ChannelMediaOptions;
+import io.cmviot.rtc2.Constants;
+import io.cmviot.rtc2.IRtcEngineEventHandler;
+import io.cmviot.rtc2.RtcEngine;
+import io.cmviot.rtc2.video.ColorEnhanceOptions;
+import io.cmviot.rtc2.video.VideoCanvas;
+import io.cmviot.rtc2.video.VideoEncoderConfiguration;
 
 public class SceneTimeBeauty extends BaseFragment {
     private static final String TAG = "SceneTimeBeauty";

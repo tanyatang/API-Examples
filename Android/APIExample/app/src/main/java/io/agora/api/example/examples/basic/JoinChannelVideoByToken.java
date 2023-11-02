@@ -1,8 +1,8 @@
 package io.agora.api.example.examples.basic;
 
 import static io.agora.api.example.common.model.Examples.BASIC;
-import static io.agora.rtc2.Constants.RENDER_MODE_HIDDEN;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
+import static io.cmviot.rtc2.Constants.RENDER_MODE_HIDDEN;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -29,13 +29,13 @@ import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
 import io.agora.api.example.common.widget.VideoReportLayout;
 import io.agora.api.example.utils.CommonUtil;
-import io.agora.rtc2.ChannelMediaOptions;
-import io.agora.rtc2.Constants;
-import io.agora.rtc2.IRtcEngineEventHandler;
-import io.agora.rtc2.RtcEngine;
-import io.agora.rtc2.RtcEngineConfig;
-import io.agora.rtc2.video.VideoCanvas;
-import io.agora.rtc2.video.VideoEncoderConfiguration;
+import io.cmviot.rtc2.ChannelMediaOptions;
+import io.cmviot.rtc2.Constants;
+import io.cmviot.rtc2.IRtcEngineEventHandler;
+import io.cmviot.rtc2.RtcEngine;
+import io.cmviot.rtc2.RtcEngineConfig;
+import io.cmviot.rtc2.video.VideoCanvas;
+import io.cmviot.rtc2.video.VideoEncoderConfiguration;
 
 /**
  * This demo demonstrates how to make a one-to-one video call

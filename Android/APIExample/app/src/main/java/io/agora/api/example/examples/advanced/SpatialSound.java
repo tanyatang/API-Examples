@@ -1,7 +1,6 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
-import static io.agora.mediaplayer.Constants.MediaPlayerState.PLAYER_STATE_OPEN_COMPLETED;
+import static io.cmviot.mediaplayer.Constants.MediaPlayerState.PLAYER_STATE_OPEN_COMPLETED;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -28,26 +27,25 @@ import java.util.Map;
 
 import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
-import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
 import io.agora.api.example.common.Constant;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
-import io.agora.mediaplayer.Constants;
-import io.agora.mediaplayer.IMediaPlayer;
-import io.agora.mediaplayer.IMediaPlayerObserver;
-import io.agora.mediaplayer.data.PlayerUpdatedInfo;
-import io.agora.mediaplayer.data.SrcInfo;
-import io.agora.rtc2.ChannelMediaOptions;
-import io.agora.rtc2.IRtcEngineEventHandler;
-import io.agora.rtc2.RtcEngine;
-import io.agora.rtc2.RtcEngineConfig;
-import io.agora.rtc2.RtcEngineEx;
-import io.agora.rtc2.SpatialAudioParams;
-import io.agora.spatialaudio.ILocalSpatialAudioEngine;
-import io.agora.spatialaudio.LocalSpatialAudioConfig;
-import io.agora.spatialaudio.RemoteVoicePositionInfo;
-import io.agora.spatialaudio.SpatialAudioZone;
+import io.cmviot.mediaplayer.Constants;
+import io.cmviot.mediaplayer.IMediaPlayer;
+import io.cmviot.mediaplayer.IMediaPlayerObserver;
+import io.cmviot.mediaplayer.data.PlayerUpdatedInfo;
+import io.cmviot.mediaplayer.data.SrcInfo;
+import io.cmviot.rtc2.ChannelMediaOptions;
+import io.cmviot.rtc2.IRtcEngineEventHandler;
+import io.cmviot.rtc2.RtcEngine;
+import io.cmviot.rtc2.RtcEngineConfig;
+import io.cmviot.rtc2.RtcEngineEx;
+import io.cmviot.rtc2.SpatialAudioParams;
+import io.cmviot.spatialaudio.ILocalSpatialAudioEngine;
+import io.cmviot.spatialaudio.LocalSpatialAudioConfig;
+import io.cmviot.spatialaudio.RemoteVoicePositionInfo;
+import io.cmviot.spatialaudio.SpatialAudioZone;
 
 //@Example(
 //        index = 22,
@@ -130,7 +128,7 @@ public class SpatialSound extends BaseFragment {
             localSpatial.setAudioRecvRange(AXIS_MAX_DISTANCE);
             localSpatial.setDistanceUnit(1);
 
-            engine.setChannelProfile(io.agora.rtc2.Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
+            engine.setChannelProfile(io.cmviot.rtc2.Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -212,7 +210,7 @@ public class SpatialSound extends BaseFragment {
 
         engine.setDefaultAudioRoutetoSpeakerphone(true);
 
-        engine.setClientRole(io.agora.rtc2.Constants.CLIENT_ROLE_BROADCASTER);
+        engine.setClientRole(io.cmviot.rtc2.Constants.CLIENT_ROLE_BROADCASTER);
 
         /**Please configure accessToken in the string_config file.
          * A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see
@@ -426,7 +424,7 @@ public class SpatialSound extends BaseFragment {
             }
 
             @Override
-            public void onAgoraCDNTokenWillExpire() {
+            public void onCmviotCDNTokenWillExpire() {
 
             }
 

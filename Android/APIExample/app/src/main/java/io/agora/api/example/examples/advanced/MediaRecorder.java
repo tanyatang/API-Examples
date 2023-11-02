@@ -1,8 +1,8 @@
 package io.agora.api.example.examples.advanced;
 
 import static io.agora.api.example.common.model.Examples.ADVANCED;
-import static io.agora.rtc2.Constants.RENDER_MODE_HIDDEN;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
+import static io.cmviot.rtc2.Constants.RENDER_MODE_HIDDEN;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -42,17 +42,17 @@ import io.agora.api.example.common.widget.VideoReportLayout;
 import io.agora.api.example.examples.basic.JoinChannelVideo;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
-import io.agora.rtc2.AgoraMediaRecorder;
-import io.agora.rtc2.ChannelMediaOptions;
-import io.agora.rtc2.Constants;
-import io.agora.rtc2.IMediaRecorderCallback;
-import io.agora.rtc2.IRtcEngineEventHandler;
-import io.agora.rtc2.RecorderInfo;
-import io.agora.rtc2.RecorderStreamInfo;
-import io.agora.rtc2.RtcEngine;
-import io.agora.rtc2.RtcEngineConfig;
-import io.agora.rtc2.video.VideoCanvas;
-import io.agora.rtc2.video.VideoEncoderConfiguration;
+import io.cmviot.rtc2.ChannelMediaOptions;
+import io.cmviot.rtc2.CmviotMediaRecorder;
+import io.cmviot.rtc2.Constants;
+import io.cmviot.rtc2.IMediaRecorderCallback;
+import io.cmviot.rtc2.IRtcEngineEventHandler;
+import io.cmviot.rtc2.RecorderInfo;
+import io.cmviot.rtc2.RecorderStreamInfo;
+import io.cmviot.rtc2.RtcEngine;
+import io.cmviot.rtc2.RtcEngineConfig;
+import io.cmviot.rtc2.video.VideoCanvas;
+import io.cmviot.rtc2.video.VideoEncoderConfiguration;
 
 @Example(
         index = 17,
@@ -72,8 +72,8 @@ public class MediaRecorder extends BaseFragment implements View.OnClickListener 
     private String channelId;
     private boolean joined = false;
     private final Map<Integer, ViewGroup> remoteViews = new ConcurrentHashMap<Integer, ViewGroup>();
-    private AgoraMediaRecorder localMediaRecorder;
-    private final Map<Integer, AgoraMediaRecorder> remoteMediaRecorders = new HashMap<>();
+    private CmviotMediaRecorder localMediaRecorder;
+    private final Map<Integer, CmviotMediaRecorder> remoteMediaRecorders = new HashMap<>();
 
 
     @Nullable
@@ -301,7 +301,7 @@ public class MediaRecorder extends BaseFragment implements View.OnClickListener 
     }
 
     private void stopRemoteMediaRecorder(int uid) {
-        AgoraMediaRecorder mediaRecorder = remoteMediaRecorders.get(uid);
+        CmviotMediaRecorder mediaRecorder = remoteMediaRecorders.get(uid);
         if(mediaRecorder == null){
             return;
         }
@@ -315,7 +315,7 @@ public class MediaRecorder extends BaseFragment implements View.OnClickListener 
 
     private void startRemoteMediaRecorder(String channelId, int uid) {
         // Start Local Recording
-        AgoraMediaRecorder mediaRecorder = remoteMediaRecorders.get(uid);
+        CmviotMediaRecorder mediaRecorder = remoteMediaRecorders.get(uid);
         String storagePath = requireContext().getExternalCacheDir().getAbsolutePath() + File.separator + "media_recorder_" + channelId + "_" + uid + ".mp4";
         if (mediaRecorder == null) {
             mediaRecorder = engine.createMediaRecorder(new RecorderStreamInfo(channelId, uid));
@@ -324,9 +324,9 @@ public class MediaRecorder extends BaseFragment implements View.OnClickListener 
                 @Override
                 public void onRecorderStateChanged(String channelId, int uid, int state, int error) {
                     Log.d(TAG, "RemoteMediaRecorder -- onRecorderStateChanged channelId=" + channelId + ", uid=" + uid + ", state=" + state + ", error=" + error);
-                    if (state == AgoraMediaRecorder.RECORDER_STATE_STOP) {
+                    if (state == CmviotMediaRecorder.RECORDER_STATE_STOP) {
                         showRecordMediaPathDialog(storagePath);
-                    } else if (state == AgoraMediaRecorder.RECORDER_STATE_ERROR && error == AgoraMediaRecorder.RECORDER_ERROR_CONFIG_CHANGED) {
+                    } else if (state == CmviotMediaRecorder.RECORDER_STATE_ERROR && error == CmviotMediaRecorder.RECORDER_ERROR_CONFIG_CHANGED) {
                         // switch camera while recording
                         runOnUIThread(() -> {
                             VideoReportLayout userView = getUserView(uid);
@@ -346,9 +346,9 @@ public class MediaRecorder extends BaseFragment implements View.OnClickListener 
             });
             remoteMediaRecorders.put(uid, mediaRecorder);
         }
-        int ret = mediaRecorder.startRecording(new AgoraMediaRecorder.MediaRecorderConfiguration(
+        int ret = mediaRecorder.startRecording(new CmviotMediaRecorder.MediaRecorderConfiguration(
                 storagePath,
-                AgoraMediaRecorder.CONTAINER_MP4, AgoraMediaRecorder.STREAM_TYPE_BOTH, 120000, 0
+                CmviotMediaRecorder.CONTAINER_MP4, CmviotMediaRecorder.STREAM_TYPE_BOTH, 120000, 0
         ));
         Toast.makeText(requireContext(), "StartRecording ret=" + ret, Toast.LENGTH_SHORT).show();
     }
@@ -376,9 +376,9 @@ public class MediaRecorder extends BaseFragment implements View.OnClickListener 
                 @Override
                 public void onRecorderStateChanged(String channelId, int uid, int state, int error) {
                     Log.d(TAG, "LocalMediaRecorder -- onRecorderStateChanged channelId=" + channelId + ", uid=" + uid + ", state=" + state + ", error=" + error);
-                    if (state == AgoraMediaRecorder.RECORDER_STATE_STOP) {
+                    if (state == CmviotMediaRecorder.RECORDER_STATE_STOP) {
                         showRecordMediaPathDialog(storagePath);
-                    } else if (state == AgoraMediaRecorder.RECORDER_STATE_ERROR && error == AgoraMediaRecorder.RECORDER_ERROR_CONFIG_CHANGED) {
+                    } else if (state == CmviotMediaRecorder.RECORDER_STATE_ERROR && error == CmviotMediaRecorder.RECORDER_ERROR_CONFIG_CHANGED) {
                         // switch camera while recording
                         runOnUIThread(() -> {
                             VideoReportLayout userView = fl_local;
@@ -397,9 +397,9 @@ public class MediaRecorder extends BaseFragment implements View.OnClickListener 
                 }
             });
         }
-        int ret = localMediaRecorder.startRecording(new AgoraMediaRecorder.MediaRecorderConfiguration(
+        int ret = localMediaRecorder.startRecording(new CmviotMediaRecorder.MediaRecorderConfiguration(
                 storagePath,
-                AgoraMediaRecorder.CONTAINER_MP4, AgoraMediaRecorder.STREAM_TYPE_BOTH, 120000, 0
+                CmviotMediaRecorder.CONTAINER_MP4, CmviotMediaRecorder.STREAM_TYPE_BOTH, 120000, 0
         ));
         Toast.makeText(requireContext(), "StartRecording ret=" + ret, Toast.LENGTH_SHORT).show();
     }

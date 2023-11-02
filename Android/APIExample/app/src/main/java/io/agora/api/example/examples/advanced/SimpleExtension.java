@@ -1,8 +1,8 @@
 package io.agora.api.example.examples.advanced;
 
 import static io.agora.api.example.common.model.Examples.ADVANCED;
-import static io.agora.rtc2.Constants.CLIENT_ROLE_BROADCASTER;
-import static io.agora.rtc2.Constants.RENDER_MODE_HIDDEN;
+import static io.cmviot.rtc2.Constants.CLIENT_ROLE_BROADCASTER;
+import static io.cmviot.rtc2.Constants.RENDER_MODE_HIDDEN;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -33,12 +33,12 @@ import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
-import io.agora.rtc2.ChannelMediaOptions;
-import io.agora.rtc2.Constants;
-import io.agora.rtc2.IRtcEngineEventHandler;
-import io.agora.rtc2.RtcEngine;
-import io.agora.rtc2.RtcEngineConfig;
-import io.agora.rtc2.video.VideoCanvas;
+import io.cmviot.rtc2.ChannelMediaOptions;
+import io.cmviot.rtc2.Constants;
+import io.cmviot.rtc2.IRtcEngineEventHandler;
+import io.cmviot.rtc2.RtcEngine;
+import io.cmviot.rtc2.RtcEngineConfig;
+import io.cmviot.rtc2.video.VideoCanvas;
 
 /**
  * This demo demonstrates how to make a one-to-one voice call
@@ -52,7 +52,7 @@ import io.agora.rtc2.video.VideoCanvas;
         actionId = R.id.action_mainFragment_extension,
         tipsId = R.string.simple_extension
 )
-public class SimpleExtension extends BaseFragment implements View.OnClickListener, io.agora.rtc2.IMediaExtensionObserver {
+public class SimpleExtension extends BaseFragment implements View.OnClickListener, io.cmviot.rtc2.IMediaExtensionObserver {
     private static final String TAG = SimpleExtension.class.getSimpleName();
     public static final String EXTENSION_NAME = "agora-simple-filter"; // Name of target link library used in CMakeLists.txt
     public static final String EXTENSION_VENDOR_NAME = "Agora"; // Provider name used for registering in agora-bytedance.cpp

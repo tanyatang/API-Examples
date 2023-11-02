@@ -1,15 +1,15 @@
 package io.agora.api.example.examples.advanced;
 
 import static io.agora.api.example.common.model.Examples.ADVANCED;
-import static io.agora.mediaplayer.Constants.MediaPlayerState.PLAYER_STATE_IDLE;
-import static io.agora.mediaplayer.Constants.MediaPlayerState.PLAYER_STATE_OPEN_COMPLETED;
-import static io.agora.mediaplayer.Constants.MediaPlayerState.PLAYER_STATE_PLAYBACK_COMPLETED;
-import static io.agora.mediaplayer.Constants.MediaPlayerState.PLAYER_STATE_STOPPED;
-import static io.agora.rtc2.video.VideoCanvas.RENDER_MODE_HIDDEN;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.VD_640x360;
+import static io.cmviot.mediaplayer.Constants.MediaPlayerState.PLAYER_STATE_IDLE;
+import static io.cmviot.mediaplayer.Constants.MediaPlayerState.PLAYER_STATE_OPEN_COMPLETED;
+import static io.cmviot.mediaplayer.Constants.MediaPlayerState.PLAYER_STATE_PLAYBACK_COMPLETED;
+import static io.cmviot.mediaplayer.Constants.MediaPlayerState.PLAYER_STATE_STOPPED;
+import static io.cmviot.rtc2.video.VideoCanvas.RENDER_MODE_HIDDEN;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.VD_640x360;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -36,17 +36,17 @@ import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
-import io.agora.mediaplayer.IMediaPlayer;
-import io.agora.mediaplayer.IMediaPlayerObserver;
-import io.agora.mediaplayer.data.PlayerUpdatedInfo;
-import io.agora.mediaplayer.data.SrcInfo;
-import io.agora.rtc2.ChannelMediaOptions;
-import io.agora.rtc2.Constants;
-import io.agora.rtc2.IRtcEngineEventHandler;
-import io.agora.rtc2.RtcEngine;
-import io.agora.rtc2.RtcEngineConfig;
-import io.agora.rtc2.video.VideoCanvas;
-import io.agora.rtc2.video.VideoEncoderConfiguration;
+import io.cmviot.mediaplayer.IMediaPlayer;
+import io.cmviot.mediaplayer.IMediaPlayerObserver;
+import io.cmviot.mediaplayer.data.PlayerUpdatedInfo;
+import io.cmviot.mediaplayer.data.SrcInfo;
+import io.cmviot.rtc2.ChannelMediaOptions;
+import io.cmviot.rtc2.Constants;
+import io.cmviot.rtc2.IRtcEngineEventHandler;
+import io.cmviot.rtc2.RtcEngine;
+import io.cmviot.rtc2.RtcEngineConfig;
+import io.cmviot.rtc2.video.VideoCanvas;
+import io.cmviot.rtc2.video.VideoEncoderConfiguration;
 
 @Example(
         index = 17,
@@ -524,7 +524,7 @@ public class MediaPlayer extends BaseFragment implements View.OnClickListener, I
     }
 
     @Override
-    public void onPlayerStateChanged(io.agora.mediaplayer.Constants.MediaPlayerState mediaPlayerState, io.agora.mediaplayer.Constants.MediaPlayerError mediaPlayerError) {
+    public void onPlayerStateChanged(io.cmviot.mediaplayer.Constants.MediaPlayerState mediaPlayerState, io.cmviot.mediaplayer.Constants.MediaPlayerError mediaPlayerError) {
         Log.e(TAG, "onPlayerStateChanged mediaPlayerState " + mediaPlayerState + ", error=" + mediaPlayerError);
         if (mediaPlayerState.equals(PLAYER_STATE_OPEN_COMPLETED)) {
             setMediaPlayerViewEnable(true);
@@ -551,12 +551,12 @@ public class MediaPlayer extends BaseFragment implements View.OnClickListener, I
     }
 
     @Override
-    public void onPlayerEvent(io.agora.mediaplayer.Constants.MediaPlayerEvent mediaPlayerEvent, long l, String s) {
+    public void onPlayerEvent(io.cmviot.mediaplayer.Constants.MediaPlayerEvent mediaPlayerEvent, long l, String s) {
 
     }
 
     @Override
-    public void onMetaData(io.agora.mediaplayer.Constants.MediaPlayerMetadataType mediaPlayerMetadataType, byte[] bytes) {
+    public void onMetaData(io.cmviot.mediaplayer.Constants.MediaPlayerMetadataType mediaPlayerMetadataType, byte[] bytes) {
     }
 
     @Override
@@ -565,12 +565,12 @@ public class MediaPlayer extends BaseFragment implements View.OnClickListener, I
     }
 
     @Override
-    public void onPreloadEvent(String s, io.agora.mediaplayer.Constants.MediaPlayerPreloadEvent mediaPlayerPreloadEvent) {
+    public void onPreloadEvent(String s, io.cmviot.mediaplayer.Constants.MediaPlayerPreloadEvent mediaPlayerPreloadEvent) {
 
     }
 
     @Override
-    public void onAgoraCDNTokenWillExpire() {
+    public void onCmviotCDNTokenWillExpire() {
 
     }
 

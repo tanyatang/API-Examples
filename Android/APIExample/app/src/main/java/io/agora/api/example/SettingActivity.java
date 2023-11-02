@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import io.agora.api.example.common.model.GlobalSettings;
 import io.agora.api.example.databinding.ActivitySettingLayoutBinding;
-import io.agora.rtc2.RtcEngine;
+import io.cmviot.rtc2.RtcEngine;
 
 /**
  * @author cjw

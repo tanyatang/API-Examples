@@ -1,10 +1,9 @@
 package io.agora.api.example.examples.advanced;
 
-import static io.agora.api.example.common.model.Examples.ADVANCED;
-import static io.agora.rtc2.Constants.RELAY_STATE_CONNECTING;
-import static io.agora.rtc2.Constants.RELAY_STATE_FAILURE;
-import static io.agora.rtc2.video.VideoCanvas.RENDER_MODE_HIDDEN;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
+import static io.cmviot.rtc2.Constants.RELAY_STATE_CONNECTING;
+import static io.cmviot.rtc2.Constants.RELAY_STATE_FAILURE;
+import static io.cmviot.rtc2.video.VideoCanvas.RENDER_MODE_HIDDEN;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -25,18 +24,17 @@ import com.yanzhenjie.permission.runtime.Permission;
 
 import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
-import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
-import io.agora.rtc2.Constants;
-import io.agora.rtc2.IRtcEngineEventHandler;
-import io.agora.rtc2.RtcEngine;
-import io.agora.rtc2.RtcEngineConfig;
-import io.agora.rtc2.video.ChannelMediaInfo;
-import io.agora.rtc2.video.ChannelMediaRelayConfiguration;
-import io.agora.rtc2.video.VideoCanvas;
-import io.agora.rtc2.video.VideoEncoderConfiguration;
+import io.cmviot.rtc2.Constants;
+import io.cmviot.rtc2.IRtcEngineEventHandler;
+import io.cmviot.rtc2.RtcEngine;
+import io.cmviot.rtc2.RtcEngineConfig;
+import io.cmviot.rtc2.video.ChannelMediaInfo;
+import io.cmviot.rtc2.video.ChannelMediaRelayConfiguration;
+import io.cmviot.rtc2.video.VideoCanvas;
+import io.cmviot.rtc2.video.VideoEncoderConfiguration;
 
 /**This demo demonstrates how to make a one-to-one video call*/
 //@Example(

@@ -1,8 +1,8 @@
 package io.agora.api.example.common.model;
 
-import static io.agora.rtc2.video.VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.VD_960x540;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.VD_960x540;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,10 +10,10 @@ import android.util.Log;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import io.agora.rtc2.Constants;
-import io.agora.rtc2.RtcEngineConfig;
-import io.agora.rtc2.proxy.LocalAccessPointConfiguration;
-import io.agora.rtc2.video.VideoEncoderConfiguration;
+import io.cmviot.rtc2.Constants;
+import io.cmviot.rtc2.RtcEngineConfig;
+import io.cmviot.rtc2.proxy.LocalAccessPointConfiguration;
+import io.cmviot.rtc2.video.VideoEncoderConfiguration;
 
 public class GlobalSettings {
     private String videoEncodingDimension;

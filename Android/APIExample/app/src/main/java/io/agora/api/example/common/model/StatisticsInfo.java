@@ -1,6 +1,11 @@
 package io.agora.api.example.common.model;
 
-import io.agora.rtc2.IRtcEngineEventHandler.*;
+import io.cmviot.rtc2.IRtcEngineEventHandler.LastmileProbeResult;
+import io.cmviot.rtc2.IRtcEngineEventHandler.LocalAudioStats;
+import io.cmviot.rtc2.IRtcEngineEventHandler.LocalVideoStats;
+import io.cmviot.rtc2.IRtcEngineEventHandler.RemoteAudioStats;
+import io.cmviot.rtc2.IRtcEngineEventHandler.RemoteVideoStats;
+import io.cmviot.rtc2.IRtcEngineEventHandler.RtcStats;
 
 public class StatisticsInfo {
     private LocalVideoStats localVideoStats = new LocalVideoStats();

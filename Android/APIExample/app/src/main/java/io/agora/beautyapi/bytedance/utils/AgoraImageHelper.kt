@@ -25,10 +25,10 @@
 package io.agora.beautyapi.bytedance.utils
 
 import android.opengl.GLES20
-import io.agora.base.VideoFrame
-import io.agora.base.internal.video.GlRectDrawer
-import io.agora.base.internal.video.GlTextureFrameBuffer
-import io.agora.base.internal.video.RendererCommon.GlDrawer
+import io.cmviot.base.VideoFrame
+import io.cmviot.base.internal.video.GlRectDrawer
+import io.cmviot.base.internal.video.GlTextureFrameBuffer
+import io.cmviot.base.internal.video.RendererCommon.GlDrawer
 
 class AgoraImageHelper {
     private var glFrameBuffer: GlTextureFrameBuffer? = null

@@ -27,12 +27,12 @@ import io.agora.beautyapi.bytedance.CaptureMode;
 import io.agora.beautyapi.bytedance.Config;
 import io.agora.beautyapi.bytedance.utils.AssetsResourcesHelper;
 import io.agora.beautyapi.bytedance.utils.EffectManager;
-import io.agora.rtc2.ChannelMediaOptions;
-import io.agora.rtc2.Constants;
-import io.agora.rtc2.IRtcEngineEventHandler;
-import io.agora.rtc2.RtcEngine;
-import io.agora.rtc2.video.ColorEnhanceOptions;
-import io.agora.rtc2.video.VideoCanvas;
+import io.cmviot.rtc2.ChannelMediaOptions;
+import io.cmviot.rtc2.Constants;
+import io.cmviot.rtc2.IRtcEngineEventHandler;
+import io.cmviot.rtc2.RtcEngine;
+import io.cmviot.rtc2.video.ColorEnhanceOptions;
+import io.cmviot.rtc2.video.VideoCanvas;
 
 public class ByteDanceBeauty extends BaseFragment {
     private static final String TAG = "SceneTimeBeauty";

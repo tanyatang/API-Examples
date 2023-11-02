@@ -3,10 +3,10 @@ package io.agora.api.example.examples.advanced.videoRender;
 import android.graphics.Matrix;
 import android.opengl.GLES20;
 
-import io.agora.base.JavaI420Buffer;
-import io.agora.base.internal.video.GlRectDrawer;
-import io.agora.base.internal.video.GlUtil;
-import io.agora.base.internal.video.RendererCommon;
+import io.cmviot.base.JavaI420Buffer;
+import io.cmviot.base.internal.video.GlRectDrawer;
+import io.cmviot.base.internal.video.GlUtil;
+import io.cmviot.base.internal.video.RendererCommon;
 
 public class YuvFboProgram {
 

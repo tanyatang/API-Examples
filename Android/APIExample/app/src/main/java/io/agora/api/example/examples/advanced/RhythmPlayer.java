@@ -27,12 +27,12 @@ import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
-import io.agora.rtc2.ChannelMediaOptions;
-import io.agora.rtc2.Constants;
-import io.agora.rtc2.IRtcEngineEventHandler;
-import io.agora.rtc2.RtcEngine;
-import io.agora.rtc2.RtcEngineConfig;
-import io.agora.rtc2.audio.AgoraRhythmPlayerConfig;
+import io.cmviot.rtc2.ChannelMediaOptions;
+import io.cmviot.rtc2.Constants;
+import io.cmviot.rtc2.IRtcEngineEventHandler;
+import io.cmviot.rtc2.RtcEngine;
+import io.cmviot.rtc2.RtcEngineConfig;
+import io.cmviot.rtc2.audio.CmviotRhythmPlayerConfig;
 
 /**
  * This demo demonstrates how to make a VideoProcessExtension
@@ -54,7 +54,7 @@ public class RhythmPlayer extends BaseFragment implements View.OnClickListener, 
     private boolean joined = false;
     private boolean isPlaying = false;
     private SeekBar beatPerMinute, beatPerMeasure;
-    private AgoraRhythmPlayerConfig agoraRhythmPlayerConfig = new AgoraRhythmPlayerConfig();
+    private CmviotRhythmPlayerConfig rhythmPlayerConfig = new CmviotRhythmPlayerConfig();
     private ChannelMediaOptions mChannelMediaOptions;
 
     @Override
@@ -214,7 +214,7 @@ public class RhythmPlayer extends BaseFragment implements View.OnClickListener, 
         }
         else if(v.getId() == R.id.play){
             if(!isPlaying){
-                int ret = engine.startRhythmPlayer(URL_DOWNBEAT, URL_UPBEAT, agoraRhythmPlayerConfig);
+                int ret = engine.startRhythmPlayer(URL_DOWNBEAT, URL_UPBEAT, rhythmPlayerConfig);
                 if (joined) {
                     mChannelMediaOptions.publishRhythmPlayerTrack = true;
                     engine.updateChannelMediaOptions(mChannelMediaOptions);
@@ -410,12 +410,12 @@ public class RhythmPlayer extends BaseFragment implements View.OnClickListener, 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if(seekBar.getId() == R.id.beatsPerMeasure){
-            agoraRhythmPlayerConfig.beatsPerMeasure = seekBar.getProgress() < 1 ? 1 : seekBar.getProgress();
+            rhythmPlayerConfig.beatsPerMeasure = seekBar.getProgress() < 1 ? 1 : seekBar.getProgress();
         }
         else if(seekBar.getId() == R.id.beatsPerMinute){
-            agoraRhythmPlayerConfig.beatsPerMinute = seekBar.getProgress() < 60 ? 60 : seekBar.getProgress();
+            rhythmPlayerConfig.beatsPerMinute = seekBar.getProgress() < 60 ? 60 : seekBar.getProgress();
         }
-        Log.i(TAG, "agoraRhythmPlayerConfig beatsPerMeasure:"+ agoraRhythmPlayerConfig.beatsPerMeasure +", beatsPerMinute:" + agoraRhythmPlayerConfig.beatsPerMinute);
+        Log.i(TAG, "agoraRhythmPlayerConfig beatsPerMeasure:"+ rhythmPlayerConfig.beatsPerMeasure +", beatsPerMinute:" + rhythmPlayerConfig.beatsPerMinute);
     }
 
     @Override

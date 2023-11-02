@@ -1,8 +1,8 @@
 package io.agora.api.example.examples.advanced;
 
 import static io.agora.api.example.common.model.Examples.ADVANCED;
-import static io.agora.rtc2.Constants.CLIENT_ROLE_AUDIENCE;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
+import static io.cmviot.rtc2.Constants.CLIENT_ROLE_AUDIENCE;
+import static io.cmviot.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.yanzhenjie.permission.AndPermission;
@@ -41,15 +40,15 @@ import io.agora.api.example.databinding.FragmentLiveStreamingSettingBinding;
 import io.agora.api.example.databinding.FragmentLiveStreamingVideoTrackingBinding;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
-import io.agora.rtc2.ChannelMediaOptions;
-import io.agora.rtc2.ClientRoleOptions;
-import io.agora.rtc2.Constants;
-import io.agora.rtc2.IRtcEngineEventHandler;
-import io.agora.rtc2.RtcEngine;
-import io.agora.rtc2.RtcEngineConfig;
-import io.agora.rtc2.video.VideoCanvas;
-import io.agora.rtc2.video.VideoEncoderConfiguration;
-import io.agora.rtc2.video.WatermarkOptions;
+import io.cmviot.rtc2.ChannelMediaOptions;
+import io.cmviot.rtc2.ClientRoleOptions;
+import io.cmviot.rtc2.Constants;
+import io.cmviot.rtc2.IRtcEngineEventHandler;
+import io.cmviot.rtc2.RtcEngine;
+import io.cmviot.rtc2.RtcEngineConfig;
+import io.cmviot.rtc2.video.VideoCanvas;
+import io.cmviot.rtc2.video.VideoEncoderConfiguration;
+import io.cmviot.rtc2.video.WatermarkOptions;
 
 /**
  * This demo demonstrates how to make a one-to-one video call

@@ -25,10 +25,10 @@
 package io.agora.beautyapi.bytedance
 
 import android.view.View
-import io.agora.base.VideoFrame
 import io.agora.beautyapi.bytedance.utils.EffectManager
-import io.agora.rtc2.Constants
-import io.agora.rtc2.RtcEngine
+import io.cmviot.base.VideoFrame
+import io.cmviot.rtc2.Constants
+import io.cmviot.rtc2.RtcEngine
 
 enum class CaptureMode{
     Agora, // 使用声网内部的祼数据接口进行处理
