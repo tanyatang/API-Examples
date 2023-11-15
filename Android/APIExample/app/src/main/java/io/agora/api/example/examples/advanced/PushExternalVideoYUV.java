@@ -1,7 +1,6 @@
 package io.agora.api.example.examples.advanced;
 
 import static io.agora.api.example.common.model.Examples.ADVANCED;
-import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
 import android.content.Context;
 import android.media.MediaExtractor;
@@ -40,7 +39,6 @@ import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.RtcEngineEx;
 import io.agora.rtc2.video.EncodedVideoFrameInfo;
-import io.agora.rtc2.video.VideoEncoderConfiguration;
 
 @Example(
         index = 7,
@@ -215,15 +213,6 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
         engine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
         // Enables the video module.
         engine.enableVideo();
-        // Setup video encoding configs
-        engine.setVideoEncoderConfiguration(new VideoEncoderConfiguration(
-                ((MainApplication) getActivity().getApplication()).getGlobalSettings().getVideoEncodingDimensionObject(),
-                VideoEncoderConfiguration.FRAME_RATE.valueOf(((MainApplication) getActivity().getApplication()).getGlobalSettings().getVideoEncodingFrameRate()),
-                STANDARD_BITRATE,
-                VideoEncoderConfiguration.ORIENTATION_MODE.valueOf(((MainApplication) getActivity().getApplication()).getGlobalSettings().getVideoEncodingOrientation())
-        ));
-
-
 
         /**Please configure accessToken in the string_config file.
          * A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see
@@ -260,6 +249,7 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
                 option.autoSubscribeAudio = false;
                 option.autoSubscribeVideo = false;
                 option.publishEncodedVideoTrack = true;
+                option.publishMicrophoneTrack = false;
                 int res = engine.joinChannel(accessToken, channelId, 0, option);
                 if (res != 0) {
                     // Usually happens with invalid parameters
