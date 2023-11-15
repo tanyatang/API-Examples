@@ -63,7 +63,7 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
     private FrameLayout fullLayout;
     private ImageView fullClose;
     private Button join, switch_camera;
-    private SwitchCompat switch_h265;
+    private SwitchCompat switch_h265, switch_broadcast;
     private EditText et_channel;
     private RtcEngine engine;
     private int myUid;
@@ -87,6 +87,7 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
         join = view.findViewById(R.id.btn_join);
         switch_camera = view.findViewById(R.id.btn_switch_camera);
         switch_h265 = view.findViewById(R.id.switch_h265);
+        switch_broadcast = view.findViewById(R.id.switch_broadcast);
         et_channel = view.findViewById(R.id.et_channel);
         view.findViewById(R.id.btn_join).setOnClickListener(this);
         switch_camera.setOnClickListener(this);
@@ -250,6 +251,7 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
                 }
                 remoteViews.clear();
                 switch_h265.setEnabled(true);
+                switch_broadcast.setEnabled(true);
             }
         }else if(v.getId() == switch_camera.getId()){
             if(engine != null && joined){
@@ -281,8 +283,6 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
         // Set audio route to microPhone
         engine.setDefaultAudioRoutetoSpeakerphone(true);
 
-        /**In the demo, the default is to enter as the anchor.*/
-        engine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
         // Enable video module
         engine.enableVideo();
         // Setup video encoding configs
@@ -296,8 +296,8 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
         ChannelMediaOptions option = new ChannelMediaOptions();
         option.autoSubscribeAudio = true;
         option.autoSubscribeVideo = true;
-        option.publishMicrophoneTrack = true;
-        option.publishCameraTrack = true;
+        option.channelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
+        option.clientRoleType = switch_broadcast.isChecked() ? Constants.CLIENT_ROLE_BROADCASTER : Constants.CLIENT_ROLE_AUDIENCE;
 
         /**Please configure accessToken in the string_config file.
          * A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see
@@ -322,6 +322,7 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
             // Prevent repeated entry
             join.setEnabled(false);
             switch_h265.setEnabled(false);
+            switch_broadcast.setEnabled(false);
         });
 
     }
