@@ -83,6 +83,7 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
+        view.setKeepScreenOn(true);
         join = view.findViewById(R.id.btn_join);
         switch_camera = view.findViewById(R.id.btn_switch_camera);
         switch_h265 = view.findViewById(R.id.switch_h265);

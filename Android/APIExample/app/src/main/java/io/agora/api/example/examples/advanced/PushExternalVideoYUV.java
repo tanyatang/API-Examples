@@ -77,6 +77,7 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        view.setKeepScreenOn(true);
         join = view.findViewById(R.id.btn_join);
         et_channel = view.findViewById(R.id.et_channel);
         view.findViewById(R.id.btn_join).setOnClickListener(this);
@@ -237,7 +238,7 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
             @Override
             public void onExtractFormat(MediaExtractorThread thread, String mine, int bitRate) {
                 EncodedVideoTrackOptions encodedOpt = new EncodedVideoTrackOptions();
-                encodedOpt.targetBitrate = bitRate;
+                encodedOpt.targetBitrate = bitRate / 1000;
                 if (MediaFormat.MIMETYPE_VIDEO_HEVC.equalsIgnoreCase(mine)) {
                     encodedOpt.codecType = Constants.VIDEO_CODEC_H265;
                 } else {
