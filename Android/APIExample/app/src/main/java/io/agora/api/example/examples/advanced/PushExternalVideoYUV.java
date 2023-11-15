@@ -428,7 +428,9 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
                     extractor.selectTrack(i);
                     maxByteCount = format.getInteger(MediaFormat.KEY_MAX_INPUT_SIZE);
                     frameRate = format.getInteger(MediaFormat.KEY_FRAME_RATE);
-                    bitRate = format.getInteger(MediaFormat.KEY_BIT_RATE);
+                    if (format.containsKey(MediaFormat.KEY_BIT_RATE)) {
+                        bitRate = format.getInteger(MediaFormat.KEY_BIT_RATE);
+                    }
                     width = format.getInteger(MediaFormat.KEY_WIDTH);
                     height = format.getInteger(MediaFormat.KEY_HEIGHT);
                     if(format.containsKey("csd-0")){
