@@ -79,7 +79,7 @@ public class MainFragment extends Fragment {
             }
             SectionedRecyclerViewAdapter sectionedAdapter = new SectionedRecyclerViewAdapter();
             sectionedAdapter.addSection(new ExampleSection(BASIC, Examples.ITEM_MAP.get(BASIC), mListener));
-            //sectionedAdapter.addSection(new ExampleSection(ADVANCED, Examples.ITEM_MAP.get(ADVANCED), mListener));
+            sectionedAdapter.addSection(new ExampleSection(ADVANCED, Examples.ITEM_MAP.get(ADVANCED), mListener));
             recyclerView.setAdapter(sectionedAdapter);
         }
         return view;

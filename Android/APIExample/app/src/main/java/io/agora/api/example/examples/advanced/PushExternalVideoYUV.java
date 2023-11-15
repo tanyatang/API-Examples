@@ -1,22 +1,20 @@
 package io.agora.api.example.examples.advanced;
 
 import static io.agora.api.example.common.model.Examples.ADVANCED;
-import static io.agora.rtc2.video.VideoCanvas.RENDER_MODE_FIT;
-import static io.agora.rtc2.video.VideoCanvas.RENDER_MODE_HIDDEN;
 import static io.agora.rtc2.video.VideoEncoderConfiguration.STANDARD_BITRATE;
 
 import android.content.Context;
-import android.graphics.Matrix;
+import android.media.MediaExtractor;
+import android.media.MediaFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.SurfaceView;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -25,55 +23,50 @@ import androidx.annotation.Nullable;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.concurrent.Callable;
 
 import io.agora.api.example.MainApplication;
 import io.agora.api.example.R;
 import io.agora.api.example.annotation.Example;
 import io.agora.api.example.common.BaseFragment;
-import io.agora.api.example.examples.advanced.videoRender.YuvFboProgram;
 import io.agora.api.example.utils.CommonUtil;
 import io.agora.api.example.utils.TokenUtils;
-import io.agora.api.example.utils.VideoFileReader;
-import io.agora.base.JavaI420Buffer;
-import io.agora.base.NV12Buffer;
-import io.agora.base.NV21Buffer;
-import io.agora.base.TextureBufferHelper;
-import io.agora.base.VideoFrame;
-import io.agora.base.internal.video.YuvHelper;
 import io.agora.rtc2.ChannelMediaOptions;
 import io.agora.rtc2.Constants;
+import io.agora.rtc2.EncodedVideoTrackOptions;
 import io.agora.rtc2.IRtcEngineEventHandler;
 import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.RtcEngineEx;
-import io.agora.rtc2.gl.EglBaseProvider;
-import io.agora.rtc2.video.VideoCanvas;
+import io.agora.rtc2.video.EncodedVideoFrameInfo;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
 
-//@Example(
-//        index = 7,
-//        group = ADVANCED,
-//        name = R.string.item_pushexternal,
-//        actionId = R.id.action_mainFragment_to_PushExternalVideo,
-//        tipsId = R.string.pushexternalvideo
-//)
+@Example(
+        index = 7,
+        group = ADVANCED,
+        name = R.string.item_pushexternal,
+        actionId = R.id.action_mainFragment_to_PushExternalVideo,
+        tipsId = R.string.pushexternalvideo
+)
 public class PushExternalVideoYUV extends BaseFragment implements View.OnClickListener {
     private static final String TAG = PushExternalVideoYUV.class.getSimpleName();
 
-    private FrameLayout fl_local, fl_remote;
+    private static final String[] fileUrls = new String[]{
+            "https://download.agora.io/demo/test/cyclist_1920x1080_60fps_H264.mp4",
+            "https://download.agora.io/demo/test/cyclist_1920x1080_60fps_HEVC.mp4",
+//            "/assets/cyclist_1920x1080_60fps_H264.mp4",
+//            "/assets/cyclist_1920x1080_60fps_HEVC.mp4",
+    };
+
     private Button join;
     private EditText et_channel;
     private RtcEngineEx engine;
-    private Spinner sp_push_buffer_type;
+    private Spinner sp_push_files;
     private int myUid;
     private volatile boolean joined = false;
 
-    private VideoFileReader videoFileReader;
-
-    private YuvFboProgram yuvFboProgram;
-    private TextureBufferHelper textureBufferHelper;
+    private MediaExtractorThread mediaExtractorThread;
 
 
     @Nullable
@@ -89,9 +82,14 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
         join = view.findViewById(R.id.btn_join);
         et_channel = view.findViewById(R.id.et_channel);
         view.findViewById(R.id.btn_join).setOnClickListener(this);
-        fl_local = view.findViewById(R.id.fl_local);
-        fl_remote = view.findViewById(R.id.fl_remote);
-        sp_push_buffer_type = view.findViewById(R.id.sp_buffer_type);
+        sp_push_files = view.findViewById(R.id.sp_push_files);
+
+        String[] fileNames = new String[fileUrls.length];
+        for (int i = 0; i < fileUrls.length; i++) {
+            String[] split = fileUrls[i].split("/");
+            fileNames[i] = split[split.length - 1];
+        }
+        sp_push_files.setAdapter(new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, fileNames));
     }
 
     @Override
@@ -127,22 +125,6 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
             config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.DEFAULT);
             config.mAreaCode = ((MainApplication) getActivity().getApplication()).getGlobalSettings().getAreaCode();
             engine = (RtcEngineEx) RtcEngine.create(config);
-            /**
-             * This parameter is for reporting the usages of APIExample to agora background.
-             * Generally, it is not necessary for you to set this parameter.
-             */
-            engine.setParameters("{"
-                    + "\"rtc.report_app_scenario\":"
-                    + "{"
-                    + "\"appScenario\":" + 100 + ","
-                    + "\"serviceType\":" + 11 + ","
-                    + "\"appVersion\":\"" + RtcEngine.getSdkVersion() + "\""
-                    + "}"
-                    + "}");
-            /* setting the local access point if the private cloud ip was set, otherwise the config will be invalid.*/
-            engine.setLocalAccessPoint(((MainApplication) getActivity().getApplication()).getGlobalSettings().getPrivateCloudConfig());
-
-
         } catch (Exception e) {
             e.printStackTrace();
             getActivity().onBackPressed();
@@ -152,21 +134,10 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
 
     @Override
     public void onDestroy() {
-        if (videoFileReader != null) {
-            videoFileReader.stop();
+        if (mediaExtractorThread != null) {
+            mediaExtractorThread.stop();
+            mediaExtractorThread = null;
         }
-        if (textureBufferHelper != null) {
-            textureBufferHelper.invoke(() -> {
-                if (yuvFboProgram != null) {
-                    yuvFboProgram.release();
-                    yuvFboProgram = null;
-                }
-                return null;
-            });
-            textureBufferHelper.dispose();
-            textureBufferHelper = null;
-        }
-
         /**leaveChannel and Destroy the RtcEngine instance*/
         if (engine != null) {
             /**After joining a channel, the user must call the leaveChannel method to end the
@@ -219,11 +190,11 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
             } else {
                 joined = false;
                 join.setText(getString(R.string.join));
-                if (videoFileReader != null) {
-                    videoFileReader.stop();
+                sp_push_files.setEnabled(true);
+                if (mediaExtractorThread != null) {
+                    mediaExtractorThread.stop();
+                    mediaExtractorThread = null;
                 }
-                fl_remote.removeAllViews();
-                fl_local.removeAllViews();
                 engine.leaveChannel();
                 engine.stopPreview();
             }
@@ -231,7 +202,6 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
     }
 
     private void joinChannel(String channelId) {
-//        engine.setParameters("{\"rtc.log_filter\":65535}");
         // Check if the context is valid
         Context context = getContext();
         if (context == null) {
@@ -252,28 +222,8 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
                 STANDARD_BITRATE,
                 VideoEncoderConfiguration.ORIENTATION_MODE.valueOf(((MainApplication) getActivity().getApplication()).getGlobalSettings().getVideoEncodingOrientation())
         ));
-        /**Configures the external video source.
-         * @param enable Sets whether or not to use the external video source:
-         *                 true: Use the external video source.
-         *                 false: Do not use the external video source.
-         * @param useTexture Sets whether or not to use texture as an input:
-         *                     true: Use texture as an input.
-         *                     false: (Default) Do not use texture as an input.
-         * @param pushMode
-         *                   VIDEO_FRAME: Use the ENCODED_VIDEO_FRAME.
-         *                   ENCODED_VIDEO_FRAME: Use the ENCODED_VIDEO_FRAME*/
-        engine.setExternalVideoSource(true, true, Constants.ExternalVideoSourceType.VIDEO_FRAME);
 
-        TextureView textureView = new TextureView(getContext());
-        VideoCanvas local = new VideoCanvas(textureView, Constants.RENDER_MODE_FIT, 0);
-        local.mirrorMode = Constants.VIDEO_MIRROR_MODE_DISABLED;
-        local.sourceType = Constants.VIDEO_SOURCE_CUSTOM;
-        engine.setupLocalVideo(local);
-        // Add to the local container
-        fl_local.removeAllViews();
-        fl_local.addView(textureView, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT));
-        engine.startPreview(Constants.VideoSourceType.VIDEO_SOURCE_CUSTOM);
+
 
         /**Please configure accessToken in the string_config file.
          * A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see
@@ -281,27 +231,69 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
          * A token generated at the server. This applies to scenarios with high-security requirements. For details, see
          *      https://docs.agora.io/en/cloud-recording/token_server_java?platform=Java*/
         TokenUtils.gen(requireContext(), channelId, 0, accessToken -> {
-            /** Allows a user to join a channel.
-             if you do not specify the uid, we will generate the uid for you*/
-
-            ChannelMediaOptions option = new ChannelMediaOptions();
-            option.autoSubscribeAudio = true;
-            option.autoSubscribeVideo = true;
-            option.publishCustomVideoTrack = true;
-            int res = engine.joinChannel(accessToken, channelId, 0, option);
-            if (res != 0) {
-                // Usually happens with invalid parameters
-                // Error code description can be found at:
-                // en: https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_error_code.html
-                // cn: https://docs.agora.io/cn/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_error_code.html
-                showAlert(RtcEngine.getErrorDescription(Math.abs(res)));
-                return;
-            }
-            // Prevent repeated entry
-            join.setEnabled(false);
+            publishVideoTrack(channelId, accessToken);
         });
+    }
 
+    private void publishVideoTrack(String channelId, String accessToken) {
+        // Prevent repeated entry
+        sp_push_files.setEnabled(false);
+        join.setEnabled(false);
 
+        String publishUrl = fileUrls[sp_push_files.getSelectedItemPosition()];
+        if (mediaExtractorThread != null) {
+            mediaExtractorThread.stop();
+        }
+        mediaExtractorThread = new MediaExtractorThread(requireContext(), publishUrl, new MediaExtractorCallback() {
+            @Override
+            public void onExtractFormat(MediaExtractorThread thread, String mine, int bitRate) {
+                EncodedVideoTrackOptions encodedOpt = new EncodedVideoTrackOptions();
+                encodedOpt.targetBitrate = bitRate;
+                if (MediaFormat.MIMETYPE_VIDEO_HEVC.equalsIgnoreCase(mine)) {
+                    encodedOpt.codecType = Constants.VIDEO_CODEC_H265;
+                } else {
+                    encodedOpt.codecType = Constants.VIDEO_CODEC_H264;
+                }
+                engine.setExternalVideoSource(true, false, Constants.ExternalVideoSourceType.ENCODED_VIDEO_FRAME, encodedOpt);
+
+                ChannelMediaOptions option = new ChannelMediaOptions();
+                option.autoSubscribeAudio = false;
+                option.autoSubscribeVideo = false;
+                option.publishEncodedVideoTrack = true;
+                int res = engine.joinChannel(accessToken, channelId, 0, option);
+                if (res != 0) {
+                    // Usually happens with invalid parameters
+                    // Error code description can be found at:
+                    // en: https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_error_code.html
+                    // cn: https://docs.agora.io/cn/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_error_code.html
+                    showAlert(RtcEngine.getErrorDescription(Math.abs(res)));
+                    runOnUIThread(() -> {
+                        sp_push_files.setEnabled(true);
+                        join.setEnabled(true);
+                    });
+                    return;
+                }
+                thread.start();
+            }
+
+            @Override
+            public void onExtractFrame(ByteBuffer buffer, long presentationTimeUs, int size,
+                                       boolean isKeyFrame, int width, int height, int frameRate,
+                                       String codecName) {
+                EncodedVideoFrameInfo frameInfo = new EncodedVideoFrameInfo();
+                if (MediaFormat.MIMETYPE_VIDEO_HEVC.equalsIgnoreCase(codecName)) {
+                    frameInfo.codecType = Constants.VIDEO_CODEC_H265;
+                } else {
+                    frameInfo.codecType = Constants.VIDEO_CODEC_H264;
+                }
+                frameInfo.framesPerSecond = frameRate;
+                frameInfo.frameType = isKeyFrame ? Constants.VIDEO_FRAME_TYPE_KEY_FRAME : Constants.VIDEO_FRAME_TYPE_DELTA_FRAME;
+                int ret = engine.pushExternalEncodedVideoFrame(buffer, frameInfo);
+                if (ret != Constants.ERR_OK) {
+                    Log.e(TAG, "pushExternalEncodedVideoFrame error: " + ret);
+                }
+            }
+        });
     }
 
 
@@ -333,119 +325,10 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
             showLongToast(String.format("onJoinChannelSuccess channel %s uid %d", channel, uid));
             myUid = uid;
             joined = true;
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    join.setEnabled(true);
-                    join.setText(getString(R.string.leave));
-
-                    if (videoFileReader == null) {
-                        /*
-                         * VideoFileReader can get nv21 buffer data of sample.yuv file in assets cyclically.
-                         */
-                        videoFileReader = new VideoFileReader(requireContext(), (yuv, width, height) -> {
-                            if (joined && engine != null) {
-                                String selectedItem = (String) sp_push_buffer_type.getSelectedItem();
-                                /*
-                                 * Below show how to create different type buffers.
-                                 */
-                                VideoFrame.Buffer frameBuffer;
-                                if ("NV21".equals(selectedItem)) {
-                                    int srcStrideY = width;
-                                    int srcHeightY = height;
-                                    int srcSizeY = srcStrideY * srcHeightY;
-                                    ByteBuffer srcY = ByteBuffer.allocateDirect(srcSizeY);
-                                    srcY.put(yuv, 0, srcSizeY);
-
-                                    int srcStrideU = width / 2;
-                                    int srcHeightU = height / 2;
-                                    int srcSizeU = srcStrideU * srcHeightU;
-                                    ByteBuffer srcU = ByteBuffer.allocateDirect(srcSizeU);
-                                    srcU.put(yuv, srcSizeY, srcSizeU);
-
-                                    int srcStrideV = width / 2;
-                                    int srcHeightV = height / 2;
-                                    int srcSizeV = srcStrideV * srcHeightV;
-                                    ByteBuffer srcV = ByteBuffer.allocateDirect(srcSizeV);
-                                    srcV.put(yuv, srcSizeY + srcSizeU, srcSizeV);
-
-                                    int desSize = srcSizeY + srcSizeU + srcSizeV;
-                                    ByteBuffer des = ByteBuffer.allocateDirect(desSize);
-                                    YuvHelper.I420ToNV12(srcY, srcStrideY, srcV, srcStrideV, srcU, srcStrideU, des, width, height);
-
-                                    byte[] nv21 = new byte[desSize];
-                                    des.position(0);
-                                    des.get(nv21);
-
-                                    frameBuffer = new NV21Buffer(nv21, width, height, null);
-                                } else if ("NV12".equals(selectedItem)) {
-                                    int srcStrideY = width;
-                                    int srcHeightY = height;
-                                    int srcSizeY = srcStrideY * srcHeightY;
-                                    ByteBuffer srcY = ByteBuffer.allocateDirect(srcSizeY);
-                                    srcY.put(yuv, 0, srcSizeY);
-
-                                    int srcStrideU = width / 2;
-                                    int srcHeightU = height / 2;
-                                    int srcSizeU = srcStrideU * srcHeightU;
-                                    ByteBuffer srcU = ByteBuffer.allocateDirect(srcSizeU);
-                                    srcU.put(yuv, srcSizeY, srcSizeU);
-
-                                    int srcStrideV = width / 2;
-                                    int srcHeightV = height / 2;
-                                    int srcSizeV = srcStrideV * srcHeightV;
-                                    ByteBuffer srcV = ByteBuffer.allocateDirect(srcSizeV);
-                                    srcV.put(yuv, srcSizeY + srcSizeU, srcSizeV);
-
-                                    int desSize = srcSizeY + srcSizeU + srcSizeV;
-                                    ByteBuffer des = ByteBuffer.allocateDirect(desSize);
-                                    YuvHelper.I420ToNV12(srcY, srcStrideY, srcU, srcStrideU, srcV, srcStrideV, des, width, height);
-
-                                    frameBuffer = new NV12Buffer(width, height, width, height, des, null);
-                                } else if ("Texture2D".equals(selectedItem)) {
-                                    if (textureBufferHelper == null) {
-                                        textureBufferHelper = TextureBufferHelper.create("PushExternalVideoYUV", EglBaseProvider.instance().getRootEglBase().getEglBaseContext());
-                                    }
-                                    if (yuvFboProgram == null) {
-                                        textureBufferHelper.invoke((Callable<Void>) () -> {
-                                            yuvFboProgram = new YuvFboProgram();
-                                            return null;
-                                        });
-                                    }
-                                    Integer textureId = textureBufferHelper.invoke(() -> yuvFboProgram.drawYuv(yuv, width, height));
-                                    frameBuffer = textureBufferHelper.wrapTextureBuffer(width, height, VideoFrame.TextureBuffer.Type.RGB, textureId, new Matrix());
-                                } else {
-                                    // I420 type default
-                                    JavaI420Buffer i420Buffer = JavaI420Buffer.allocate(width, height);
-                                    i420Buffer.getDataY().put(yuv, 0, i420Buffer.getDataY().limit());
-                                    i420Buffer.getDataU().put(yuv, i420Buffer.getDataY().limit(), i420Buffer.getDataU().limit());
-                                    i420Buffer.getDataV().put(yuv, i420Buffer.getDataY().limit() + i420Buffer.getDataU().limit(), i420Buffer.getDataV().limit());
-                                    frameBuffer = i420Buffer;
-                                }
-
-                                /*
-                                 * Get monotonic time in ms which can be used by capture time,
-                                 * typical scenario is as follows:
-                                 */
-                                long currentMonotonicTimeInMs = engine.getCurrentMonotonicTimeInMs();
-                                /*
-                                 * Create a video frame to push.
-                                 */
-                                VideoFrame videoFrame = new VideoFrame(frameBuffer, 0, currentMonotonicTimeInMs * 1000000);
-
-                                /*
-                                 * Pushes the external video frame to the app.
-                                 */
-                                boolean success = engine.pushExternalVideoFrame(videoFrame);
-                                if (!success) {
-                                    Log.w(TAG, "pushExternalVideoFrame error");
-                                }
-                            }
-                        });
-                    }
-                    videoFileReader.start();
-
-                }
+            runOnUIThread(() -> {
+                join.setEnabled(true);
+                join.setText(getString(R.string.leave));
+                sp_push_files.setEnabled(false);
             });
         }
 
@@ -458,27 +341,8 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
             super.onUserJoined(uid, elapsed);
             Log.i(TAG, "onUserJoined->" + uid);
             showLongToast(String.format("user %d joined!", uid));
-            /**Check if the context is correct*/
-            Context context = getContext();
-            if (context == null) {
-                return;
-            }
-            handler.post(() ->
-            {
-                /**Display remote video stream*/
-                // Create render view by RtcEngine
-                SurfaceView surfaceView = new SurfaceView(context);
-                surfaceView.setZOrderMediaOverlay(true);
-                if (fl_remote.getChildCount() > 0) {
-                    fl_remote.removeAllViews();
-                }
-                // Add to the remote container
-                fl_remote.addView(surfaceView, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT));
-                // Setup remote video to render
-                engine.setupRemoteVideo(new VideoCanvas(surfaceView, RENDER_MODE_FIT, uid));
-            });
         }
+
 
         /**Occurs when a remote user (Communication)/host (Live Broadcast) leaves the channel.
          * @param uid ID of the user whose audio state changes.
@@ -494,17 +358,149 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
         public void onUserOffline(int uid, int reason) {
             Log.i(TAG, String.format("user %d offline! reason:%d", uid, reason));
             showLongToast(String.format("user %d offline! reason:%d", uid, reason));
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    /**Clear render view
-                     Note: The video will stay at its last frame, to completely remove it you will need to
-                     remove the SurfaceView from its parent*/
-                    fl_remote.removeAllViews();
-                    engine.setupRemoteVideo(new VideoCanvas(null, RENDER_MODE_HIDDEN, uid));
-                }
-            });
         }
     };
 
+
+    private interface MediaExtractorCallback {
+
+        void onExtractFormat(MediaExtractorThread thread, String codecName, int bitRate);
+
+        void onExtractFrame(ByteBuffer buffer, long presentationTimeUs, int size,
+                            boolean isKeyFrame, int width, int height, int frameRate,
+                            String codecName);
+    }
+
+    private static final class MediaExtractorThread {
+        private Thread thread;
+        private MediaExtractor extractor;
+        private final String url;
+        private volatile boolean isExtracting = false;
+        private volatile boolean isRunning = true;
+        private MediaExtractorCallback callback;
+        private Context context;
+
+        private MediaExtractorThread(Context context, String url, MediaExtractorCallback callback) {
+            this.context = context;
+            this.url = url;
+            this.callback = callback;
+            thread = new Thread(this::extract);
+            thread.start();
+        }
+
+        private void start() {
+            isExtracting = true;
+        }
+
+        private void stop() {
+            if (!isExtracting) {
+                return;
+            }
+            isRunning = false;
+            isExtracting = false;
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
+        private void extract() {
+            try {
+                extractor = new MediaExtractor();
+                if(url.startsWith("/assets") && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                    extractor.setDataSource(context.getAssets().openFd(url.substring(8)));
+                }else{
+                    extractor.setDataSource(url);
+                }
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            boolean hasVideoTrack = false;
+            int maxByteCount = 1024 * 1024 * 2;
+            int frameRate = 30;
+            int width = 640;
+            int height = 360;
+            String mimeName = "";
+            int bitRate = 0;
+            byte[] sps = new byte[0];
+            byte[] pps = new byte[0];
+            for (int i = 0; i < extractor.getTrackCount(); i++) {
+                MediaFormat format = extractor.getTrackFormat(i);
+                String mime = format.getString(MediaFormat.KEY_MIME);
+                if (mime.startsWith("video")) {
+                    hasVideoTrack = true;
+                    mimeName = mime;
+                    extractor.selectTrack(i);
+                    maxByteCount = format.getInteger(MediaFormat.KEY_MAX_INPUT_SIZE);
+                    frameRate = format.getInteger(MediaFormat.KEY_FRAME_RATE);
+                    bitRate = format.getInteger(MediaFormat.KEY_BIT_RATE);
+                    width = format.getInteger(MediaFormat.KEY_WIDTH);
+                    height = format.getInteger(MediaFormat.KEY_HEIGHT);
+                    if(format.containsKey("csd-0")){
+                        sps = format.getByteBuffer("csd-0").array();
+                    }
+                    if(format.containsKey("csd-1")){
+                        pps = format.getByteBuffer("csd-1").array();
+                    }
+                    break;
+                }
+            }
+
+            if (callback != null) {
+                callback.onExtractFormat(this, mimeName, bitRate);
+            }
+
+            int frameInterval = 1000 / frameRate;
+            ByteBuffer buffer = ByteBuffer.allocate(maxByteCount);
+            while (isRunning && hasVideoTrack) {
+                if (!isExtracting) {
+                    continue;
+                }
+                long start = System.currentTimeMillis();
+                int sampleSize = extractor.readSampleData(buffer, 0);
+                if (sampleSize < 0) {
+                    break;
+                }
+                ByteBuffer outBuffer;
+                boolean isKeyFrame = (extractor.getSampleFlags() & MediaExtractor.SAMPLE_FLAG_SYNC) > 0;
+                byte[] bytes = new byte[sampleSize];
+                buffer.get(bytes, 0, sampleSize);
+                int outSize = sampleSize;
+                if (isKeyFrame) {
+                    outSize = sps.length + pps.length + sampleSize;
+                    outBuffer = ByteBuffer.allocateDirect(outSize);
+                    outBuffer.put(sps, 0, sps.length);
+                    outBuffer.put(pps, 0, pps.length);
+                } else {
+                    outBuffer = ByteBuffer.allocateDirect(outSize);
+                }
+                outBuffer.put(bytes, 0, sampleSize);
+
+                long timeUs = extractor.getSampleTime();
+                if (callback != null) {
+                    callback.onExtractFrame(outBuffer, timeUs, outSize, isKeyFrame, width, height, frameRate, mimeName);
+                }
+                long sleep = frameInterval - (System.currentTimeMillis() - start);
+                if (sleep > 0) {
+                    try {
+                        Thread.sleep(sleep);
+                    } catch (InterruptedException e) {
+                        break;
+                    }
+                }
+                if (!extractor.advance()) {
+                    // end of stream
+                    extractor.seekTo(0, MediaExtractor.SEEK_TO_NEXT_SYNC);
+                }
+            }
+
+            extractor.release();
+            extractor = null;
+
+        }
+    }
 }

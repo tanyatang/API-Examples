@@ -584,18 +584,21 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
         videoView.setOnClickListener(v -> {
             fullLayout.setVisibility(View.VISIBLE);
             ViewGroup parent = (ViewGroup) videoView.getParent();
-            if(parent != null){
+            if (parent != null) {
+                if(parent.getParent() == fullLayout){
+                    return;
+                }
                 parent.removeView(videoView);
             }
             fullVideo.removeAllViews();
             fullVideo.addView(videoView);
-            if(videoView instanceof SurfaceView){
+            if (videoView instanceof SurfaceView) {
                 ((SurfaceView) videoView).setZOrderMediaOverlay(true);
             }
             fullClose.setOnClickListener(v1 -> {
                 fullLayout.setVisibility(View.GONE);
                 fullVideo.removeAllViews();
-                if(parent != null){
+                if (parent != null) {
                     parent.addView(videoView);
                 }
             });
