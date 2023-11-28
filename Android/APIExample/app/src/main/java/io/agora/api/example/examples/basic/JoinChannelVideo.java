@@ -293,6 +293,10 @@ public class JoinChannelVideo extends BaseFragment implements View.OnClickListen
                 VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE
         ));
 
+        // 增加重传次数
+        engine.setParameters("{\"rtc.video.rexferRtoFactor\":4}");
+        engine.setParameters("{\"rtc.video.downMaxRetryTimes\":16}");
+
         ChannelMediaOptions option = new ChannelMediaOptions();
         option.autoSubscribeAudio = true;
         option.autoSubscribeVideo = true;

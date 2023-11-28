@@ -51,10 +51,12 @@ public class PushExternalVideoYUV extends BaseFragment implements View.OnClickLi
     private static final String TAG = PushExternalVideoYUV.class.getSimpleName();
 
     private static final String[] fileUrls = new String[]{
-            "https://download.agora.io/demo/test/cyclist_1920x1080_60fps_H264.mp4",
-            "https://download.agora.io/demo/test/cyclist_1920x1080_60fps_HEVC.mp4",
-//            "/assets/cyclist_1920x1080_60fps_H264.mp4",
-//            "/assets/cyclist_1920x1080_60fps_HEVC.mp4",
+//            "https://download.agora.io/demo/test/cyclist_1920x1080_60fps_H264.mp4",
+//            "https://download.agora.io/demo/test/cyclist_1920x1080_60fps_HEVC.mp4",
+            "/assets/cyclist_1280x720p30_1800_H264.mp4",
+            "/assets/cyclist_1920x1080p30_1800_H264.mp4",
+            "/assets/cyclist_1920x1080p30_1800_HEVC.mp4",
+            "/assets/cyclist_3840x2160p30_1800_HEVC.mp4",
     };
 
     private Button join;

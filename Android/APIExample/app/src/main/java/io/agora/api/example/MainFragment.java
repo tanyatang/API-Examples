@@ -121,7 +121,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_main_activity, menu);
+        // inflater.inflate(R.menu.menu_main_activity, menu);
     }
 
     @Override
