@@ -226,6 +226,7 @@ void CAPIExampleDlg::InitSceneDialog()
    //advanced list
    // m_vecAdvanced.push_back(advancedRtmpInject);
    m_vecAdvanced.push_back(advancedRtmpStreaming);
+   m_vecAdvanced.push_back(advancedCrossChannel);
    m_vecAdvanced.push_back(advancedVideoMetadata);
    m_vecAdvanced.push_back(advancedMediaPlayer);
    m_vecAdvanced.push_back(advancedMediaRecorder);
@@ -382,6 +383,10 @@ void CAPIExampleDlg::InitSceneDialog()
    m_pMultiVideoSourceTracks = new MultiVideoSourceTracks(&m_staMainArea);
    m_pMultiVideoSourceTracks->Create(MultiVideoSourceTracks::IDD);
    m_pMultiVideoSourceTracks->MoveWindow(&rcWnd);
+
+   m_pAgoraCrossChannelDlg = new CAgoraCrossChannelDlg(&m_staMainArea);
+   m_pAgoraCrossChannelDlg->Create(CAgoraCrossChannelDlg::IDD);
+   m_pAgoraCrossChannelDlg->MoveWindow(&rcWnd);
 }
 
 void CAPIExampleDlg::InitSceneList()
@@ -520,7 +525,12 @@ void CAPIExampleDlg::CreateScene(CTreeCtrl& treeScene, CString selectedText)
     }else if (selectedText.Compare(advancedRtmpStreaming) == 0) {
         m_pRtmpStreamingDlg->InitAgora();
         m_pRtmpStreamingDlg->ShowWindow(SW_SHOW);
-    }else if (selectedText.Compare(advancedVideoMetadata) == 0) {
+    }
+	else if (selectedText.Compare(advancedCrossChannel) == 0) {
+		m_pAgoraCrossChannelDlg->InitAgora();
+		m_pAgoraCrossChannelDlg->ShowWindow(SW_SHOW);
+	}
+	else if (selectedText.Compare(advancedVideoMetadata) == 0) {
         m_pVideoSEIDlg->InitAgora();
         m_pVideoSEIDlg->ShowWindow(SW_SHOW);
     }else if (selectedText.Compare(advancedScreenCap) == 0) {
@@ -625,7 +635,12 @@ void CAPIExampleDlg::ReleaseScene(CTreeCtrl& treeScene, HTREEITEM& hSelectItem)
     }else if (str.Compare(advancedRtmpStreaming) == 0) {
         m_pRtmpStreamingDlg->UnInitAgora();
         m_pRtmpStreamingDlg->ShowWindow(SW_HIDE);
-    }else if (str.Compare(advancedVideoMetadata) == 0) {
+    }
+	else if (str.Compare(advancedCrossChannel) == 0) {
+		m_pAgoraCrossChannelDlg->UnInitAgora();
+		m_pAgoraCrossChannelDlg->ShowWindow(SW_HIDE);
+	}
+	else if (str.Compare(advancedVideoMetadata) == 0) {
         m_pVideoSEIDlg->UnInitAgora();
         m_pVideoSEIDlg->ShowWindow(SW_HIDE);
     }else if (str.Compare(advancedScreenCap) == 0){

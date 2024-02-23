@@ -33,6 +33,7 @@
 #include "Advanced/PushExternalVideoYUV/PushExternalVideoYUV.h"
 #include "Advanced/MultiVideoSourceTracks/MultiVideoSourceTracks.h"
 #include "Advanced/FaceCapture/CAgoraFaceCaptureDlg.h"
+#include "Advanced/CrossChannel/CAgoraCrossChannelDlg.h"
 #include <mutex>
 #include <vector>
 #include <map>
@@ -107,6 +108,7 @@ private:
     PushExternalVideoYUV        *m_pPushExternalVideoYUV = nullptr;
     MultiVideoSourceTracks      *m_pMultiVideoSourceTracks = nullptr;
     CAgoraFaceCaptureDlg        *m_pAgoraFaceCaptureDlg = nullptr;
+    CAgoraCrossChannelDlg       *m_pAgoraCrossChannelDlg = nullptr;
 	CDlgBeauty * m_pDlgBeauty = nullptr;
     CString m_preSelectedItemText = _T("");
     std::vector<CString> m_vecBasic, m_vecAdvanced;
