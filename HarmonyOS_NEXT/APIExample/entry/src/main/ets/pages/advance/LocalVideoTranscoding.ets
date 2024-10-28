@@ -1,15 +1,16 @@
 import {
   CameraCapturerConfiguration,
   ChannelMediaOptions,
-  ClientRoleOptions,
   Constants,
   LocalTranscoderConfiguration,
   RtcEngine,
   RtcEngineConfig,
+  ScreenCaptureParameters,
+  TranscodingVideoStream,
   VideoCanvas,
-  VideoEncoderConfiguration,
-  ScreenCaptureParameters
-} from 'AgoraRtcSdk';
+  VideoDimensions,
+  VideoEncoderConfiguration
+} from '@shengwang/rtc-full';
 import { TitleBar } from '../../common/TitleBar';
 import Logger from '../../util/Logger';
 import ShowToast from '../../util/ShowToast';
@@ -17,12 +18,7 @@ import { AppID } from '../../common/KeyCenter';
 import PermissionHelper from '../../util/PermissionHelper';
 import { common } from '@kit.AbilityKit';
 import { GlobalInfo } from '../Data';
-import { TokenUtils } from '../../util/TokenUtils';
-import { display, LengthMetrics } from '@kit.ArkUI';
-import { TranscodingVideoStream } from 'AgoraRtcSdk';
 import { JSON } from '@kit.ArkTS';
-import { camera } from '@kit.CameraKit';
-import { VideoDimensions } from 'AgoraRtcSdk';
 
 const TAG: string = 'LocalVideoTranscoding'
 
